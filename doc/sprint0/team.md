@@ -10,7 +10,7 @@
 
 | Kesavar Kabilar | kabilar1 |1005989469 | kesavar.kabilar@mail.utoronto.ca | Email | Kesavar#2253 |
 
-| Gan Hao Cheng, Keith | | 1008685157 | keith.gan@mail.utoronto.ca | Phone (Text) 604-612-8604  or Telegram @keithgan| GanKeith#8504 |
+| Gan Hao Cheng, Keith | ganhao | 1008685157 | keith.gan@mail.utoronto.ca | Phone (Text) 604-612-8604  or Telegram @keithgan| GanKeith#8504 |
 
 | Sahil Malek | maleksa3 | 1006268325 | sahil.malek@mail.utoronto.ca | Discord |MxSahil#0622|
 
