@@ -1,6 +1,8 @@
+# Welcome to BlockChain Hub
+
 ## Motivation
 
-Cryptocurrencies and NFTs are one of the most revolutionizing ideas of the 21st century. It has had a massive surge in value but many people still do not know what it is. So this web application will be a starter to all beginners and advanced crypto enthusiasts to learn about the world of cryptocurrencies. The purpose of this web application is to educate users and provide them with a platform to discuss cryptocurrencies and NFTs with other people.
+Cryptocurrencies and NFTs are one of the most revolutionizing ideas of the 21st century. They have had a massive surge in value but many people still do not know what they are. So this web application will be a starter to all beginners and advanced crypto enthusiasts to learn about the world of cryptocurrencies. The purpose of this web application is to educate users and provide them with a platform to discuss cryptocurrencies and NFTs with other people.
 
 ## Installation
 
