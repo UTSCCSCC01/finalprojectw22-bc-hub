@@ -18,7 +18,7 @@ Data:			Ryan
 
 In total, we have hosted four meetings to discuss the project deliverables. In the future, we will meet every Monday, Wednesday, and Friday at 8pm.
 
-Meeting 1 agenda
+__Meeting 1 agenda__
 
 Introduction to team members
 
@@ -26,7 +26,7 @@ Discuss deliverables for sprint 0
 
 Complete team.md
 
-Meeting 2 agenda
+__Meeting 2 agenda__
 
 Decide on project topic and project name
 
@@ -34,7 +34,7 @@ Initialize GitHub Classroom repository
 
 Select project tutorial
 
-Meeting 3 agenda
+__Meeting 3 agenda__
 
 Complete summary.md
 
@@ -44,7 +44,7 @@ Allocation of work for: personas, product backlog, README, done, UX/UI, process
 
 Division of roles
 
-Meeting 4 agenda
+__Meeting 4 agenda__
 
 Discussion of product backlog
 
