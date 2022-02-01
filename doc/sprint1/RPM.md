@@ -11,3 +11,5 @@ With the Market section, our goal is learn how to retireve market information th
 For the News section, our goal is display crypto-currency news from various credible sources in one newsfeed. This goal correlates with user story BH-7.
 
 For the Education section, the goal is to research crypto-currency concepts and definitions from credible sources, and then display the information in one, simple-to-navigate section to educate new users on the crypto-currency space. This goal relates to the user story BH-1. This section is intended for new-comers to cryptocurrency, not experts, so the content in this section will cover basic concepts in the field.
+
+The scope of this project is four high priority user stories (two worth 8 points and the other two worth 4 points).
