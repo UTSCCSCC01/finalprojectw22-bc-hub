@@ -1,7 +1,7 @@
 import React from 'react';
 import { Nav, Navbar} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'
-import logo from '../../logo.svg'
+import logo from './BC LOGO.png'
 import './NavBar.css';
 
 // setting Nav Bar from bootstrap
@@ -13,7 +13,6 @@ function NavBar() {
                     <a href='/'>
                         <button className='logoButt' >
                             <img src={logo} width="40px" height={"40px"} />
-                            BC HUB
                         </button>
                     </a>
                 
