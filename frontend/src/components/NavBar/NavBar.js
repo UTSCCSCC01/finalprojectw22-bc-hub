@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Nav, Navbar} from 'react-bootstrap';
+import { Nav, Navbar} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'
 import logo from '../../logo.svg'
 import './NavBar.css';
@@ -7,7 +7,7 @@ import './NavBar.css';
 // setting Nav Bar from bootstrap
 function NavBar() {
     return (
-        <div className='NavBar' >
+        <div className='NavFont'>
             <Navbar bg="bgcolor" variant='dark' sticky='top'>       
                 <Navbar.Brand>
                     <a href='/'>
