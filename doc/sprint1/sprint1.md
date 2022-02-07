@@ -29,23 +29,23 @@ The team capacity for this sprint is 26 points
 There are no spikes in this sprint. With these chosen user stories, the team has enough info about the feature’s that we are going to implement, hence why no spikes are being introduced yet.
 
 The following is the breakdown for each task in sprint 1:
-* BH-3
+- BH-3
   -Ryan - Set up Social Media post schema
   -Sahil - Add sample social media posts
   -Sahil - Set up routing for personal feed, trending feed and a dedicated page for each post
   -Kesavar - Set up the front end for the feeds and for the page dedicated to a single social media post.
-* BH-12
+- BH-12
   -Nathan - Set up routes for the main market page and individual currencies	
   -Nathan - Use an API to fetch market information
   -Nathan - Display market info on the front end for both the main market page, as well as for each individual currency
-* BH-7
+- BH-7
   -Keith - Use an API to fetch cryptocurrency news
   -Keith - Set up news route
   -Faraz - Display news articles on the front end
-* BH-1
+- BH-1
   -Hongting - Create front end for the educational section
   -Hongting - Collect educational content from various reputable sources
   -Hongting - Upload educational content to database
-* BH-33
+- BH-33
   -Hongting - Navbar should be at the top of the page, with links to the 4 sections clearly visible.
   -Hongting - Set up routing so that a user can quickly switch between sections
