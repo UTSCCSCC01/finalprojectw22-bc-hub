@@ -2,6 +2,7 @@ import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
 import './EducationPage.css';
 import NavBar from '../../NavBar/NavBar';
+// import image
 import r1c1 from './BitCoinPic/r1col1.jpg';
 import r1c2 from './BitCoinPic/r1col2.jpg';
 import r1c3 from './BitCoinPic/r1col3.jpg';
