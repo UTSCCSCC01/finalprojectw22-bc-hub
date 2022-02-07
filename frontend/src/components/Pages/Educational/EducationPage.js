@@ -58,7 +58,7 @@ function EducationPage() {
           </a>
           <br/>
           <br/>
-          <p> Investment Choice</p>
+          <p>       Investment Choice</p>
           </Col> 
           
           <Col><a href='https://thedailyguardian.com/impact-of-cryptocurrencies-on-the-economy/' target={'blank'}>
