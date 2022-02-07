@@ -15,7 +15,7 @@ For the News section, our goal is to display crypto-currency news from various c
 
 For the Education section, the goal is to research crypto-currency concepts and definitions from credible sources, and then display the information in one, simple-to-navigate section to educate new users on the crypto-currency space. This goal relates to the user story BH-1. This section is intended for new-comers to cryptocurrency, not experts, so the content in this section will cover basic concepts in the field.
 
-We also want to implement a Navbar, which will allow users to quickly transition between the four sections mentioned above.
+We also want to implement a Navbar (BH-33), which will allow users to quickly transition between the four sections mentioned above.
 
 The user stories that we are going to implement in this sprint are the following:
 * BH-3
