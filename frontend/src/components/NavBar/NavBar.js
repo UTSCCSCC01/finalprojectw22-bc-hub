@@ -27,5 +27,5 @@ function NavBar() {
             </Navbar>
         </div>
     );
-}
+} // Naviagtion link 23-26
 export default NavBar;
