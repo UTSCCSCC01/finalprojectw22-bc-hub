@@ -9,7 +9,8 @@ import {CommunityPost, communityPostSchema} from "../models/community_post.js"
 // INDEX the personal feed
 router.get("/personal-feed", async (req, res) => {
     try {
-        let posts = await CommunityPost.find().exec();
+        // Query community posts (not just from people you follow) and sort in reverse chronological order
+        let posts = await CommunityPost.find().sort('-date').exec();
         res.json(posts);
       } catch(err) {
         console.log(err);
@@ -21,7 +22,8 @@ router.get("/personal-feed", async (req, res) => {
 // INDEX the trending feed
 router.get("/trending-feed", async (req, res) => {
     try {
-        let posts = await CommunityPost.find().exec();
+        // Query all posts (from all time, not just recent posts) and sort by non-increasing like count
+        let posts = await CommunityPost.find().sort({"vote_count": "-1"}).exec();
         res.json(posts);
       } catch(err) {
         console.log(err);
@@ -46,7 +48,8 @@ router.post("", async (req, res) => {
         //         id: (mongoose.Schema.Types.ObjectID) 0,
         //         username: "test"},
         upvotes: [],
-        downvotes: []
+        downvotes: [],
+        vote_count: 0
     }
 
     try {

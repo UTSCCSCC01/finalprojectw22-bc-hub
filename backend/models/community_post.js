@@ -13,7 +13,8 @@ const communityPostSchema = new Schema ({
     //             },
     //         username: String},
     upvotes: Array, // Array of users who upvoted
-    downvotes: Array // Array of users who downvoted
+    downvotes: Array, // Array of users who downvoted
+    vote_count: Number
 });
 
 const CommunityPost = mongoose.model("community_post", communityPostSchema);
