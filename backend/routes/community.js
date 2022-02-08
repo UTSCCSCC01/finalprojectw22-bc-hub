@@ -11,6 +11,7 @@ router.get("/personal-feed", async (req, res) => {
     try {
         // Query community posts (not just from people you follow) and sort in reverse chronological order
         let posts = await CommunityPost.find().sort('-date').exec();
+        console.log(posts[0]);
         res.json(posts);
       } catch(err) {
         console.log(err);
@@ -39,6 +40,7 @@ router.get("/trending-feed", async (req, res) => {
 
 // CREATE the new social media post
 router.post("", async (req, res) => {
+    console.log(req.body)
     const newPost = {
         title: req.body.title,
         description: req.body.description,
