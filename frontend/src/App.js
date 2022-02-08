@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 import CreatePerson from './components/CreatePerson';
 import ShowPeople from './components/ShowPeople';
+import PersonalFeed from './components/Community';
 
 function App() {
 
@@ -18,7 +19,6 @@ function App() {
       <CreatePerson></CreatePerson>
       <h3>Names in DB listed below</h3>
       <ShowPeople></ShowPeople>
-
     </div>
     
   );
