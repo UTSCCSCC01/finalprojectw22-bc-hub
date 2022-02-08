@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import people from "./routes/people.js"
+import newsfeed from "./routes/newsfeed.js"
 import mongoose from 'mongoose'
 import dotenv from "dotenv"
 import {Person, personSchema} from "./models/person.js"
@@ -18,6 +19,7 @@ app.get('/', async (req, res) => {
 });
 
 app.use("/people", people)
+app.use("/newsfeed", newsfeed)
 app.use("*", (req, res) => res.status(404).json({error: "not found"}))
 
 try {
