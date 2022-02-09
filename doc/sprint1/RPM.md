@@ -1,15 +1,14 @@
-On Monday, January 31st, 2022, we had our release planning meeting for sprint 1 on the CSC301 Discord. The meeting was attended by all seven group members, with activly participating in the discussion. Our goal for this release is to lay the groundowrk for the following, four main components of our application:
-* Social Media
-* Market
-* News
-* Education
+On Sunday January 30th, 2022, we had our release planning meeting on the team discord server. The meeting was attended by all seven group members (Sahil, Faraz, Kesavar, Nathan, Ryan, Hongting and Keith) with active participation from all group members. During the meeting, our team discussed the goals of the release, the scope of the project, and what we wanted the final application to look like.
 
-For Social Media, our goal is to implement the basic componenets and layout of a social media post, as well as display these posts in two types of feeds. These goals relate to user story BH-3. We want to be able to click on posts to view more information (comment sections and full descriptions). We also want to implement a functioning personal feed and trending section. Since user authentication will be implemented in a later sprint, the personal feed will contain posts from the entire userbase (instead of who the user follows) in a reverse-chronological order. The Trending feed will contain posts from the past 24 hours, sorted by decreasing like count.
+One goal of the release is to build an application that is easy to use, looks visually appealing, and useful for lots of people. Another goal is to provide users an application that has almost all of their crypto-related needs.
 
-With the Market section, our goal is learn how to retireve market information through existing cryptocurrency APIs and display the market information in an clear and intuitive user interface. These goals relate to user story BH-12. We would like to display prices, charts and other statistics for various currencies on one page, and allow users to see more info about the currency by clicking on the currency's name.
 
-For the News section, our goal is display crypto-currency news from various credible sources in one newsfeed. This goal correlates with user story BH-7.
+## Project Scope
 
-For the Education section, the goal is to research crypto-currency concepts and definitions from credible sources, and then display the information in one, simple-to-navigate section to educate new users on the crypto-currency space. This goal relates to the user story BH-1. This section is intended for new-comers to cryptocurrency, not experts, so the content in this section will cover basic concepts in the field.
+There are a few things that are key to our application.
 
-The scope of this project is four high priority user stories (two worth 8 points and the other two worth 4 points).
+Cryptocurrencies and NFTs are gaining more and more popularity, but not many people are knowledgeable about them, so we will dedicate an entire page to education. This page will point users to useful resources to learn more about the field [BH-1].
+
+We want to provide beginners and experts alike a platform to discuss cryptocurrency with others, so social media is a big part of our application. Users will have to ability to make their own posts [BH-2] and have customized feeds based on the people they follow [BH-11]. To promote discussion, users can comment on posts [BH-6] and/or express their opinion via likes/dislikes [BH-5].
+
+Past and current information about cryptocurrencies such as prices and charts are important for investors to make their decisions. So to support our goal of providing users an application that has almost all of their crypto-related needs, our application will have a market section that displays up-to-date as well as historical information about different cryptocurrencies [BH-12]. 
