@@ -9,9 +9,11 @@ router.get('/:pageNo', async (req, res) => {
         q: 'crypto OR bitcoin',
         language: 'en',
         pageSize: 20,
-        page: req.params.pageNo
+        page: req.params.pageNo,
+        sortBy: 'publishedAt'
     }).then(response => {
         res.send(response.articles)
+        console.log("request made");
     }).catch(err => {
         console.log(err)
     })
