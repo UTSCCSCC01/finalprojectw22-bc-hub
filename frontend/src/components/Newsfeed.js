@@ -30,7 +30,6 @@ function Newsfeed(props) {
     const news = props.news;
 
     if(news.length > 0){
-      // setIsLoading(false);
       isLoading = false
       return(
         news.map((article) => {
