@@ -1,4 +1,4 @@
-On Monday, January 31st, 2022, we had our release planning meeting for sprint 1 on the CSC301 Discord. The meeting was attended by all seven group members (Sahil, Faraz, Kesavar, Nathan, Ryan, Hongting and Keith), with everyone actively participating in the discussion. 
+On Monday, January 31st, 2022, we had our sprint 1 planning meeting on the CSC301 Discord. The meeting was attended by all seven group members (Sahil, Faraz, Kesavar, Nathan, Ryan, Hongting and Keith), with everyone actively participating in the discussion. 
 
 Our goal for this release is to lay the groundwork for the following, four main components of our application:
 
