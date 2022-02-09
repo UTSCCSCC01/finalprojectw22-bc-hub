@@ -1,7 +1,6 @@
 import React from 'react';
 import News from "./News"
 import Pagination from 'react-bootstrap/Pagination'
-var he = require('he');
 
 
 function Newsfeed(props) {
