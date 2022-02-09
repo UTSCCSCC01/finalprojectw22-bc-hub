@@ -6,15 +6,20 @@ import Newsfeed from './Newsfeed';
 function GrabNews() {
 
 const [news, getNews] = useState('');
+const [page, setPage] = useState(1);
 
-  const url = 'http://localhost:5000/';
+const changePage = (p) => {
+  setPage(p);
+}
+
+  const url = `http://localhost:5000/newsfeed/${page}`;
 
   useEffect(() => {
     getAllNews();
-  }, []);
+  }, [page]);
 
   const getAllNews = () => {
-    axios.get(`${url}newsfeed`)
+    axios.get(url)
     .then((response) => {
       const allNews = response.data;
       getNews(allNews);
@@ -23,7 +28,10 @@ const [news, getNews] = useState('');
   }
 
   return (
-      <Newsfeed news={news}/>
+      <Newsfeed
+      news={news}
+      callback={changePage}
+      />
   )
 }
 
