@@ -19,10 +19,14 @@ function NavBar() {
                 </Navbar.Brand>
 
                 <Nav>
-                    <Nav.Link href='news'>News</Nav.Link>
-                    <Nav.Link href='market'>Market</Nav.Link>
-                    <Nav.Link href='education'>Learn</Nav.Link>
-                    <Nav.Link href='community'>Community</Nav.Link>
+                    <Nav.Link href='/news'>News</Nav.Link>
+                    <Nav.Link href='/market'>Market</Nav.Link>
+                    <Nav.Link href='/education'>Learn</Nav.Link>
+                    {/* <Nav.Link href='community'>Community</Nav.Link> */}
+                    <NavDropdown title="Community" id="community-nav-dropdown">
+                        <NavDropdown.Item href="/community/personal-feed">Personal Feed</NavDropdown.Item>
+                        <NavDropdown.Item href="/community/trending-feed">Trending Feed</NavDropdown.Item>
+                    </NavDropdown>
                 </Nav>
             </Navbar>
         </div>
