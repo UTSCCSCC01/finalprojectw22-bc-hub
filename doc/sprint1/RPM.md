@@ -12,3 +12,5 @@ Cryptocurrencies and NFTs are gaining more and more popularity, but not many peo
 We want to provide beginners and experts alike a platform to discuss cryptocurrency with others, so social media is a big part of our application. Users will have to ability to make their own posts [BH-2] and have customized feeds based on the people they follow [BH-11]. To promote discussion, users can comment on posts [BH-6] and/or express their opinion via likes/dislikes [BH-5].
 
 Past and current information about cryptocurrencies such as prices and charts are important for investors to make their decisions. So to support our goal of providing users an application that has almost all of their crypto-related needs, our application will have a market section that displays up-to-date as well as historical information about different cryptocurrencies [BH-12]. 
+
+Finally, we want to provide a newsfeed to our users, so that they can stay up to date with the latest cryptocurrency news. This feed will consist of articles published by trusted news outlets from around the globe [BH-7]. This section will take us one step closer to building a central hub for crypto-currency.
