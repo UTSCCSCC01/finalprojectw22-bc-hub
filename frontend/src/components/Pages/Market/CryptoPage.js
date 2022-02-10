@@ -5,7 +5,7 @@ import useFetch  from '../../../hooks/useFetch';
 function CryptoCoin() {
 
   const url = window.location.href;
-
+ 
   const {data: marketData, isLoading, error} = useFetch("http://localhost:5000/market/main" + url.substring(url.lastIndexOf('/')));
 
   if (isLoading) {

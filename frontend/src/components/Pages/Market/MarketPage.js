@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table'
 import './MarketPage.css'
 
 function Market() {
-
+ 
 
   const {data: marketData, isLoading, error} = useFetch("http://localhost:5000/market/main");
 
