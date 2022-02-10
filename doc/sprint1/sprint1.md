@@ -45,7 +45,6 @@ The following is the breakdown for each task in sprint 1:
 - BH-1
   - Hongting - Create front end for the educational section
   - Hongting - Collect educational content from various reputable sources
-  - Hongting - Upload educational content to database
 - BH-33
   - Hongting - Navbar should be at the top of the page, with links to the 4 sections clearly visible.
   - Hongting - Set up routing so that a user can quickly switch between sections
