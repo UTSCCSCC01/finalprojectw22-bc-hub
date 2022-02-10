@@ -8,19 +8,18 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import files
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// import Pages
 import EducationPage from './components/Pages/Educational/EducationPage';
 import GrabNews from './components/GrabNews';
 import Market from './components/Pages/Market/MarketPage';
-
 import Crypto from './components/Pages/Market/CryptoPage';
 import Community from './components/Pages/Community/Community';
+import NotFoundPage from './components/Pages/NotFoundPage';
 
-
+// Main 
 const rootElement = document.getElementById("root");
 render(
   <BrowserRouter>
@@ -33,6 +32,7 @@ render(
       <Route path="/community/trending-feed" element={<Community feed="trending-feed" />} />
       <Route path="/community/personal-feed" element={<Community feed="personal-feed" />} />
       <Route path="/community" element={<Community feed="personal-feed" />} />
+      <Route path="*" element={<NotFoundPage/>}/>
     </Routes>
   </BrowserRouter>,
 
