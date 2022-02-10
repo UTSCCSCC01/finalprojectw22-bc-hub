@@ -1,5 +1,6 @@
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from "react-dom";
+import App from "./App";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {
@@ -10,18 +11,17 @@ import {
 // import files
 
 import EducationPage from './components/Pages/Educational/EducationPage';
-import GrabNews from './components/GrabNews';
+import News from './components/Pages/News/NewsPage';
 import Market from './components/Pages/Market/MarketPage';
 import Community from './components/Pages/Community/CommunityPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 render(
   <BrowserRouter>
-    <Routes>
+  <Routes>
     <Route path="/" element={<App />} />
     <Route path="education" element={<EducationPage />} />
-    <Route path="news" element={<GrabNews />} />
+    <Route path="news" element={<News />} />
     <Route path="market" element={<Market />} />
     <Route path="community" element={<Community />} />
   </Routes>
