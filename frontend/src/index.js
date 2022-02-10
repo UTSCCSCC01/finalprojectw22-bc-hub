@@ -8,24 +8,28 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import files
 
 import EducationPage from './components/Pages/Educational/EducationPage';
 import News from './components/Pages/News/NewsPage';
 import Market from './components/Pages/Market/MarketPage';
-import Community from './components/Pages/Community/CommunityPage';
+import Community from './components/Pages/Community/Community';
 
 const rootElement = document.getElementById("root");
 render(
   <BrowserRouter>
-  <Routes>
-    <Route path="/" element={<App />} />
-    <Route path="education" element={<EducationPage />} />
-    <Route path="news" element={<News />} />
-    <Route path="market" element={<Market />} />
-    <Route path="community" element={<Community />} />
-  </Routes>
-</BrowserRouter>,
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="/education" element={<EducationPage />} />
+      <Route path="/news" element={<News />} />
+      <Route path="/market" element={<Market />} />
+      <Route path="/community/trending-feed" element={<Community feed="trending-feed" />} />
+      <Route path="/community/personal-feed" element={<Community feed="personal-feed" />} />
+      <Route path="/community" element={<Community feed="personal-feed" />} />
+    </Routes>
+  </BrowserRouter>,
   rootElement
 );
 

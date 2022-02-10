@@ -24,7 +24,7 @@ router.get("/personal-feed", async (req, res) => {
 router.get("/trending-feed", async (req, res) => {
     try {
         // Query all posts (from all time, not just recent posts) and sort by non-increasing like count
-        let posts = await CommunityPost.find().sort({"vote_count": "-1"}).exec();
+        let posts = await CommunityPost.find().sort({"totalLikes": "-1"}).exec();
         res.json(posts);
       } catch(err) {
         console.log(err);
@@ -41,17 +41,18 @@ router.get("/trending-feed", async (req, res) => {
 // CREATE the new social media post
 router.post("", async (req, res) => {
     console.log(req.body)
+    let d = new Date()
     const newPost = {
         title: req.body.title,
         description: req.body.description,
         image: req.body.image,
-        date: new Date(),
-        // owner: {
-        //         id: (mongoose.Schema.Types.ObjectID) 0,
-        //         username: "test"},
-        upvotes: [],
-        downvotes: [],
-        vote_count: 0
+        date: d,
+        dateString: d.toDateString(),
+        likes: [],
+        dislikes: [],
+        totalLikes: 0,
+        totalDislikes: 0,
+        comments: []
     }
 
     try {

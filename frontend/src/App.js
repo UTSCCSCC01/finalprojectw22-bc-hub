@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 import CreatePerson from './components/CreatePerson';
 import ShowPeople from './components/ShowPeople';
-import PersonalFeed from './components/Community';
 
 function App() {
 

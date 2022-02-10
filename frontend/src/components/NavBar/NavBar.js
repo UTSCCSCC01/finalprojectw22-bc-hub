@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Navbar} from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'
 import logo from './BC LOGO.png'
 import './NavBar.css';
@@ -22,7 +22,11 @@ function NavBar() {
                     <Nav.Link href='news'>News</Nav.Link>
                     <Nav.Link href='market'>Market</Nav.Link>
                     <Nav.Link href='education'>Learn</Nav.Link>
-                    <Nav.Link href='community'>Community</Nav.Link>
+                    {/* <Nav.Link href='community'>Community</Nav.Link> */}
+                    <NavDropdown title="Community" id="community-nav-dropdown">
+                        <NavDropdown.Item href="/community/personal-feed">Personal Feed</NavDropdown.Item>
+                        <NavDropdown.Item href="/community/trending-feed">Trending Feed</NavDropdown.Item>
+                    </NavDropdown>
                 </Nav>
             </Navbar>
         </div>
