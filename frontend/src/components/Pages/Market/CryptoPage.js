@@ -1,4 +1,3 @@
-import React, { Component, useEffect, useState } from 'react';
 import NavBar from '../../NavBar/NavBar';
 import useFetch  from '../../../hooks/useFetch';
 
@@ -10,7 +9,7 @@ function CryptoCoin() {
   const {data: marketData, isLoading, error} = useFetch("http://localhost:5000/market/main" + url.substring(url.lastIndexOf('/')));
 
   if (isLoading) {
-    return(<div>loading</div>)
+    return(<div></div>)
   }
 
   return <div id="crypto_page">

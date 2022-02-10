@@ -1,4 +1,3 @@
-import React, { Component, useEffect, useState } from 'react';
 import NavBar from '../../NavBar/NavBar';
 import useFetch  from '../../../hooks/useFetch';
 import Table from 'react-bootstrap/Table'
@@ -11,7 +10,7 @@ function Market() {
 
 
   if (isLoading) {
-    return(<div>loading</div>)
+    return(<div></div>)
   }
   
   return <div id="market_page">
