@@ -11,7 +11,6 @@ router.use(body_parser.urlencoded({extended: true}));
 const crypto_arr = [];
 
 router.get("/main/:symbol?", function(req, res) {
-  console.log("fuck");
 
   const api_key = '9a842280-701b-4651-890d-b0aeee1f199b';
   const url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=" + api_key;
