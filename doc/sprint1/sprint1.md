@@ -33,7 +33,7 @@ The following is the breakdown for each task in sprint 1:
   - Ryan - Set up Social Media post schema
   - Sahil - Add sample social media posts
   - Sahil - Set up routing for personal feed, trending feed and a dedicated page for each post
-  - Sahil - Set up the front end for the feeds and for the page dedicated to a single social media post.
+  - Sahil - Set up the front end for the trending and personal feed
 - BH-12
   - Nathan - Set up routes for the main market page and individual currencies	
   - Nathan - Use an API to fetch market information
