@@ -9,6 +9,7 @@ import dotenv from "dotenv"
 // Route Imports
 import peopleRoutes from "./routes/people.js"
 import communityRoutes from "./routes/community.js"
+import market from "./routes/market.js";
 
 // Model Imports
 import {Person, personSchema} from "./models/person.js"
@@ -33,6 +34,7 @@ app.get('/', async (req, res) => {
 app.use("/newsfeed", newsfeed)
 app.use("/people", peopleRoutes);
 app.use("/community", communityRoutes);
+app.use("/market", market);
 app.use("*", (req, res) => res.status(404).json({error: "not found"}))
 
 
