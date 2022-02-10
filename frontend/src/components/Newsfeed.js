@@ -1,6 +1,7 @@
 import React from 'react';
 import News from "./News"
 import Pagination from 'react-bootstrap/Pagination'
+import NavBar from './NavBar/NavBar';
 
 
 function Newsfeed(props) {
@@ -52,10 +53,11 @@ function Newsfeed(props) {
 
   return (
     <>
-      <div className='text-center w-100 bg-dark text-light mb-2'>NavBar here</div>
+      {/* <div className='text-center w-100 bg-dark text-light mb-2'>NavBar here</div> */}
+      <div className="mb-2"><NavBar></NavBar></div>
       {displayNews(props)}
       {!isLoading && 
-      <Pagination className='align-items-center justify-content-center'>
+      <Pagination className='mt-2 align-items-center justify-content-center'>
         <Pagination.Item key={11} onClick={() => getNewPage(1)}>{1}</Pagination.Item>
         <Pagination.Item key={12} onClick={() => getNewPage(2)}>{2}</Pagination.Item>
         <Pagination.Item key={13} onClick={() => getNewPage(3)}>{3}</Pagination.Item>
