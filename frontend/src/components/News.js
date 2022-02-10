@@ -6,8 +6,8 @@ import Image from 'react-bootstrap/Image'
 
 function News({title, preview, publisher, date, img, link}) {
   return (
-    <Container>
-      <Row className='border-bottom justify-content-center p-0'>
+    <Container >
+      <Row className='border-bottom p-0 justify-content-center'>
           <Col className='' xs={6}>
             <a target="_blank" rel="noopener noreferrer" className="text-decoration-none text-black" href={link}>
               <h4 className='mt-2'>{title}</h4>
