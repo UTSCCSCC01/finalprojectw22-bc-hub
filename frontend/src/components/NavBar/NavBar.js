@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Navbar} from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'
 import logo from './BC LOGO.png'
 import './NavBar.css';
@@ -8,14 +8,14 @@ import './NavBar.css';
 function NavBar() {
     return (
         <div className='NavFont'>
-            <Navbar bg="bgcolor" variant='dark' sticky='top'>       
+            <Navbar bg="bgcolor" variant='dark' sticky='top'>
                 <Navbar.Brand>
                     <a href='/'>
                         <button className='logoButt' >
                             <img src={logo} width="40px" height={"40px"} />
                         </button>
                     </a>
-                
+
                 </Navbar.Brand>
 
                 <Nav>
