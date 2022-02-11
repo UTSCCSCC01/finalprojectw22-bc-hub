@@ -1,0 +1,26 @@
+.div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.ctr {
+    margin-top: 5ch;
+    align-content: flex-end;
+    align-items: center;
+}
+
+.row {
+    padding: 1cm;
+    align-items: center;
+}
+
+.col {
+    align-items: center;
+    align-content: center;
+    font-style: inherit;
+}
+
+p {
+    white-space: pre;
+  }
