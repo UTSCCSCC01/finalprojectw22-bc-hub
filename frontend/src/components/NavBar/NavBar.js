@@ -12,7 +12,7 @@ function NavBar() {
                 <Navbar.Brand>
                     <a href='/'>
                         <button className='logoButt' >
-                            <img src={logo} width="40px" height={"40px"} />
+                            <img src={logo} width="40px" height={"40px"} alt="" />
                         </button>
                     </a>
 
@@ -26,6 +26,7 @@ function NavBar() {
                     <NavDropdown title="Community" id="community-nav-dropdown">
                         <NavDropdown.Item href="/community/personal-feed">Personal Feed</NavDropdown.Item>
                         <NavDropdown.Item href="/community/trending-feed">Trending Feed</NavDropdown.Item>
+                        <NavDropdown.Item href="/community/make-post">MakePost</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
             </Navbar>

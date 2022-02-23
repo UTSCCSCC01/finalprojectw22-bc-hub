@@ -18,6 +18,7 @@ import Market from './components/Pages/Market/MarketPage';
 import Crypto from './components/Pages/Market/CryptoPage';
 import Community from './components/Pages/Community/Community';
 import NotFoundPage from './components/Pages/NotFoundPage';
+import MakePost from './components/Pages/Community/MakePost';
 
 // Main 
 const rootElement = document.getElementById("root");
@@ -31,6 +32,7 @@ render(
       <Route path="/:symbol" element={<Crypto />} />
       <Route path="/community/trending-feed" element={<Community feed="trending-feed" />} />
       <Route path="/community/personal-feed" element={<Community feed="personal-feed" />} />
+      <Route path="/community/make-post" element={<MakePost/>} />
       <Route path="/community" element={<Community feed="personal-feed" />} />
       <Route path="*" element={<NotFoundPage/>}/>
     </Routes>
