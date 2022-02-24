@@ -1,27 +1,29 @@
 import React from 'react'
 import { Card, Button, Form, ButtonToolbar} from 'react-bootstrap';
-import NavBar from '../../NavBar/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-export default function MakePost() {
+export default function MakePost( {closeModal} ) {
   return (
-    <div>
-        <NavBar/>
-        <Card className='mb-3, text-center' style={{
-        width: 500, height: 500, backgroundColor: 'rgb(201, 76, 76)'}}>
+    <div style={{position: 'fixed', bottom: 0, right: 30, zIndex:100, }}> 
+
+        <Card className="mt-4 shadow border-0 rounded-3 text-center" style={{
+        width: 500, height: 550, backgroundColor: 'rgb(201, 76, 76)'}}>
             <Card.Body>
                 <Card.Title>Create post</Card.Title>
-                <hr/>
-                <Card.Text> TESTING</Card.Text>
+                
                     <Form>
                         <Form.Group>
-                            <textarea style={{width: 450, height: 300}}/>
+                            <Form.Control type="text" placeholder='Enter your Title here...'>
+
+                            </Form.Control>
+                            <hr/>
+                            <textarea style={{width: 450, height: 300, backgroundColor: '#99FFFF', fontSize: "2em"}} placeholder='What are you thinking?'/>
                         </Form.Group>
                     </Form>
-                <hr/>
-                    <ButtonToolbar>
-                        <Button className='mx-3' variant='outline-light'>Cancel</Button>{' '}
-                        <Button style={{marginLeft: "290px"}} variant='dark' >Post</Button>{' '}
+                    <hr/>
+                    <ButtonToolbar className='mb-3'>
+                        <Button className='mx-2' variant='outline-light' onClick={() => closeModal(false)}>Cancel</Button>{' '}
+                        <Button style={{marginLeft: "313px"}} variant='dark'>Post</Button>{' '}
                     </ButtonToolbar>
                 
             </Card.Body>
