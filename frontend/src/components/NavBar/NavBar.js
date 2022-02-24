@@ -26,7 +26,6 @@ function NavBar() {
                     <NavDropdown title="Community" id="community-nav-dropdown">
                         <NavDropdown.Item href="/community/personal-feed">Personal Feed</NavDropdown.Item>
                         <NavDropdown.Item href="/community/trending-feed">Trending Feed</NavDropdown.Item>
-                        <NavDropdown.Item href="/community/make-post">MakePost</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
             </Navbar>
