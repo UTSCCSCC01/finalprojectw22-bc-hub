@@ -13,11 +13,11 @@ export default function MakePost( {closeModal} ) {
                 
                     <Form>
                         <Form.Group>
-                            <Form.Control type="text" placeholder='Enter your Title here...'>
-
-                            </Form.Control>
+                            <Form.Control type="text" placeholder='Enter your Title here...' style={{backgroundColor: '#f5d5d5', marginLeft: 10, marginRight: 10, width: 450}}></Form.Control>
+                            <Form.Control type="link" placeholder='Enter your Image Link' style={{marginTop: 15, width: 400, backgroundColor: '#f5d5d5', marginLeft: 10}}></Form.Control>
+                            
                             <hr/>
-                            <textarea style={{width: 450, height: 300, backgroundColor: '#99FFFF', fontSize: "2em"}} placeholder='What are you thinking?'/>
+                            <textarea style={{width: 450, height: 300, backgroundColor: '#f5d5d5', fontSize: "2em", borderRadius: 10}} placeholder='What are you thinking?'/>
                         </Form.Group>
                     </Form>
                     <hr/>
