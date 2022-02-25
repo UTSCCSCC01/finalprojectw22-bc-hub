@@ -25,15 +25,18 @@ function Post() {
     tit = getText('title');
     img = getText('image');
     desc = getText('description')
-    console.log(tit)
-    console.log(img)
-    console.log(desc)
     var po = {
         "title" : tit,
         "description" : desc,
         "image" : img
     }
-    sendData(po);
+    if (tit.length === 0 || desc.length === 0) {
+        alert('Cannot have empty title or description');
+    } else {
+        sendData(po);
+        window.location.reload();
+    }
+    
     
 }
 
@@ -54,7 +57,7 @@ export default function MakePost( {closeModal} ) {
                             <Form.Control id = 'image' placeholder='Enter your Image Link' style={{marginTop: 15, width: 400, backgroundColor: '#f5d5d5', marginLeft: 10}}></Form.Control>
                             
                             <hr/>
-                            <textarea id = 'description' style={{width: 450, height: 300, backgroundColor: '#f5d5d5', fontSize: "2em", borderRadius: 10}} placeholder='What are you thinking?'/>
+                            <textarea id = 'description' style={{resize: 'none', width: 450, height: 300, backgroundColor: '#f5d5d5', fontSize: "2em", borderRadius: 10}} placeholder='What are you thinking?'/>
                         </Form.Group>
                     </Form>
                     <hr/>
