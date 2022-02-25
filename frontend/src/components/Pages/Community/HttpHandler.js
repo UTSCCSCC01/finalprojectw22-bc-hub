@@ -46,4 +46,4 @@ function HttpTest() {
   )
 }
 
-export default HttpTest
+export default sendHttpRequest
