@@ -18,6 +18,7 @@ import Market from './components/Pages/Market/MarketPage';
 import Crypto from './components/Pages/Market/CryptoPage';
 import Community from './components/Pages/Community/Community';
 import NotFoundPage from './components/Pages/NotFoundPage';
+import MakePost from './components/Pages/Community/MakePost';
 
 // Main 
 const rootElement = document.getElementById("root");

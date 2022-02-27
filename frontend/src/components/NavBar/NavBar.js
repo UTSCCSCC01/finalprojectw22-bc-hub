@@ -12,7 +12,7 @@ function NavBar() {
                 <Navbar.Brand>
                     <a href='/'>
                         <button className='logoButt' >
-                            <img src={logo} width="40px" height={"40px"} />
+                            <img src={logo} width="40px" height={"40px"} alt="" />
                         </button>
                     </a>
 
