@@ -11,8 +11,6 @@ function searchFun(param) {
       window.location = "/" + param[i].symbol;
     }
   }
-
-
 }
 
 function filterFun(param){
@@ -39,7 +37,6 @@ function filterFun(param){
 function Market() {
  
   const {data: marketData, isLoading, error} = useFetch("http://localhost:5000/market/main");
-
 
   if (isLoading) {
     return(<div></div>)
