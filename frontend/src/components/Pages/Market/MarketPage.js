@@ -11,7 +11,6 @@ function searchFun(param) {
       window.location = "/" + param[i].symbol;
     }
   }
-  console.log("fuck");
 
 
 }
@@ -50,7 +49,8 @@ function Market() {
       <NavBar/>
       <h1>Market Section</h1>
       <div id="datatable">
-      <SearchBar butFun={searchFun} param={marketData.data} inVal={document.getElementById("my-input")} inFun={filterFun}/>
+      <SearchBar butFun={searchFun} param={marketData.data} inVal={document.getElementById("my-input")} inFun={filterFun}
+      text={"Enter Symbol"}/>
 
         <Table striped bordered hover id="market-table">
           <thead>
