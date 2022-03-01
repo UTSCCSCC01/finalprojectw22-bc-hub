@@ -6,8 +6,9 @@ import './MarketPage.css'
 
 function searchFun(param) {
   const inVal = document.getElementById('my-input').value;
+  const txtVal = inVal.toUpperCase();
   for (var i = 0; i < param.length; i++){
-    if (param[i].symbol == inVal || param[i].name == inVal){
+    if (param[i].symbol.toUpperCase() == txtVal || param[i].name.toUpperCase() == txtVal){
       window.location = "/" + param[i].symbol;
     }
   }
