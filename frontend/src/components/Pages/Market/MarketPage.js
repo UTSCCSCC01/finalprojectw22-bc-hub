@@ -4,25 +4,38 @@ import useFetch  from '../../../hooks/useFetch';
 import Table from 'react-bootstrap/Table'
 import './MarketPage.css'
 
-function test(param) {
+function searchFun(param) {
   const inVal = document.getElementById('my-input').value;
   for (var i = 0; i < param.length; i++){
     if (param[i].symbol == inVal || param[i].name == inVal){
       window.location = "/" + param[i].symbol;
     }
   }
+  console.log("fuck");
 
 
 }
 
-function test1(param){
-  const inVal = document.getElementById('my-input').value;
-  for(var i = 0; i < param.length; i++){
-    if (!param[i].symbol.includes(inVal)){
-      param.splice(i, 1);
+function filterFun(param){
+  
+  const input = document.getElementById('my-input').value;
+  const table = document.getElementById('market-table');
+  const tr = table.getElementsByTagName("tr");
+  const filter = input.toUpperCase();
+
+  for (var i = 0; i < tr.length; i++) {
+    const td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      const txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
     }
   }
 }
+
 
 function Market() {
  
@@ -37,7 +50,7 @@ function Market() {
       <NavBar/>
       <h1>Market Section</h1>
       <div id="datatable">
-      <SearchBar fun={test} param={marketData.data} inVal={document.getElementById("my-input")} fun1={test1}/>
+      <SearchBar butFun={searchFun} param={marketData.data} inVal={document.getElementById("my-input")} inFun={filterFun}/>
 
         <Table striped bordered hover id="market-table">
           <thead>
