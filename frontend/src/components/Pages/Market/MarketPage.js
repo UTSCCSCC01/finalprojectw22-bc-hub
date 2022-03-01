@@ -7,12 +7,21 @@ import './MarketPage.css'
 function test(param) {
   const inVal = document.getElementById('my-input').value;
   for (var i = 0; i < param.length; i++){
-    if (param[i].symbol == inVal){
-      window.location = "/" + inVal;
+    if (param[i].symbol == inVal || param[i].name == inVal){
+      window.location = "/" + param[i].symbol;
     }
   }
 
 
+}
+
+function test1(param){
+  const inVal = document.getElementById('my-input').value;
+  for(var i = 0; i < param.length; i++){
+    if (!param[i].symbol.includes(inVal)){
+      param.splice(i, 1);
+    }
+  }
 }
 
 function Market() {
@@ -28,7 +37,7 @@ function Market() {
       <NavBar/>
       <h1>Market Section</h1>
       <div id="datatable">
-      <SearchBar fun={test} param={marketData.data} inVal={document.getElementById("my-input")}/>
+      <SearchBar fun={test} param={marketData.data} inVal={document.getElementById("my-input")} fun1={test1}/>
 
         <Table striped bordered hover id="market-table">
           <thead>
