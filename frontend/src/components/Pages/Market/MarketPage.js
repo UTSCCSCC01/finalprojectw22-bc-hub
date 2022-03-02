@@ -20,14 +20,15 @@ function filterFun(param){
   const table = document.getElementById('market-table');
   const tr = table.getElementsByTagName("tr");
   const filter = input.toUpperCase();
-
+  
+  
   for (var i = 0; i < tr.length; i++) {
     const td = tr[i].getElementsByTagName("td")[0];
     if (td) {
       const txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
-      } else {
+      } else{
         tr[i].style.display = "none";
       }
     }
