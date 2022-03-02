@@ -2,12 +2,12 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const communityPostSchema = new Schema ({
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     title: String,
     description: String,
-    image: String, //stored as string temporarily
+    image: String,
     date: { type: Date, default: Date.now },
     dateString: String,
-    // owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     totalLikes: Number,
