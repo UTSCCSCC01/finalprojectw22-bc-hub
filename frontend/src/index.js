@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render } from "react-dom";
 import App from "./App";
 import './index.css';
@@ -19,23 +19,29 @@ import Crypto from './components/Pages/Market/CryptoPage';
 import Community from './components/Pages/Community/Community';
 import NotFoundPage from './components/Pages/NotFoundPage';
 import MakePost from './components/Pages/Community/MakePost';
+import LandingPage from './components/LandingPage/LandingPage';
+
+import { ChakraProvider } from '@chakra-ui/react'
 
 // Main 
 const rootElement = document.getElementById("root");
 render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/education" element={<EducationPage />} />
-      <Route path="/news" element={<GrabNews />} />
-      <Route path="/market" element={<Market />} />
-      <Route path="/:symbol" element={<Crypto />} />
-      <Route path="/community/trending-feed" element={<Community feed="trending-feed" />} />
-      <Route path="/community/personal-feed" element={<Community feed="personal-feed" />} />
-      <Route path="/community" element={<Community feed="personal-feed" />} />
-      <Route path="*" element={<NotFoundPage/>}/>
-    </Routes>
-  </BrowserRouter>,
+  <ChakraProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/app" element={<App />} />
+        <Route path="/education" element={<EducationPage />} />
+        <Route path="/news" element={<GrabNews />} />
+        <Route path="/market" element={<Market />} />
+        <Route path="/:symbol" element={<Crypto />} />
+        <Route path="/community/trending-feed" element={<Community feed="trending-feed" />} />
+        <Route path="/community/personal-feed" element={<Community feed="personal-feed" />} />
+        <Route path="/community" element={<Community feed="personal-feed" />} />
+        <Route path="*" element={<NotFoundPage/>}/>
+      </Routes>
+    </BrowserRouter>
+  </ChakraProvider>,
 
   rootElement
 );
