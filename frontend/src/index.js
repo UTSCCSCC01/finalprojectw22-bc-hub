@@ -18,8 +18,6 @@ import Market from './components/Pages/Market/MarketPage';
 import Crypto from './components/Pages/Market/CryptoPage';
 import Community from './components/Pages/Community/Community';
 import NotFoundPage from './components/Pages/NotFoundPage';
-import MakePost from './components/Pages/Community/MakePost';
-import LandingPage from './components/LandingPage/LandingPage';
 
 import { ChakraProvider } from '@chakra-ui/react'
 
@@ -29,8 +27,7 @@ render(
   <ChakraProvider>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/app" element={<App />} />
+        <Route path="/" element={<App />} />
         <Route path="/education" element={<EducationPage />} />
         <Route path="/news" element={<GrabNews />} />
         <Route path="/market" element={<Market />} />
