@@ -34,6 +34,18 @@ function filterFun(param){
   }
 }
 
+function butFun(bText){
+  const but = document.getElementById('table-but' + bText)
+  if (but.value == 'follow'){
+    but.value = 'unfollow';
+    but.innerText = 'unfollow';
+  } else {
+    but.value ='follow';
+    but.innerText = 'follow';
+  }
+  console.log(but.id);
+  
+}
 
 function Market() {
  
@@ -66,6 +78,8 @@ function Market() {
                   <td>{marketData.data[index1].quote.USD.price}</td>
                   <td>{marketData.data[index1].quote.USD.percent_change_24h}</td>
                   <td>{marketData.data[index1].quote.USD.percent_change_7d}</td>
+                  <td id="but-col"><button id={"table-but" + index1} class="btn btn-outline-secondary" 
+                  type="buton" onClick={()=>butFun(index1)} value='follow' innerText='follow'>follow</button></td>
               </tr>
             ))}
           </tbody>

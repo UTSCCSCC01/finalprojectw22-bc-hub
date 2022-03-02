@@ -2,3 +2,10 @@
     background-color: #D2D2D2;
   }
 
+#market-table {
+  table-layout: fixed;
+}
+
+#but-col {
+    text-align: center;
+  }
