@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
+
 //username + password authentication will be implemented at a later date
 
 const userSchema = new Schema({
@@ -7,7 +8,7 @@ const userSchema = new Schema({
     password: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     name: { type: String, required: true, unique: true },
-    profilePicture: String,
+    profilePicture: {type: String, default: "https://th.bing.com/th/id/OIP.9hJkSf63uTq1C9fWXpMR4QAAAA?pid=ImgDet&rs=1"},
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     followingUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     followingCryptos: [String],
