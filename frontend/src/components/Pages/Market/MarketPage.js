@@ -43,7 +43,6 @@ function butFun(bText){
     but.value ='follow';
     but.innerText = 'follow';
   }
-  console.log(but.id);
   
 }
 
