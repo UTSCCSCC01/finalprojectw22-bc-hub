@@ -23,7 +23,6 @@ router.get("/main/:symbol?", function(req, res) {
     response.on("data", function(data){
       coinData += data;
     });
-
     response.on("end", function(data) {
       const crypto = JSON.parse(coinData);
       if (!req.params.symbol){
