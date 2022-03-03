@@ -1,0 +1,66 @@
+- As any logged in user, I should be able to make a social media post so that I can share my thoughts or information regarding cryptocurrency with the rest of the user-base
+  - 4 points
+  - High Priority
+- As any user, I should be able to register and log in so that I have the authority to access and interact with all types of content on the app, such as posting content or liking posts
+  - 8 points
+  - High Priority
+- As Zehai, I’d like a community sidebar to quickly navigate between feeds and other community features
+  - 8 Points
+  - Medium Priority
+- As any logged in user, I should be able to like/dislike social media posts and comments that I see so that I can express my opinion on the matter
+  - 0 points
+  - Low Priority
+- As any logged in user, I should be able to post comments under posts and reply to comments so that I can further discuss the content of the post with other users
+  - 2 points
+  - Medium Priority
+- As John, I would like an educational section so that I can learn more about the cryptocurrency space
+  - 4 points
+  - High Priority
+- As Emma, I would like a newsfeed so that I can keep up to date with all the news in the crypto-currency space
+  - 4 points
+  - High Priority
+- As Emma, I would like to search for social media posts so that my client would have a idea in desire topic
+  - 8 points
+  - Medium Priority
+- As any user, I would like to share social media posts externally so that I can share content with my friends who are not using the app
+  - 4 points
+  - Medium Priority
+- As any logged in user, I would like to internally share social media posts so that I can share content with my followers.
+  - 2 points
+  - Low Priority
+- As any logged in user, I would like to follow other users so that I can easily view my friends posts through my main feed
+  - 2 points
+  - High Priority
+- As Zehai, I would like to view prices, charts and other stats of various crypto-currency so that I can keep up with various currencies and plan my trading/investments accordingly
+  - 8 points
+  - High Priority
+- As Emma, I would like to 'follow' currencies so that I can prioritize which currency's prices and charts I see first
+  - 2 points
+  - High Priority
+- As Zehai, I would like to search for specific currencies so that I can quickly view their prices, charts and other statistics
+  - 4 points
+  - Medium Priority
+- As a logged in user, I would like a "My profile" page so that I can view my social media posts, currency watchlist/wishlist and track my progress on the education history.
+  - 8 points
+  - High Priority
+- As Emma, I would like a search feature in the news section so that I can quickly read up on any news about a specific topic to advise my client
+  - 8 points
+  - Medium Priority
+- As any logged in user, I should be able to delete my own posts so that I can remove any of my content that I don't want on the app anymore
+  - 1 points
+  - High Priority
+- As Zehai, I would like to unfollow currencies if I am no longer interested in tracking their stats
+  - 2 points
+  - High Priority
+- As any logged in user, I would like to unfollow users so that I can stop seeing their posts on my feed
+  - 2 points
+  - High Priority
+- As Zehai, I would like to be able to interact with a simulation of cryptocurrencies to minimize potential risk
+  - 8 points
+  - Low Priority
+- As Emma, I would like my client to have a better styling in education page to learn digital currency better
+  - 8 points
+  - Low Priority
+- As Emma, I would like to have more explained source than the external links
+  - 4 points
+  - Low Priority

@@ -6,7 +6,7 @@ const personSchema = new Schema({
     lastName: String
   });
   
-const Person = mongoose.model('person', personSchema)
+  const Person = mongoose.model('person', personSchema)
   
 export {
     Person,
