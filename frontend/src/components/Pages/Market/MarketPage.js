@@ -6,6 +6,7 @@ import './MarketPage.css'
 
 const followArr = [];
 
+
 function searchFun(param) {
   const inVal = document.getElementById('my-input').value;
   const txtVal = inVal.toUpperCase();
