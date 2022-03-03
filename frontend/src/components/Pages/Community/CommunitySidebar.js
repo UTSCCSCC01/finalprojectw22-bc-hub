@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useState } from "react";
 import MakePost from './MakePost';
 import './communitySidebar.css';
@@ -8,25 +8,6 @@ const CommunitySideBar = () => {
 
     return (
         <div className="d-flex flex-column justify-content-center h-100" style={{"overflow": "hidden", "position": "fixed"}}>
-            {/* <h3>Sidebar</h3>
-            <h3>Sidebar</h3>
-            <h3>Sidebar</h3>
-            <h3>Sidebar</h3>
-            <h3>Sidebar</h3>
-            <h3>Sidebar</h3>
-            <h3>Sidebar</h3>
-            <h3>Sidebar</h3>
-            <h3>Sidebar</h3>
-            <h3>Sidebar</h3>
-            <h3>Sidebar</h3>
-            <h3>Sidebar</h3>
-            <h3>Sidebar</h3>
-            <h3>Sidebar</h3>
-            <h3>Sidebar</h3> */}
-            {/* <ButtonGroup vertical className='bg-dark m-2'>
-                <Button className='btn-outline-white bg-white'>Trending</Button>
-                <Button>Personal</Button>
-            </ButtonGroup> */}
             <div className='d-flex'>
                 <a href="/community/personal-feed" className='btn d-flex hov'>
                     <i class="bi bi-person-circle me-3" style={{"font-size": "1.2rem"}}></i>
@@ -51,9 +32,7 @@ const CommunitySideBar = () => {
                 onClick={() => {setOpenModal(true)}}>
                     Create Post
                 </Button>
-            </div>
-            
-                  
+            </div>       
         </div>
         
 
