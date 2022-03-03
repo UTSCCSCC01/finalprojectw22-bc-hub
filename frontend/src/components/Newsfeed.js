@@ -54,7 +54,7 @@ function Newsfeed(props) {
   return (
     <>
       {/* <div className='text-center w-100 bg-dark text-light mb-2'>NavBar here</div> */}
-      <div className="mb-2"><NavBar></NavBar></div>
+      <NavBar></NavBar>
       {displayNews(props)}
       {!isLoading && 
       <Pagination className='mt-2 align-items-center justify-content-center'>

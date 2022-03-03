@@ -7,7 +7,7 @@ import './community.css';
 const FeedCard = (props) => {
 
     return (  
-        <Card bg="light" className="mt-4 shadow border-0 rounded-3" style={{ width: '38rem' }} key={props.post._id}>
+        <Card bg="light" className="mt-4 shadow border-0 rounded-3" style={{ width: '38rem', zIndex: -1 }} key={props.post._id}>
             <Card.Header className="d-flex flex-column">
                 <div className="d-flex flex-row align-items-center">
                     <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
