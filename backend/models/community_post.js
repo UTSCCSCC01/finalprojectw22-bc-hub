@@ -12,7 +12,7 @@ const communityPostSchema = new Schema ({
     dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     totalLikes: Number,
     totalDislikes: Number,
-    //comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "communityComment" }]
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "communityComment" }]
 });
 
 const CommunityPost = mongoose.model("community_post", communityPostSchema);

@@ -6,7 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
   Routes,
-  Route
+  Route,
+  useSearchParams
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -35,7 +36,7 @@ render(
         <Route path="/community/trending-feed" element={<Community feed="trending-feed" />} />
         <Route path="/community/personal-feed" element={<Community feed="personal-feed" />} />
         <Route path="/community" element={<Community feed="personal-feed" />} />
-        {/* <Route path="/community/:id" element={<CommunityDetailedView />} /> */}
+        <Route path="/community/:id" element={<CommunityDetailedView />} />
 
         <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
