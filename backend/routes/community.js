@@ -67,8 +67,16 @@ router.post("", async (req, res) => {
 
 
 // SHOW an individual social media post
-// router.get("/:id", async (req, res) => {
-// });
+router.get("/:id", async (req, res) => {
+  try {
+    // Query the database for the requested post
+    let post = await CommunityPost.findById(req.params.id).exec()
+    res.json(post);
+  } catch(err) {
+    console.log(err);
+    res.status(404).json('Error: ' + err)
+}
+});
 
 
 // display a form to EDIT a social media post

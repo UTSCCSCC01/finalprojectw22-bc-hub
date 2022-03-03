@@ -18,7 +18,7 @@ import Market from './components/Pages/Market/MarketPage';
 import Crypto from './components/Pages/Market/CryptoPage';
 import Community from './components/Pages/Community/Community';
 import NotFoundPage from './components/Pages/NotFoundPage';
-
+import CommunityDetailedView from './components/Pages/Community/CommunityDetailedView'
 
 
 // Main 
@@ -35,6 +35,8 @@ render(
         <Route path="/community/trending-feed" element={<Community feed="trending-feed" />} />
         <Route path="/community/personal-feed" element={<Community feed="personal-feed" />} />
         <Route path="/community" element={<Community feed="personal-feed" />} />
+        {/* <Route path="/community/:id" element={<CommunityDetailedView />} /> */}
+
         <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </BrowserRouter>
