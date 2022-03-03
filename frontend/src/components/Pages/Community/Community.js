@@ -10,8 +10,9 @@ import MakePost from './MakePost';
 const Community = (props) => {
     const {data: communityPosts, isLoading, error}  = useFetch('http://localhost:5000/community/' + props.feed);
     const [openModal, setOpenModal] = useState(false);
+
     return (  
-        <div>
+        <div className="mb-5">
             <NavBar/>
             {openModal && <MakePost closeModal={setOpenModal} />}
             <Button variant= 'dark' className={'mt-4 shadow'}size = "lg" style={{padding: 15, borderRadius : 100, position: 'fixed', bottom: 100, right: 100, zIndex:10}} 

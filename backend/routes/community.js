@@ -3,7 +3,7 @@ const router = express.Router();
 import mongoose from 'mongoose';
 
 import {CommunityPost, communityPostSchema} from "../models/community_post.js"
-
+import {CommunityComment, communityCommentSchema} from "../models/communityComment.js"
 
 
 // INDEX the personal feed
@@ -66,6 +66,49 @@ router.post("", async (req, res) => {
 });
 
 
+router.post("/:id/comments/", async(req, res) => {
+  // Check if the post exists
+  let post = null;
+  try {
+    post = await CommunityPost.findById(req.params.id).exec();
+  } catch(err) {
+    console.log(err);
+    res.status(404).json('Error: ' + err).send();
+    return;
+  }
+
+  if (!post){
+    res.status(404).json('Error: Post does not exist').send();
+    return;
+  }
+
+  // Create the comment
+  console.log(req.body)
+  let d = new Date()
+  const newComment = {
+    description: req.body.description,
+    date: d,
+    dateString: d.toDateString(),
+    likes: [],
+    dislikes: [],
+    totalLikes: 0,
+    totalDislikes: 0,
+    comments: []
+  }
+  try {
+    let comment = await CommunityComment.create(newComment);
+    post.comments.push(comment);
+    post.save();
+    res.send("Comment created!");
+    // await CommunityPost.findByIdAndUpdate(req.params.id, {$push: { comments:  req.user.href }})
+  } catch(err){
+    console.log(err)
+    res.status(500).json('Error: ' + err);
+  }
+  
+})
+
+
 // SHOW an individual social media post
 router.get("/:id", async (req, res) => {
   try {
@@ -90,21 +133,24 @@ router.delete("/:id", async (req, res) => {
   // See if the community post exists, if not return a 404 status code in the response
   console.log('Endpoint hit')
   try {
-    await CommunityPost.findById(req.params.id).exec();
+    let post = await CommunityPost.findById(req.params.id).exec();
+    if (!post){
+      res.status(404).json({Error: 'Post does not exist'}).send();
+    }
   } catch(err) {
     console.log(err);
-    res.status(404).json('Error: ' + err).send();
+    res.status(404).json({Error: err}).send();
   }
 
   // Delete the post
   try {
     await CommunityPost.findByIdAndDelete(req.params.id).exec();
-    res.status(200).send()
     console.log("Post deleted")
   } catch(err){
     console.log(err);
-    res.status(500).json('Error: ' + err).send();
+    res.status(500).json({Error: err}).send();
   }
+  res.status(200).send()
 });
 
 export default router;

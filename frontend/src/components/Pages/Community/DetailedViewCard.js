@@ -89,7 +89,7 @@ const DetailedViewCard = (props) => {
                     </Card.Text>
                 </div>
             </div>
-            <div className="d-flex mb-3 mt-4 flex-column justify-content-center align-items-center">
+            <div className="comment-section d-flex mb-3 mt-4 flex-column justify-content-center align-items-center">
                 <Form.Control as="textarea" placeholder="What are your thoughts?" className = 'w-75 rounded-0 rounded-top'/>
                 <Button type="submit" className = 'w-75 rounded-0 rounded-bottom'>Post Comment</Button>
             </div>
