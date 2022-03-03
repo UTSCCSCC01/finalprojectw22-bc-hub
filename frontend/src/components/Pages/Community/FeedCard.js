@@ -1,4 +1,4 @@
-import { Card} from 'react-bootstrap';
+import {Card, Button} from 'react-bootstrap';
 import ShowMoreText from "react-show-more-text";
 import './community.css';
 
@@ -6,21 +6,38 @@ import './community.css';
 
 const FeedCard = (props) => {
 
+    const deletePost = () => {
+        fetch(`http://localhost:5000/community/${props.post._id}`, {method: 'DELETE'})
+        .then(res => {
+            if (!res.ok){
+                // Should probabably display a message to the user telling them that the delete failed
+                throw Error('Failed to delete post')
+            }
+            console.log('post deleted')
+        })
+        .catch(err => {
+            console.log(err)
+        });
+    }
+
     return (  
         <Card bg="light" className="mt-4 shadow border-0 rounded-3" style={{ width: '38rem' }} key={props.post._id}>
             <Card.Header className="d-flex flex-column">
-                <div className="d-flex flex-row align-items-center">
-                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                    </svg>
-                    <div className='d-flex flex-column'>
-                        <Card.Subtitle>
-                            John Cena
-                        </Card.Subtitle>
-                        <Card.Text>
-                            {props.post.dateString}
-                        </Card.Text>
+                <div className="d-flex flex-row align-items-center justify-content-between">
+                    <div className="d-flex flex-row align-items-center"> 
+                        <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg>
+                        <div className='d-flex flex-column'>
+                            <Card.Subtitle>
+                                John Cena
+                            </Card.Subtitle>
+                            <Card.Text>
+                                {props.post.dateString}
+                            </Card.Text>
+                        </div>
                     </div>
+                    <Button variant="danger" onClick={deletePost}>Delete</Button>
                 </div>
                 <Card.Title>{props.post.title}</Card.Title> 
             </Card.Header>
