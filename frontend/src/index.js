@@ -19,12 +19,12 @@ import Crypto from './components/Pages/Market/CryptoPage';
 import Community from './components/Pages/Community/Community';
 import NotFoundPage from './components/Pages/NotFoundPage';
 
-import { ChakraProvider } from '@chakra-ui/react'
+
 
 // Main 
 const rootElement = document.getElementById("root");
 render(
-  <ChakraProvider>
+  <div>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
@@ -38,7 +38,7 @@ render(
         <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </BrowserRouter>
-  </ChakraProvider>,
+  </div>,
 
   rootElement
 );

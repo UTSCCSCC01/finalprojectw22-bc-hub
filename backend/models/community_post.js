@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const communityPostSchema = new Schema ({
-    // owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    //owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     title: String,
     description: String,
     image: String,
@@ -12,7 +12,7 @@ const communityPostSchema = new Schema ({
     dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     totalLikes: Number,
     totalDislikes: Number,
-    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "communityComment" }]
+    //comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "communityComment" }]
 });
 
 const CommunityPost = mongoose.model("community_post", communityPostSchema);
