@@ -18,7 +18,6 @@ function searchFun(param) {
 }
 
 function filterFun(param){
-  
   const input = document.getElementById('my-input').value;
   const table = document.getElementById('market-table');
   const tr = table.getElementsByTagName("tr");
