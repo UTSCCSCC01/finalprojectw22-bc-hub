@@ -44,7 +44,7 @@ function Post() {
 
 export default function MakePost( {closeModal} ) {
   return (
-    <div style={{position: 'fixed', bottom: 0, right: 30, zIndex:100, }}> 
+    <div style={{position: 'fixed', bottom: 0, right: 30, zIndex:100 }}> 
 
         <Card className="mt-4 shadow border-0 rounded-3 text-center" style={{
         width: 500, height: 570, backgroundColor: 'rgb(201, 76, 76)'}}>
