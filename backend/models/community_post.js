@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const communityPostSchema = new Schema ({
-    owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    // owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     title: String,
     description: String,
     image: String,
