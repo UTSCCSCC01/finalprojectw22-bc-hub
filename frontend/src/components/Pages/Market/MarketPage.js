@@ -56,6 +56,10 @@ function butFun(rowNum, marketData){
   } else {
     but.value ='follow';
     but.innerText = 'follow';
+    const rowIndex = followArr.length - 1 - followArr.indexOf(marketData[rowNum])
+    console.log(followArr.indexOf(marketData[rowNum]));
+    followTab.deleteRow(rowIndex);
+    followArr.splice(followArr.indexOf(marketData[rowNum]), 1);
   }
 }
 
