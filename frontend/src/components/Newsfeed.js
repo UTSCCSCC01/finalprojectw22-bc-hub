@@ -80,11 +80,13 @@ function Newsfeed(props) {
 
   return (
     <>
+
       <div className="mb-2"><NavBar></NavBar></div>
       <NewsSearchBar
       callback={changeText}
       />
       {displayNews()}
+
       {!isLoading && 
       <Pagination className='mt-2 align-items-center justify-content-center'>
         <Pagination.Item key={11} onClick={() => getNewPage(1)}>{1}</Pagination.Item>

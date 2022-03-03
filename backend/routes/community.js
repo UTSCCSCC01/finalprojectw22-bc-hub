@@ -11,7 +11,6 @@ router.get("/personal-feed", async (req, res) => {
     try {
         // Query community posts (not just from people you follow) and sort in reverse chronological order
         let posts = await CommunityPost.find().sort('-date').exec();
-        console.log(posts[0]);
         res.json(posts);
       } catch(err) {
         console.log(err);
@@ -68,8 +67,16 @@ router.post("", async (req, res) => {
 
 
 // SHOW an individual social media post
-// router.get("/:id", async (req, res) => {
-// });
+router.get("/:id", async (req, res) => {
+  try {
+    // Query the database for the requested post
+    let post = await CommunityPost.findById(req.params.id).exec()
+    res.json(post);
+  } catch(err) {
+    console.log(err);
+    res.status(404).json({'Error': err})
+}
+});
 
 
 // display a form to EDIT a social media post
@@ -79,7 +86,26 @@ router.post("", async (req, res) => {
 
 
 // DELETE a social media post
+router.delete("/:id", async (req, res) => {
+  // See if the community post exists, if not return a 404 status code in the response
+  console.log('Endpoint hit')
+  try {
+    await CommunityPost.findById(req.params.id).exec();
+  } catch(err) {
+    console.log(err);
+    res.status(404).json('Error: ' + err).send();
+  }
 
+  // Delete the post
+  try {
+    await CommunityPost.findByIdAndDelete(req.params.id).exec();
+    res.status(200).send()
+    console.log("Post deleted")
+  } catch(err){
+    console.log(err);
+    res.status(500).json('Error: ' + err).send();
+  }
+});
 
 export default router;
 

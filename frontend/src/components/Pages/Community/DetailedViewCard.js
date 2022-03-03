@@ -1,10 +1,12 @@
-import {Card, Button} from 'react-bootstrap';
+import {Card, Button, FloatingLabel, Form} from 'react-bootstrap';
 import ShowMoreText from "react-show-more-text";
 import './community.css';
+import {useNavigate} from "react-router-dom"
 
 
 
-const FeedCard = (props) => {
+const DetailedViewCard = (props) => {
+    const navigate = useNavigate()
 
     const deletePost = () => {
         fetch(`http://localhost:5000/community/${props.post._id}`, {method: 'DELETE'})
@@ -15,13 +17,16 @@ const FeedCard = (props) => {
             }
             console.log('post deleted')
         })
+        .then(() => {
+            navigate("/community")
+        })
         .catch(err => {
             console.log(err)
         });
     }
 
     return (  
-        <Card bg="light" className="mt-4 shadow border-0 rounded-3" style={{ width: '38rem'}} key={props.post._id}>
+        <Card bg="light" className="my-4 shadow border-0 rounded-3 w-75" key={props.post._id}>
             <Card.Header className="d-flex flex-column">
                 <div className="d-flex flex-row align-items-center justify-content-between">
                     <div className="d-flex flex-row align-items-center"> 
@@ -53,7 +58,7 @@ const FeedCard = (props) => {
             <div className="d-flex flex-row justify-content-center">
                 <hr class="dropdown-divider w-75"></hr>
             </div>
-            <div className="d-flex flex-row justify-content-between mb-2 mt-1 mx-4">
+            <div className="d-flex flex-row justify-content-between mb-2 mt-1 mx-5">
                 <div className="d-flex flex-row justify-content-center">
                     <div className="d-flex flex-row justify-content-center">
                         <svg className="me-1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
@@ -84,9 +89,49 @@ const FeedCard = (props) => {
                     </Card.Text>
                 </div>
             </div>
+            <div className="d-flex mb-3 mt-4 flex-column justify-content-center align-items-center">
+                <Form.Control as="textarea" placeholder="What are your thoughts?" className = 'w-75 rounded-0 rounded-top'/>
+                <Button type="submit" className = 'w-75 rounded-0 rounded-bottom'>Post Comment</Button>
+            </div>
+            <div>
+
+                <div className="d-flex flex-row align-items-center"> 
+                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    </svg>
+                    <div className='d-flex flex-column'>
+                        <Card.Subtitle>
+                            John Cena
+                        </Card.Subtitle>
+                        <Card.Text>
+                            {props.post.dateString}
+                        </Card.Text>
+                    </div>
+                </div>
+                <div className='ms-2'>
+                    <p className='text-wrap' style={{ marginLeft: '48px' }}>MY COMMENT MY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENT</p>
+                </div>
+
+                <div className="d-flex flex-row align-items-center"> 
+                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    </svg>
+                    <div className='d-flex flex-column'>
+                        <Card.Subtitle>
+                            John Cena
+                        </Card.Subtitle>
+                        <Card.Text>
+                            {props.post.dateString}
+                        </Card.Text>
+                    </div>
+                </div>
+                <div className='ms-2'>
+                    <p className='text-wrap' style={{ marginLeft: '48px' }}>MY COMMENT MY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENTMY COMMENT</p>
+                </div>
+            </div>
         </Card>
 
     );
 }
  
-export default FeedCard;
+export default DetailedViewCard;

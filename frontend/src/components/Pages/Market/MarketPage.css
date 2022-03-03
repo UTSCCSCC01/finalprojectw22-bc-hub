@@ -2,3 +2,19 @@
     background-color: #D2D2D2;
   }
 
+#market-table {
+  table-layout: fixed;
+}
+
+#follow-table {
+  width: 500px;
+}
+
+#follow-section {
+  float:right;
+  margin-right:100px;
+}
+
+#but-col {
+    text-align: center;
+  }
