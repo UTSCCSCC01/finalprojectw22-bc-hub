@@ -56,6 +56,10 @@ function butFun(rowNum, marketData){
   } else {
     but.value ='follow';
     but.innerText = 'follow';
+    const rowIndex = followArr.length - 1 - followArr.indexOf(marketData[rowNum])
+    console.log(followArr.indexOf(marketData[rowNum]));
+    followTab.deleteRow(rowIndex);
+    followArr.splice(followArr.indexOf(marketData[rowNum]), 1);
   }
 }
 
@@ -69,7 +73,6 @@ function Market() {
 
   return <div id="market_page">
       <NavBar/>
-      <h1>Market Section</h1>
       <div id='follow-section'>
         <h3>Followed Currencies</h3>
         <Table striped bordered hover id='follow-table'>
