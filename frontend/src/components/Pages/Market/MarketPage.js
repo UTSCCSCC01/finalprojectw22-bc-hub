@@ -73,7 +73,6 @@ function Market() {
 
   return <div id="market_page">
       <NavBar/>
-      <h1>Market Section</h1>
       <div id='follow-section'>
         <h3>Followed Currencies</h3>
         <Table striped bordered hover id='follow-table'>
