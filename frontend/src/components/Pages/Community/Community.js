@@ -12,19 +12,13 @@ const Community = (props) => {
     const [openModal, setOpenModal] = useState(false);
     return (  
         <div>
-            <NavBar/>
-            {/* {openModal && <MakePost closeModal={setOpenModal} />}
-            <Button variant= 'dark' className={'mt-4 shadow'}size = "lg" style={{padding: 15, borderRadius : 100, position: 'fixed', bottom: 100, right: 100, zIndex:10}} 
-            onClick={() => {setOpenModal(true)}}>
-                Create Post
-            </Button> */}
-
-            
+            <NavBar/>   
             <div className="d-flex">
-                <CommunitySideBar/>
+                
                 {error && <div>{error}</div>}
                 {isLoading && <div>Loading posts...</div>}
                 {communityPosts && <Feed posts={communityPosts} feed={props.feed}></Feed>}
+                <CommunitySideBar/>
             </div>
         </div>
     );
