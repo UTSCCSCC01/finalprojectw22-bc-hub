@@ -1,9 +1,8 @@
 .bg-bgcolor{
-    background-color: darkslategrey;
+    background-color: rgb(30, 32, 32);
 }
 
 .NavFont {
-    font-weight: bold;
     font-size: large;
 }
 

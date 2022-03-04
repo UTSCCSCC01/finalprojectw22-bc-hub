@@ -1,12 +1,19 @@
-import {Card, Button} from 'react-bootstrap';
+import {Card, Button, Accordion, Form, Modal} from 'react-bootstrap';
 import ShowMoreText from "react-show-more-text";
 import './community.css';
-import {Link} from "react-router-dom"
-import {HashLink} from 'react-router-hash-link'
+import {useNavigate} from "react-router-dom"
+import sendHttpRequest from './HttpHandler';
+import useFetch from '../../../hooks/useFetch';
+import CommunityComment from './CommunityComment';
 
 
 
-const FeedCard = (props) => {
+
+const DetailedViewCard = (props) => {
+    const navigate = useNavigate()
+    const {data: comments, isLoading, error}  = useFetch(`http://localhost:5000/community/${props.post._id}/comments`);
+    
+    
 
     const deletePost = () => {
         fetch(`http://localhost:5000/community/${props.post._id}`, {method: 'DELETE'})
@@ -18,39 +25,68 @@ const FeedCard = (props) => {
             console.log('post deleted')
         })
         .then(() => {
-            window.location.reload();
+            navigate("/community")
         })
         .catch(err => {
             console.log(err)
-            alert(err);
         });
     }
 
-    return (  
-        <Card bg="light" className="mt-4 shadow border-0 rounded-3" style={{ width: '38rem' }} key={props.post._id}>
-            <Link to={`/community/${props.post._id}`} style={{color: 'inherit', textDecoration: 'inherit'}}>
-                <Card.Header className="d-flex flex-column">
-                    <div className="d-flex flex-row align-items-center justify-content-between">
-                        <div className="d-flex flex-row align-items-center"> 
-                            <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                            </svg>
-                            <div className='d-flex flex-column'>
-                                <Card.Subtitle>
-                                    John Cena
-                                </Card.Subtitle>
-                                <Card.Text>
-                                    {props.post.dateString}
-                                </Card.Text>
-                            </div>
+    function postComment(info) {
+        sendHttpRequest('POST', `http://localhost:5000/community/${props.post._id}/comments/`, info)
+        .then(res => {
+            if (!res.ok){
+                // Should probabably display a message to the user telling them that the delete failed
+                throw Error('Failed to post comment')
+            }
+            console.log('comment posted')
+        })
+        .then(() => {
+            window.location.reload();
+        })
+        .catch(err => {
+            alert(err);
+        })
+    }
 
+    function getText(id) {
+        var txt = document.getElementById(id).value;
+        return txt;
+    }
+
+    function Post() {
+        let desc = getText('commentText')
+        if (!desc){
+            return
+        }
+        var po = {
+            "description" : desc,
+        }
+        postComment(po);
+    }
+
+    return (  
+        <Card bg="light" className="my-4 shadow border-0 rounded-3 w-75" key={props.post._id}>
+            <Card.Header className="d-flex flex-column">
+                <div className="d-flex flex-row align-items-center justify-content-between">
+                    <div className="d-flex flex-row align-items-center"> 
+                        <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg>
+                        <div className='d-flex flex-column'>
+                            <Card.Subtitle>
+                                John Cena
+                            </Card.Subtitle>
+                            <Card.Text>
+                                {props.post.dateString}
+                            </Card.Text>
                         </div>
-                        {/* <Button variant="danger" onClick={deletePost}>Delete</Button> */}
                     </div>
-                    <Card.Title>{props.post.title}</Card.Title> 
-                </Card.Header>
-                <Card.Img className="rounded-0 img-fluid" src={props.post.image} />
-            </Link>
+                    <Button variant="danger" onClick={deletePost}>Delete</Button>
+                </div>
+                <Card.Title>{props.post.title}</Card.Title> 
+            </Card.Header>
+            <Card.Img className="rounded-0 img-fluid" src={props.post.image} />
             <Card.Body>
                 {/* <Card.Title>{props.post.title}</Card.Title> */}
                 <Card.Text className="text-wrap">
@@ -62,7 +98,7 @@ const FeedCard = (props) => {
             <div className="d-flex flex-row justify-content-center">
                 <hr class="dropdown-divider w-75"></hr>
             </div>
-            <div className="d-flex flex-row justify-content-between mb-2 mt-1 mx-4">
+            <div className="d-flex flex-row justify-content-between mb-2 mt-1 mx-5">
                 <div className="d-flex flex-row justify-content-center">
                     <div className="d-flex flex-row justify-content-center">
                         <svg className="me-1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
@@ -82,21 +118,34 @@ const FeedCard = (props) => {
                         </Card.Text>
                     </div>
                 </div>
-                <HashLink to={`/community/${props.post._id}#comment-section`} style={{color: 'inherit', textDecoration: 'inherit'}}>
-                    <div className="d-flex flex-row justify-content-center">
-                        <svg className="me-1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-right-dots" viewBox="0 0 16 16">
-                            <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
-                            <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                        </svg>
-                        <Card.Text>
-                            {props.post.comments.length} Comments
-                        </Card.Text>
-                    </div>
-                </HashLink>
+
+                <div className="d-flex flex-row justify-content-center" id='commentCount'>
+                    <svg className="me-1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-right-dots" viewBox="0 0 16 16">
+                        <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+                        <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg>
+                    <Card.Text>
+                        {props.post.comments.length} Comments
+                    </Card.Text>
+                </div>
             </div>
+            <Form className="d-flex mt-4 mb-5 flex-column justify-content-center align-items-center" id="comment-section">
+                <Form.Control id="commentText" as="textarea" placeholder="What are your thoughts?" required className = 'w-75 rounded-0 rounded-top'/>
+                <Button type="submit" className = 'w-75 rounded-0 rounded-bottom' onClick={Post}>Post Comment</Button>
+            </Form>
+
+            {error && <div>{error}</div>}
+            {isLoading && <div>Loading Comments...</div>}
+            {comments && 
+            <div className="mb-4">
+                {comments.map((comment) => (
+                    <CommunityComment comment={comment} post={props.post}></CommunityComment>
+                ))}
+            </div>
+            }
         </Card>
 
     );
 }
  
-export default FeedCard;
+export default DetailedViewCard;
