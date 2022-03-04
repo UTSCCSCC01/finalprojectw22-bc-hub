@@ -6,13 +6,14 @@ We completed the sp2 meeting on Feb 14th, Monday. As from sprint1, we decided to
 * Landing Page
  
 
-For Social Media, our goal is to enhance the user experience. We will have a sidebar for quicker navigation which is related to the BH-40. We will also finish the posting function, like/dislike feature and deleting post function for the logged-in users.
+For Social Media, our goal is to enhance the user experience. We will have a sidebar for quicker navigation which is related to the BH-40. We will also finish the posting function (BH-2), like/dislike feature (BH-5), deleting post function (BH-17) for the logged-in users and commenting on posts (BH-6).
 
-With the Market section, a search feature would come in handy. Besides, for users to follow a specific currency could enhance the user experience.
+With the Market section, a search feature (BH-14) would come in handy. Besides, for users to follow a specific currency (BH-10, BH-13) could enhance the user experience.
 
-For the News section, we have News being set up but the page has a lot of space. We want to implement a search function so the user can search the topic in mind.
+For the News section, we have News being set up but the page has a lot of space. We want to implement a search function (BH-16) so the user can search the topic in mind.
 
-Each page is accessible via the navbar, however there is no landing page currently. We need a landing page for the website to give users a proper starting point on the website and to show what features the website has.
+Each page is accessible via the navbar, however there is no landing page currently. We need a landing page (BH-41) for the website to give users a proper starting point on the website and to show what features the website has.
+
 
 
 The user stories that we are going to implement in this sprint are the following:
