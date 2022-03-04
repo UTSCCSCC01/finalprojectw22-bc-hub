@@ -43,6 +43,7 @@ const FeedCard = (props) => {
                                     {props.post.dateString}
                                 </Card.Text>
                             </div>
+
                         </div>
                         {/* <Button variant="danger" onClick={deletePost}>Delete</Button> */}
                     </div>

@@ -7,8 +7,8 @@ import './NavBar.css';
 // setting Nav Bar from bootstrap
 function NavBar() {
     return (
-        <div className='NavFont'>
-            <Navbar bg="bgcolor" variant='dark' sticky='top'>
+        // <div className='NavFont'>
+            <Navbar className='fixed-top' bg="bgcolor" variant='dark' sticky='top'>
                 <Navbar.Brand>
                     <a href='/'>
                         <button className='logoButt' >
@@ -29,7 +29,7 @@ function NavBar() {
                     </NavDropdown>
                 </Nav>
             </Navbar>
-        </div>
+        // </div>
     );
 } // Naviagtion link 23-26
 export default NavBar;

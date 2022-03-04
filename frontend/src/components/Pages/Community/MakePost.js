@@ -43,7 +43,7 @@ function Post() {
 
 export default function MakePost( {closeModal} ) {
   return (
-    <div style={{position: 'fixed', bottom: 0, right: 30, zIndex:100, }}> 
+    <div className='d-flex' style={{position: 'fixed', bottom: 0, right: 30}}> 
 
         <Card className="mt-4 shadow border-0 rounded-3 text-center" style={{
         width: 500, height: 570, backgroundColor: 'rgb(201, 76, 76)'}}>
@@ -52,15 +52,15 @@ export default function MakePost( {closeModal} ) {
                 
                     <Form>
                         <Form.Group>
-                            <Form.Control id = 'title'  placeholder='Enter your Title here...' style={{margin: 10, backgroundColor: '#f5d5d5', width: 450}}></Form.Control>
-                            <Form.Control id = 'image' placeholder='Enter your Image Link' style={{margin: 10, width: 400, backgroundColor: '#f5d5d5'}}></Form.Control>
+                            <Form.Control id = 'title'  placeholder='Enter your Title here...' style={{backgroundColor: '#f5d5d5', marginLeft: 10, marginRight: 10, width: 450}}></Form.Control>
+                            <Form.Control id = 'image' placeholder='Enter your Image Link' style={{marginTop: 15, width: 400, backgroundColor: '#f5d5d5', marginLeft: 10}}></Form.Control>
                             
                             <hr/>
-                            <textarea id = 'description' style={{margin: 10, resize: 'none', width: 450, height: 300, backgroundColor: '#f5d5d5', fontSize: "2em", borderRadius: 10}} placeholder='What are you thinking?'/>
+                            <textarea id = 'description' style={{resize: 'none', width: 450, height: 300, backgroundColor: '#f5d5d5', fontSize: "2em", borderRadius: 10}} placeholder='What are you thinking?'/>
                         </Form.Group>
                     </Form>
                     <hr/>
-                    <ButtonToolbar className='mb-3' style={{marginTop: 10}}>
+                    <ButtonToolbar className='mb-3'>
                         <Button className='mx-2' variant='outline-light' onClick={() => closeModal(false)}>Cancel</Button>{' '}
                         <Button style={{marginLeft: "313px"}} variant='dark' onClick={Post}>Post</Button>{' '}
                     </ButtonToolbar>

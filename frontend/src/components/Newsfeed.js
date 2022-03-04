@@ -2,9 +2,31 @@ import React from 'react';
 import News from "./News"
 import Pagination from 'react-bootstrap/Pagination'
 import NavBar from './NavBar/NavBar';
-
+import NewsSearchBar from './Pages/News/NewsSearchBar';
+import { useState, useEffect } from 'react';
 
 function Newsfeed(props) {
+  const [inputText, setInputText] = useState("");
+  const [filteredResults, setFilteredResults] = useState(props.news);
+
+  useEffect(() => {
+    if(inputText !== ""){
+      const filteredData = props.news.filter((item) => {
+        return Object.values(item).join('').toLowerCase().includes(inputText.toLowerCase())
+      })
+      setFilteredResults(filteredData)
+    } else {
+      setFilteredResults(props.news)
+    }
+    displayNews();
+    console.log("useffect: " + inputText);
+  }, [inputText, props.news]);
+
+  
+  
+  const changeText = (t) => {
+    setInputText(t)
+  }
 
   let isLoading = true
 
@@ -26,36 +48,45 @@ function Newsfeed(props) {
     window.scrollTo(0, 0)
   }
 
-  const displayNews = (props) => {
-    const news = props.news;
-
-    if(news.length > 0){
-      isLoading = false
-      return(
-        news.map((article) => {
-          return(
-            <News
-            title={article.title}
-            preview={generatePreview(article.content)}
-            publisher={article.source.name}
-            date={formatDate(article.publishedAt)}
-            img={article.urlToImage}
-            link={article.url}
-            />
-          )
-        })
-      )
-    } else {
+  const displayNews = () => {
+    const news = filteredResults;
+    console.log(news.length)
+    
+      if(news.length > 0){
+        isLoading = false
+        return(
+          news.map((article) => {
+            return(
+              <News
+              title={article.title}
+              preview={generatePreview(article.content)}
+              publisher={article.source.name}
+              date={formatDate(article.publishedAt)}
+              img={article.urlToImage}
+              link={article.url}
+              />
+            )
+          })
+        )
+      } else if(news.length <= 0 && inputText.length > 0) {
+          isLoading = false
+          return (<h3>No Results</h3>)
+      } else if(news.length <= 0 ) {
         isLoading = true
         return (<h3>Loading...</h3>)
     }
+    
   }
 
   return (
     <>
-      {/* <div className='text-center w-100 bg-dark text-light mb-2'>NavBar here</div> */}
+
       <div className="mb-2"><NavBar></NavBar></div>
-      {displayNews(props)}
+      <NewsSearchBar
+      callback={changeText}
+      />
+      {displayNews()}
+
       {!isLoading && 
       <Pagination className='mt-2 align-items-center justify-content-center'>
         <Pagination.Item key={11} onClick={() => getNewPage(1)}>{1}</Pagination.Item>
@@ -70,4 +101,3 @@ function Newsfeed(props) {
 }
 
 export default Newsfeed;
-
