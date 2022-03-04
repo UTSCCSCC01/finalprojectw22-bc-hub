@@ -36,8 +36,7 @@ function Post() {
         sendData(po);
         window.location.reload();
     }
-    
-    
+
 }
 
 
@@ -63,7 +62,7 @@ export default function MakePost( {closeModal} ) {
                     <hr/>
                     <ButtonToolbar className='mb-3' style={{marginTop: 10}}>
                         <Button className='mx-2' variant='outline-light' onClick={() => closeModal(false)}>Cancel</Button>{' '}
-                        <Button style={{marginLeft: "313px"}} variant='dark' onClick={Post} >Post</Button>{' '}
+                        <Button style={{marginLeft: "313px"}} variant='dark' onClick={Post}>Post</Button>{' '}
                     </ButtonToolbar>
                 
             </Card.Body>
