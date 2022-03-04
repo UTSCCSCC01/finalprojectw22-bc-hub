@@ -10,11 +10,12 @@ import MakePost from './MakePost';
 const Community = (props) => {
     const {data: communityPosts, isLoading, error}  = useFetch('http://localhost:5000/community/' + props.feed);
     const [openModal, setOpenModal] = useState(false);
+
     return (  
+
         <div>
             <NavBar/>   
             <div className="d-flex">
-                
                 {error && <div>{error}</div>}
                 {isLoading && <div>Loading posts...</div>}
                 {communityPosts && <Feed posts={communityPosts} feed={props.feed}></Feed>}
