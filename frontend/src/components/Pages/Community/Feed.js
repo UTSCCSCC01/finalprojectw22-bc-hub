@@ -1,4 +1,5 @@
 import CommunityPost from "./FeedCard"
+import SearchBar from '../../SearchBar/SearchBar';
 
 const Feed = (props) => {
     console.log(props)
@@ -8,6 +9,7 @@ const Feed = (props) => {
     }
     return (  
         <div className="mt-2 d-flex flex-column align-items-center justify-content-center" style={{"flex-grow": "2", "overflow": "auto"}}>
+            
             <h1 className="text-center">{feedType}</h1>
             <div >
                 {props.posts.map((post) => (

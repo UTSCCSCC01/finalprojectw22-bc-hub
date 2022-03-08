@@ -3,7 +3,7 @@ import './SearchBar.css'
 
 function SearchBar(props){
     return (
-        <div class="input-group mb-3">
+        <div class="input-group mb-3" id="searchbar">
             <input type="text" class="form-control" placeholder={props.text} 
             aria-label="Search" aria-describedby="basic-addon2" id="my-input" onKeyUp={()=>props.inFun(props.param)}/>
             <div class="input-group-append">
