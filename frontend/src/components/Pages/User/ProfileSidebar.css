@@ -1,0 +1,9 @@
+.hov {
+    background-color:rgba(209, 214, 222, 0);
+    transition: 0.3s;
+    opacity: 1;
+    border-radius: 8px;
+}
+
+.hov:hover {background-color:rgba(209, 214, 222, 0.2);}
+
