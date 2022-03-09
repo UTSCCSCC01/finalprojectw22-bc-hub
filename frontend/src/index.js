@@ -20,6 +20,7 @@ import Crypto from './components/Pages/Market/CryptoPage';
 import Community from './components/Pages/Community/Community';
 import NotFoundPage from './components/Pages/NotFoundPage';
 import CommunityDetailedView from './components/Pages/Community/CommunityDetailedView'
+import Userprofile from './components/Pages/User/UserProfile';
 
 
 // Main 
@@ -38,6 +39,7 @@ render(
         <Route path="/community" element={<Community feed="personal-feed" />} />
         <Route path="/community/:id" element={<CommunityDetailedView />} />
 
+        <Route path="/profile/" element={<Userprofile />} />
         <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </BrowserRouter>
