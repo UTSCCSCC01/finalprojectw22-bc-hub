@@ -38,8 +38,7 @@ render(
         <Route path="/community/personal-feed" element={<Community feed="personal-feed" />} />
         <Route path="/community" element={<Community feed="personal-feed" />} />
         <Route path="/community/:id" element={<CommunityDetailedView />} />
-
-        <Route path="/profile/" element={<Userprofile />} />
+        <Route path="/profile" element={<Userprofile />} />
         <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </BrowserRouter>
