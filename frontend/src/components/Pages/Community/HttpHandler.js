@@ -8,11 +8,8 @@ function sendHttpRequest(method, url, data) {
     }
     xhr.send(JSON.stringify(data));
 
-
     });
     return promise;
-
-    
 }
 
 function getData() {

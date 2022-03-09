@@ -14,7 +14,6 @@ const communityPostSchema = new Schema ({
     // likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     // dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 
-    // We dont need these, we can just do likes.length or dislike.length
     totalLikes: Number,
     totalDislikes: Number,
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "communityComment" }]

@@ -6,7 +6,6 @@ import ReplyCommentModal from './ReplyCommentModal';
 
 const CommunityComment = (props) => {
     let comment = props.comment;
-    console.log("Length of comments is " + comment.comments.length)
     let post = props.post;
     const {data: replies, isLoading, error}  = useFetch(`http://localhost:5000/community/${post._id}/comments/${comment._id}`);
     const [modalShow, setModalShow] = React.useState(false);
@@ -54,11 +53,11 @@ const CommunityComment = (props) => {
             <div className="mt-2">
                 <Accordion defaultActiveKey="0">
                     <Accordion.Item eventKey={comment.id}>
-                        <Accordion.Header>See replies</Accordion.Header>
+                        <Accordion.Header>See {comment.comments.length} replies</Accordion.Header>
                         <Accordion.Body>
                             {error && <div>{error}</div>}
                             {isLoading && <div>Loading Replies...</div>}
-                            {replies && 
+                            {replies &&
                             <div>
                                 {replies.map((reply) => (
                                     <div className='mb-2'>

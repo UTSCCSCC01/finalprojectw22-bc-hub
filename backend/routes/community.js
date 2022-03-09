@@ -252,6 +252,7 @@ router.post("/:id/like-dislike/", async(req, res) => {
   // Response body:
   // - message tells user if like/dislike was successful or not
   // - code = 1 => successful like, code = -1 => successful dislike,, code = 0 => successful removal of a like/dislike
+  // -likeCount and dislikeCount are the updated number of likes and dislikes under this post
 
   if (checkLike === -1 && checkDislike === -1) { // No like or dislike yet
     if (req.body.vote === "like"){ // Trying to like
@@ -310,7 +311,9 @@ router.post("/:id/like-dislike/", async(req, res) => {
     response.code = "err";
   }
 
-  res.json(response);
+  response.likeCount = post.likes.length
+  response.dislikeCount = post.dislikes.length
+  res.json(response).send();
 })
 
 
