@@ -35,7 +35,7 @@ function NavBar() {
          
                 <Nav className='ms-auto' style={{marginRight: 10}}>
                     <Nav.Link href='/profile'>
-                        <img src={avatar} width='40px' height = {"40px"} alt="" />
+                        <img src={avatar} width='40px' height= "40px" alt="" />
                     </Nav.Link>
                 </Nav>
                 

@@ -1,9 +1,13 @@
 .hov {
-    background-color:rgba(209, 214, 222, 0);
+    background-color:rgba(192, 31, 31, 0);
     transition: 0.3s;
     opacity: 1;
     border-radius: 8px;
 }
 
-.hov:hover {background-color:rgba(209, 214, 222, 0.2);}
+.hov:hover {background-color:rgba(0, 207, 180, 0.2);}
+
+.sideBtn {
+    width: 400;
+}
 

@@ -1,24 +1,26 @@
 import React from 'react';
-import NavBar
- from '../../NavBar/NavBar';
+import NavBar from '../../NavBar/NavBar';
 import ProfileSideBar from './ProfileSidebar';
-import { Container, Col, Row } from 'react-bootstrap';
+import './User.css';
+import Profilemain from './ProfileMain';
+import Currency from './Currency';
+import { Col } from 'react-bootstrap';
+import Learnprogress from './LearnProgress';
+import UserPost from './UserPost';
 const Userprofile = () => {
     return (
-        <div>
+        <div >
             
             <NavBar/>
-
-                <Col>
-                    <ProfileSideBar/>
-                </Col>
-
-                <Col>
-                    <h1>Test</h1>
-                </Col>
-
-    
-           
+            
+            <ProfileSideBar/>
+            <Col className='col-9 ' style={{marginLeft: 300}}>
+                <Profilemain/>
+                <Currency/>
+                <Learnprogress/>
+                <UserPost/>
+            </Col>
+            
         </div>
     );
 }
