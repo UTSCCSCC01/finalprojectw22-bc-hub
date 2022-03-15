@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Userpost = (props) => {
+const Userpost = () => {
     return (
-        <div style={{width: 300}}>
-            <h3>My Posts (Scroll test)</h3>
+        <div style={{width: 300, scrollMarginTop: '20rem'}} id='UserPost' >
+            <h3 style={{scrollMarginTop: '200px'}}>My Posts (Scroll test)</h3>
             <span >
             Genshin Impact (Chinese: 原神 Yuánshén) 
             is a free-to-play action RPG developed and published by miHoYo.

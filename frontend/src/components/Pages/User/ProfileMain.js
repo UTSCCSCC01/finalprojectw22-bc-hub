@@ -3,7 +3,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 const Profilemain = () => {
     return (
-        <div> 
+        <div id='ProfileMain'> 
             <Container className='d-flex align-items-center justify-content-center pt-5 ' align={"center"}>
                 <img className='square mx-5' src='https://media.altchar.com/prod/images/620_350/gm-96146c1a-36df-4399-b6d1-84d4a30512cb-genshin-impact-shogun-raiden-baal.jpg' alt = ''
                 />

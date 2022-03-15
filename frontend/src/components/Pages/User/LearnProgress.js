@@ -13,7 +13,7 @@ export function chkBox() {
 
 const Learnprogress = () => {
     return (
-        <div>
+        <div id='LearnProgress' style={{scrollMargin: '200px'}}>
             <h3>Learning Progress</h3>
             <Table striped bordered hover style={{width: 750}}>
             <thead>
