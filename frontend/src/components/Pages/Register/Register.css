@@ -1,0 +1,152 @@
+.registermain{
+    background-color: #8506fc;
+    height: 557px;
+    width: auto;
+}
+
+.registertextbox1 {
+    position: absolute;
+    left: 368px;
+    top: 200px;
+    height: 50px;
+    width: 300px;
+    font-size: 64px;
+    font-size: max(16px, 1em);
+    font-family: inherit;
+    padding: 0.25em 0.5em;
+    background-color: #fff;
+    --input-border: #8506fc;
+    border: 2px solid var(--input-border);
+    border-radius: 4px;
+}
+
+.registertextbox2 {
+    position: absolute;
+    left: 698px;
+    top: 200px;
+    height: 50px;
+    width: 300px;
+    font-size: 64px;
+    font-size: max(16px, 1em);
+    font-family: inherit;
+    padding: 0.25em 0.5em;
+    background-color: #fff;
+    --input-border: #8506fc;
+    border: 2px solid var(--input-border);
+    border-radius: 4px;
+}
+
+.registertextbox3 {
+    position: absolute;
+    left: 368px;
+    top: 300px;
+    height: 50px;
+    width: 300px;
+    font-size: 64px;
+    font-size: max(16px, 1em);
+    font-family: inherit;
+    padding: 0.25em 0.5em;
+    background-color: #fff;
+    --input-border: #8506fc;
+    border: 2px solid var(--input-border);
+    border-radius: 4px;
+}
+
+.registertextbox4 {
+    position: absolute;
+    left: 368px;
+    top: 400px;
+    height: 50px;
+    width: 300px;
+    font-size: 64px;
+    font-size: max(16px, 1em);
+    font-family: inherit;
+    padding: 0.25em 0.5em;
+    background-color: #fff;
+    --input-border: #8506fc;
+    border: 2px solid var(--input-border);
+    border-radius: 4px;
+}
+
+.registertextbox5 {
+    position: absolute;
+    left: 698px;
+    top: 400px;
+    height: 50px;
+    width: 300px;
+    font-size: 64px;
+    font-size: max(16px, 1em);
+    font-family: inherit;
+    padding: 0.25em 0.5em;
+    background-color: #fff;
+    --input-border: #8506fc;
+    border: 2px solid var(--input-border);
+    border-radius: 4px;
+}
+
+.registertextbox6 {
+    position: absolute;
+    left: 698px;
+    top: 300px;
+    height: 50px;
+    width: 300px;
+    font-size: 64px;
+    font-size: max(16px, 1em);
+    font-family: inherit;
+    padding: 0.25em 0.5em;
+    background-color: #fff;
+    --input-border: #8506fc;
+    border: 2px solid var(--input-border);
+    border-radius: 4px;
+}
+
+.registerbutton{
+    position: absolute;
+    left: 583px;
+    top: 500px;
+    height: 50px;
+    width: 200px;
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.12em solid #8506fc;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-size: 20px;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#8506fc;
+    background-color:#e8c8fd;
+    text-align:center;
+    transition: all 0.2s;
+}
+.registerbutton:hover{
+    color:#ffffff;
+    background-color:#8506fc;
+    border:0.1em solid #ffffff;
+}
+@media all and (max-width:30em){
+    .registerbutton{
+        display:block;
+        margin:0.4em auto;
+    }
+}
+
+.registertext1 {
+    position: absolute;
+    left: 600px;
+    top: 130px;
+    font-size: 40px;
+    color: #8506fc;
+}
+
+.registerborder {
+    position: absolute;
+    left: 300px;
+    top: 100px;
+    height: 500px;
+    width: 766px;
+    background-color: #ffffffe0;
+    border-radius: 25px;
+}
