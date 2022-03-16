@@ -1,6 +1,8 @@
 
 function filterFunction(filterData){
     const input = document.getElementById('my-input').value.toUpperCase();
+    const noResult = document.getElementById('no-results');
+    let cnt = 0;
     
     for (var i = 0; i  < filterData.length; i++){
         console.log('hello');
@@ -12,10 +14,15 @@ function filterFunction(filterData){
             post.style.display = "";
         } else {
             post.style.display = "none";
+            cnt += 1;
         }
-        
     }
-    console.log(filterData);
+
+    if (cnt == filterData.length){
+        noResult.innerText = 'No results';
+    } else {
+        noResult.innerText = "";
+    }
 }
 
 export default filterFunction;

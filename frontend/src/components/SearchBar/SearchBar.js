@@ -11,8 +11,8 @@ function SearchBar(props){
                 <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" onClick={()=>props.butFun(props.param)} id="search-but">Search</button>
                 </div>
-                
             </div>
+            
         );
     } else{
         return (
@@ -21,7 +21,6 @@ function SearchBar(props){
                 aria-label="Search" aria-describedby="basic-addon2" id="my-input" onKeyUp={()=>props.inFun(props.param)}/>
                 <div class="input-group-append">
                 </div>
-                
             </div>
         );
     }
