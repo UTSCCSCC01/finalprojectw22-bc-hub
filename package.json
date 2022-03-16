@@ -6,6 +6,7 @@
     "react-bootstrap-sidebar": "0.0.1",
     "react-pro-sidebar": "^0.7.1",
     "react-router-dom": "^6.2.1",
+    "react-share": "^4.4.0",
     "react-show-more-text": "^1.5.2",
     "react-sidebar-ui": "^1.2.1"
   }
