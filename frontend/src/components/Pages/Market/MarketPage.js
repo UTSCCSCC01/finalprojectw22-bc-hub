@@ -84,7 +84,7 @@ function Market() {
       </div>
       <div id="datatable">
       <SearchBar butFun={searchFun} param={marketData.data} inVal={document.getElementById("my-input")} inFun={filterFun}
-      text={"Enter Symbol"}/>
+      text={"Enter Symbol"} haveBut={true}/>
 
         <Table striped bordered hover id="market-table">
           <thead>
