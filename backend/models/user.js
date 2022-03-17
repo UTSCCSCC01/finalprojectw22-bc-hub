@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
+import passportLocalMongoose from 'passport-local-mongoose';
 const { Schema } = mongoose;
 
 //username + password authentication will be implemented at a later date
 
 const userSchema = new Schema({
     username: { type: String, required: true, unique: true },
-    password: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     name: { type: String, required: true, unique: true },
     profilePicture: {type: String, default: "https://th.bing.com/th/id/OIP.9hJkSf63uTq1C9fWXpMR4QAAAA?pid=ImgDet&rs=1"},
@@ -18,6 +18,7 @@ const userSchema = new Schema({
     educationProgress: [Boolean],
 });
 
+userSchema.plugin(passportLocalMongoose);
 const User = mongoose.model('user', userSchema)
 
 export {
