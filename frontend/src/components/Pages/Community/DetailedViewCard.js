@@ -158,7 +158,7 @@ const DetailedViewCard = (props) => {
                 </div>
                 <Card.Title>{props.post.title}</Card.Title> 
             </Card.Header>
-            <Card.Img className="rounded-0 img-fluid" src={props.post.image} />
+            {props.post.image && <Card.Img className="rounded-0 img-fluid" src={props.post.image} />}
             <Card.Body>
                 {/* <Card.Title>{props.post.title}</Card.Title> */}
                 <Card.Text className="text-wrap">
@@ -234,7 +234,7 @@ const DetailedViewCard = (props) => {
             {comments && 
                 <div className="mb-4">
                     {comments.map((comment) => (
-                        <CommunityComment comment={comment} post={props.post}></CommunityComment>
+                        <CommunityComment type={'parent'} comment={comment} post={props.post}></CommunityComment>
                     ))}
                 </div>
             }

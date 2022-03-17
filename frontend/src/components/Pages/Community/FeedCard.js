@@ -124,7 +124,8 @@ const FeedCard = (props) => {
                     </div>
                     <Card.Title>{props.post.title}</Card.Title> 
                 </Card.Header>
-                <Card.Img className="rounded-0 img-fluid" src={props.post.image} />
+                {props.post.image && <Card.Img className="rounded-0 img-fluid" src={props.post.image} />}
+                
             </Link>
             <Card.Body>
                 {/* <Card.Title>{props.post.title}</Card.Title> */}

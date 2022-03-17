@@ -5,6 +5,9 @@ import mongoose from 'mongoose';
 import {CommunityPost, communityPostSchema} from "../models/community_post.js"
 import {CommunityComment, communityCommentSchema} from "../models/communityComment.js"
 
+// ******************************
+// Endpoints
+// ******************************
 
 // INDEX the personal feed
 router.get("/personal-feed", async (req, res) => {
@@ -32,14 +35,25 @@ router.get("/trending-feed", async (req, res) => {
 });
 
 
-// CREATE the new social media post
+// CREATE a new social media post
 router.post("", async (req, res) => {
+    // Check for required fields
+    if (!req.body.title || !req.body.description){
+      res.status(400).json({Error: 'title and description are required'})
+    }
+
+    // Check if an image was given
+    let image = ''
+    if (req.body.image){
+      image = req.body.image
+    }
+
     console.log(req.body)
     let d = new Date()
     const newPost = {
         title: req.body.title,
         description: req.body.description,
-        image: req.body.image,
+        image: image,
         date: d,
         dateString: d.toDateString(),
         likes: [],
@@ -59,6 +73,7 @@ router.post("", async (req, res) => {
         res.status(500).json({Error: err});
       }
 });
+
 
 // Get all of the parent comments underneath a post
 router.get("/:id/comments/", async(req, res) => {
@@ -129,6 +144,7 @@ router.get("/:pid/comments/:cid", async(req, res) => {
 }   
 })
 
+
 // Create a reply to a comment
 router.post("/:pid/comments/:cid/", async(req, res) => {
   // Check if the post exists
@@ -191,6 +207,7 @@ router.post("/:pid/comments/:cid/", async(req, res) => {
   
 })
 
+
 // Create a new comment under a post
 router.post("/:id/comments/", async(req, res) => {
   // Check if the post exists
@@ -242,78 +259,75 @@ router.post("/:id/comments/", async(req, res) => {
 
 // Add a like/dislike to a post
 router.post("/:id/like-dislike/", async(req, res) => {
-  let user = 'John Cena' // Replace this with the current user once authentication is implemented
-  let post = await CommunityPost.findById(req.params.id).exec()
-  let checkLike = post.likes.indexOf(user);
-  let checkDislike = post.dislikes.indexOf(user);
-  console.log(checkLike, checkDislike)
+  let user = 'John Cena'
 
-  let response = {} // Our JSON response
-  // Response body:
-  // - message tells user if like/dislike was successful or not
-  // - code = 1 => successful like, code = -1 => successful dislike,, code = 0 => successful removal of a like/dislike
-  // -likeCount and dislikeCount are the updated number of likes and dislikes under this post
-
-  if (checkLike === -1 && checkDislike === -1) { // No like or dislike yet
-    if (req.body.vote === "like"){ // Trying to like
-      post.likes.push(user);
-      post.save();
-      response.message = "Liked";
-      response.code = 1;
-
-    } else if (req.body.vote === "dislike"){ // Trying to dislike
-      post.dislikes.push(user);
-      post.save();
-      response.message = "Disliked";
-      response.code = -1;
-
-    } else {
-      response.message = "Error 1: Not liked/disliked yet, vote must be either 'like' or 'dislike'";
-      response.code = "err";
-    }
-
-  } else if (checkLike >= 0) { // already liked
-    if (req.body.vote === "like"){ // Remove like
-      post.likes.splice(checkLike, 1);
-      post.save();
-      response.message = "Like removed";
-      response.code = 0;
-    } else if (req.body.vote === "dislike"){ // Change to dislike
-      post.likes.splice(checkLike, 1);
-      post.dislikes.push(user)
-      post.save();
-      response.message = "Like changed to dislike";
-      response.code = -1;
-    } else {
-      response.message = "Error 2: already liked, vote must be either 'like' or 'dislike'";
-      response.code = "err";
-    }
-
-  } else if (checkDislike >= 0) { // already disliked
-    if (req.body.vote === "like"){ // Change to like
-      post.dislikes.splice(checkDislike, 1);
-      post.likes.push(user)
-      post.save();
-      response.message = "Dislike changed to like";
-      response.code = 1;
-    } else if (req.body.vote === "dislike"){ // remove dislike
-      post.dislikes.splice(checkDislike, 1);
-      post.save();
-      response.message = "Dislike removed";
-      response.code = 0;
-    } else {
-      response.message = "Error 2: already disliked, vote must be either 'like' or 'dislike'";
-      response.code = "err";
-    }
-
-  } else { // error
-    response.message = "Error 4";
-    response.code = "err";
+  // Check if the post exists
+  let post = null;
+  try {
+    post = await CommunityPost.findById(req.params.id).exec();
+  } catch(err) {
+    console.log(err);
+    res.status(404).json({message: err, code: 'err'}).send();
+    return;
   }
 
-  response.likeCount = post.likes.length
-  response.dislikeCount = post.dislikes.length
+  if (!post){
+    res.status(404).json({message: "Error 5: Social Media Post with the given id does not exist", code: 'err'}).send();
+    return;
+  }
+
+  if (!req.body.vote){
+    res.status(400).json({message: "Error 6: Must have a field 'vote' with value 'like' or 'dislike'", code: 'err'}).send();
+    return;
+  }
+
+  let response = likeDislike(user, post, req.body.vote)
   res.json(response).send();
+})
+
+
+// Add a like or dislike to a comment (parent comment or reply)
+router.post("/:pid/comments/:cid/like-dislike/", async(req, res) => {
+  let user = 'John Cena'
+
+  // Check if the post exists
+  let post = null;
+  try {
+    post = await CommunityPost.findById(req.params.pid).exec();
+  } catch(err) {
+    console.log(err);
+    res.status(404).json({message: err, code: 'err'}).send();
+    return;
+  }
+
+  if (!post){
+    res.status(404).json({message: "Error 5: Social Media Post with the given id does not exist", code: 'err'}).send();
+    return;
+  }
+
+  // Check if the comment exists
+  let comment = null;
+  try {
+    comment = await CommunityComment.findById(req.params.cid).exec();
+  } catch(err) {
+    console.log(err);
+    res.status(404).json({message: err, code: 'err'}).send();
+    return;
+  }
+
+  if (!comment){
+    res.status(404).json({message: "Error 6: Comment with the given id does not exist", code: 'err'}).send();
+    return;
+  }
+
+  if (!req.body.vote){
+    res.status(400).json({message: "Error 7: Must have a field 'vote' with value 'like' or 'dislike'", code: 'err'}).send();
+    return;
+  }
+
+  let response = likeDislike(user, comment, req.body.vote)
+  res.json(response).send();
+
 })
 
 
@@ -360,6 +374,87 @@ router.delete("/:id", async (req, res) => {
   }
   res.status(200).send()
 });
+
+// ******************************
+// Helper Functions
+// ******************************
+
+// Like and Dislike an entity (a social media post or comment)
+function likeDislike(user, entity, vote) {
+  let checkLike = entity.likes.indexOf(user);
+  let checkDislike = entity.dislikes.indexOf(user);
+  console.log(checkLike, checkDislike)
+
+  let response = {} // Our JSON response
+  // Response body:
+  // - message tells user if like/dislike was successful or not
+  // - code = 1 => successful like, code = -1 => successful dislike,, code = 0 => successful removal of a like/dislike
+  // -likeCount and dislikeCount are the updated number of likes and dislikes under this entity
+
+  if (checkLike === -1 && checkDislike === -1) { // No like or dislike yet
+    if (vote === "like"){ // Trying to like
+      entity.likes.push(user);
+      entity.save();
+      response.message = "Liked";
+      response.code = 1;
+
+    } else if (vote === "dislike"){ // Trying to dislike
+      entity.dislikes.push(user);
+      entity.save();
+      response.message = "Disliked";
+      response.code = -1;
+
+    } else {
+      response.message = "Error 1: Not liked/disliked yet, vote must be either 'like' or 'dislike'";
+      response.code = "err";
+    }
+
+  } else if (checkLike >= 0) { // already liked
+    if (vote === "like"){ // Remove like
+      entity.likes.splice(checkLike, 1);
+      entity.save();
+      response.message = "Like removed";
+      response.code = 0;
+    } else if (vote === "dislike"){ // Change to dislike
+      entity.likes.splice(checkLike, 1);
+      entity.dislikes.push(user)
+      entity.save();
+      response.message = "Like changed to dislike";
+      response.code = -1;
+    } else {
+      response.message = "Error 2: already liked, vote must be either 'like' or 'dislike'";
+      response.code = "err";
+    }
+
+  } else if (checkDislike >= 0) { // already disliked
+    if (vote === "like"){ // Change to like
+      entity.dislikes.splice(checkDislike, 1);
+      entity.likes.push(user)
+      entity.save();
+      response.message = "Dislike changed to like";
+      response.code = 1;
+    } else if (vote === "dislike"){ // remove dislike
+      entity.dislikes.splice(checkDislike, 1);
+      entity.save();
+      response.message = "Dislike removed";
+      response.code = 0;
+    } else {
+      response.message = "Error 2: already disliked, vote must be either 'like' or 'dislike'";
+      response.code = "err";
+    }
+
+  } else { // error
+    response.message = "Error 4";
+    response.code = "err";
+  }
+
+  response.likeCount = entity.likes.length
+  response.dislikeCount = entity.dislikes.length
+  entity.totalLikes = response.likeCount
+  entity.totalDislikes = response.dislikeCount
+  entity.save()
+  return response
+}
 
 export default router;
 
