@@ -6,8 +6,11 @@ const communityCommentSchema = new Schema({
     description: String,
     date: { type: Date, default: Date.now },
     dateString: String,
-    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
-    dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    likes: [String],
+    dislikes: [String],
+    // Commented these out for now, add back when we get auth done
+    // likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    // dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     totalLikes: Number,
     totalDislikes: Number,
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "communityComment" }]
