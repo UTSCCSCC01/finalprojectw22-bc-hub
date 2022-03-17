@@ -33,7 +33,7 @@ render(
         <Route path="/education" element={<EducationPage />} />
         <Route path="/news" element={<GrabNews />} />
         <Route path="/market" element={<Market />} />
-        <Route path="/:symbol" element={<Crypto />} />
+        <Route path="/market/:symbol" element={<Crypto />} />
         <Route path="/community/trending-feed" element={<Community feed="trending-feed" />} />
         <Route path="/community/personal-feed" element={<Community feed="personal-feed" />} />
         <Route path="/community" element={<Community feed="personal-feed" />} />

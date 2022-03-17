@@ -1,3 +1,8 @@
 input[type="text"]{
     max-width: 400px;
   }
+
+#searchbar{
+  margin-top: 10px;
+}
+
