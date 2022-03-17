@@ -102,7 +102,7 @@ const FeedCard = (props) => {
     }
 
     return (  
-        <Card bg="light" className="mt-4 shadow border-0 rounded-3" style={{ width: '38rem' }} key={props.post._id}>
+        <Card bg="light" className="mb-4 shadow border-0 rounded-3" style={{ width: '38rem' }} key={props.post._id}>
             <Link to={`/community/${props.post._id}`} style={{color: 'inherit', textDecoration: 'inherit'}}>
                 <Card.Header className="d-flex flex-column">
                     <div className="d-flex flex-row align-items-center justify-content-between">
