@@ -5,3 +5,7 @@ svg {
 a {
     text-decoration: none;
 }
+
+.vote-btn:hover {
+    cursor: pointer;
+}
