@@ -29,20 +29,20 @@ const Userprofile = () => {
     var userComments = User.comments;
     var userLearnProgress = User.educationProgress;
 
-    console.log('Testing purpose');
-    console.log(User);
-    console.log(userID);
-    console.log(userName);
-    console.log(userEmail);
-    console.log(userNickName);
-    console.log(userPic);
-    console.log(userFollowers);
-    console.log(userFollowings);
-    console.log(userFollowCryptos);
-    console.log(userFollowNFTs);
-    console.log(userPosts);
-    console.log(userComments);
-    console.log(userLearnProgress);
+    // console.log('Testing purpose');
+    // console.log(User);
+    // console.log(userID);
+    // console.log(userName);
+    // console.log(userEmail);
+    // console.log(userNickName);
+    // console.log(userPic);
+    // console.log(userFollowers);
+    // console.log(userFollowings);
+    // console.log(userFollowCryptos);
+    // console.log(userFollowNFTs);
+    // console.log(userPosts);
+    // console.log(userComments);
+    // console.log(userLearnProgress);
     
     
 
@@ -53,7 +53,10 @@ const Userprofile = () => {
             <NavBar/>
             <ProfileSideBar/>
             <Col className='col-9 ' style={{marginLeft: 300}}>
-                <Profilemain/>
+                <Profilemain userName={userName} userNickName={userNickName} userId={userID} 
+                postNum={userPosts.length} followerNum={userFollowers.length} 
+                followingNum={userFollowings.length}
+                emailAddr={userEmail}/>
                 <Currency/>
                 <Learnprogress/>
                 <UserPost/>
