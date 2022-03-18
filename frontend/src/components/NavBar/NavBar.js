@@ -31,6 +31,8 @@ function NavBar() {
                         <NavDropdown.Item href="/community/personal-feed">Personal Feed</NavDropdown.Item>
                         <NavDropdown.Item href="/community/trending-feed">Trending Feed</NavDropdown.Item>
                     </NavDropdown>
+                    <Nav.Link href='/login'>Log In</Nav.Link>
+                    <Nav.Link href='/register'>Register</Nav.Link>
                 </Nav>
          
                 <Nav className='ms-auto' style={{marginRight: 10}}>

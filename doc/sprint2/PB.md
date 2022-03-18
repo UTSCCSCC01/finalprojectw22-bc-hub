@@ -64,3 +64,6 @@
 - As Emma, I would like to have more explained source than the external links
   - 4 points
   - Low Priority
+- As any user, I would like to click on a social media post to visit a dedicated page for the post, so that I can get a more detailed view of that post.
+  - 4 points
+  - Medium Priority
