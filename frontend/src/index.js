@@ -22,6 +22,7 @@ import NotFoundPage from './components/Pages/NotFoundPage';
 import CommunityDetailedView from './components/Pages/Community/CommunityDetailedView'
 import LogIn from './components/Pages/LogIn/LogIn'
 import Register from './components/Pages/Register/Register'
+import Userprofile from './components/Pages/User/UserProfile';
 
 
 // Main 
@@ -34,14 +35,14 @@ render(
         <Route path="/education" element={<EducationPage />} />
         <Route path="/news" element={<GrabNews />} />
         <Route path="/market" element={<Market />} />
-        <Route path="/:symbol" element={<Crypto />} />
+        <Route path="/market/:symbol" element={<Crypto />} />
         <Route path="/community/trending-feed" element={<Community feed="trending-feed" />} />
         <Route path="/community/personal-feed" element={<Community feed="personal-feed" />} />
         <Route path="/community" element={<Community feed="personal-feed" />} />
         <Route path="/community/:id" element={<CommunityDetailedView />} />
         <Route path="/logIn" element={<LogIn />} />
         <Route path="/register" element={<Register />} />
-
+        <Route path="/profile" element={<Userprofile />} />
         <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </BrowserRouter>
