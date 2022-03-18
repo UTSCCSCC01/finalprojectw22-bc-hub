@@ -108,4 +108,20 @@ Example Usage:
 #### SearchBar
 This component is used on both the Market and Community page. On the Market page, it allows users to filter through the cryptocurrency data to find data on a specific currency, as well as allow them to quickly navigate to a cryptocurrencies page via the search button. On the Community page, it allows users to filter through social media posts by their content (title and body). 
 
-#### Rest of your ‘main’ components……
+#### GrabNews
+This component is used for communicating with the backend to get news articles. It makes a GET request to the endpoint `localhost:5000/newsfeed/:pageNo` and supplies
+the response to the Newsfeed component as a prop. `pageNo` is set to 1 by default but subsequent page numbers are provided to GrabNews by the Newsfeed component as a prop using a callback that is given to Newsfeed by GrabNews as a prop.
+
+#### Newsfeed
+This component is returned by the GrabNews component. It displays the articles that were fetched by GrabNews by taking each article and rendering a News component which takes in the different information
+from each article and formats it. Pagination of the articles is implemented in this component. A callback sent from GrabNews as a prop is used for communicating which page of articles should be rendered.
+This component also implements the filtering of articles for the search bar in the newsfeed.
+
+#### News
+This component is used by Newsfeed to format articles it received from GrabNews. Newsfeed is composed of many News components. The News component has props for the title, preview, publisher, data, image link, and link to article.
+These props are given to the News component by Newsfeed.
+
+#### NewsSearchBar
+This component renders the search bar for users to search for specific articles. This component supports filtering as the user types by sending the text in the search bar
+to the Newsfeed component via a callback supplied to NewsSearchBar by Newsfeed as a prop. Newsfeed then takes this information as it is typed by the user and filters the articles and displays
+the filtered articles as the user types.
