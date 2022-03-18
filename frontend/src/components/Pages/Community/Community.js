@@ -11,10 +11,16 @@ const Community = (props) => {
     const {data: communityPosts, isLoading, error}  = useFetch('http://localhost:5000/community/' + props.feed);
     const [openModal, setOpenModal] = useState(false);
 
+    
+    if (isLoading) {
+        return(<div></div>)
+    }
+
     return (  
 
         <div>
-            <NavBar/>   
+            <NavBar/>
+            
             <div className="d-flex">
                 {error && <div>{error}</div>}
                 {isLoading && <div>Loading posts...</div>}

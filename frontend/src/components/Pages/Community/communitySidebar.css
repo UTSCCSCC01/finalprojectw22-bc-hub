@@ -6,3 +6,7 @@
 }
 
 .hov:hover {background-color:rgba(209, 214, 222, 0.2);}
+
+h5 {
+    color: black;
+}

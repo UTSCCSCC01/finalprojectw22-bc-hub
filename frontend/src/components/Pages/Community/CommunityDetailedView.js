@@ -16,7 +16,7 @@ const CommunityDetailedView = () => {
         <div>
             {/* Add the sidebar here! */}
             {/* {error && <div><NavBar></NavBar>{error}</div>} */}
-            {isLoading && <div><NavBar></NavBar>Loading posts...</div>}
+            {isLoading && <div><NavBar></NavBar>Loading detailed view...</div>}
 
             {post &&
                 <div>
