@@ -394,13 +394,11 @@ function likeDislike(user, entity, vote) {
   if (checkLike === -1 && checkDislike === -1) { // No like or dislike yet
     if (vote === "like"){ // Trying to like
       entity.likes.push(user);
-      entity.save();
       response.message = "Liked";
       response.code = 1;
 
     } else if (vote === "dislike"){ // Trying to dislike
       entity.dislikes.push(user);
-      entity.save();
       response.message = "Disliked";
       response.code = -1;
 
@@ -412,13 +410,11 @@ function likeDislike(user, entity, vote) {
   } else if (checkLike >= 0) { // already liked
     if (vote === "like"){ // Remove like
       entity.likes.splice(checkLike, 1);
-      entity.save();
       response.message = "Like removed";
       response.code = 0;
     } else if (vote === "dislike"){ // Change to dislike
       entity.likes.splice(checkLike, 1);
       entity.dislikes.push(user)
-      entity.save();
       response.message = "Like changed to dislike";
       response.code = -1;
     } else {
@@ -430,12 +426,10 @@ function likeDislike(user, entity, vote) {
     if (vote === "like"){ // Change to like
       entity.dislikes.splice(checkDislike, 1);
       entity.likes.push(user)
-      entity.save();
       response.message = "Dislike changed to like";
       response.code = 1;
     } else if (vote === "dislike"){ // remove dislike
       entity.dislikes.splice(checkDislike, 1);
-      entity.save();
       response.message = "Dislike removed";
       response.code = 0;
     } else {
