@@ -6,6 +6,10 @@ import sendHttpRequest from './HttpHandler';
 import useFetch from '../../../hooks/useFetch';
 import CommunityComment from './CommunityComment';
 import React, {useEffect, useState } from 'react';
+import {FacebookIcon, TwitterIcon, LinkedinIcon} from "react-share";
+import {FacebookShareButton, TwitterShareButton, LinkedinShareButton} from "react-share";
+
+
 // import vote from './vote';
 
 
@@ -154,7 +158,20 @@ const DetailedViewCard = (props) => {
                             </Card.Text>
                         </div>
                     </div>
-                    <Button variant="danger" onClick={deletePost}>Delete</Button>
+                    <div>
+                        <Button variant="danger" className='me-2' onClick={deletePost}>Delete</Button>
+                        <FacebookShareButton url={"http://bchub.com"} quote={props.post.title} hashtag="BC Hub">
+                            <FacebookIcon size={32} round />
+                        </FacebookShareButton>
+
+                        <TwitterShareButton url={"http://bchub.com"} title={props.post.title} hashtags={["BC Hub"]}>
+                            <TwitterIcon size={32} round />
+                        </TwitterShareButton>
+
+                        <LinkedinShareButton url={"http://bchub.com"} title={props.post.title} summary={props.post.description} source={"BC Hub"}>
+                            <LinkedinIcon size={32} round />
+                        </LinkedinShareButton>
+                    </div>
                 </div>
                 <Card.Title>{props.post.title}</Card.Title> 
             </Card.Header>
