@@ -15,6 +15,7 @@ const userSchema = new Schema({
     followingNFTs: [String],
     Posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "communityPost" }],
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "communityPost" }],
+    educationProgress: [Boolean],
 });
 
 const User = mongoose.model('user', userSchema)
