@@ -58,7 +58,7 @@ function EducationPage() {
             <img src={r2c1} alt='' width="200px" height={"150px"} />
           </a>
           <br/>
-        
+          <br/>
           <Form.Check label=' Investment Choice' />
           </Col> 
           

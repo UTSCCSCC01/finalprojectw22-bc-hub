@@ -21,6 +21,10 @@
     font-style: inherit;
 }
 
+img {
+    border-radius: 10%;
+}
+
 p {
     white-space: pre;
   }
