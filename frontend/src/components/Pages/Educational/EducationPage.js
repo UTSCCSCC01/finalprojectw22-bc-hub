@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Form } from 'react-bootstrap';
 import './EducationPage.css';
 import NavBar from '../../NavBar/NavBar';
 // import image
@@ -28,7 +28,7 @@ function EducationPage() {
               </a>
               <br/>
               <br/>
-              <p>  What is Crypto Currency</p>
+              <Form.Check label='What is Ctypto Currency' />
           </Col> 
           
           
@@ -38,7 +38,7 @@ function EducationPage() {
           </a>
           <br/>
           <br/>
-          <p>     Beginner Crypto-App</p>
+          <Form.Check label='Beginner Crypto-App' />
           </Col> 
           
           <Col>
@@ -47,7 +47,7 @@ function EducationPage() {
           </a>
           <br/>
           <br/>
-          <p>  How to Find Crypto Trend</p>
+          <Form.Check label='How to Find Crypto Trend' />
           </Col>
         </Row>
 
@@ -59,7 +59,7 @@ function EducationPage() {
           </a>
           <br/>
           <br/>
-          <p>       Investment Choice</p>
+          <Form.Check label=' Investment Choice' />
           </Col> 
           
           <Col><a href='https://thedailyguardian.com/impact-of-cryptocurrencies-on-the-economy/' target={'blank'}>
@@ -67,7 +67,7 @@ function EducationPage() {
           </a>
           <br/>
           <br/>
-          <p>  Global Economical Effect</p>
+          <Form.Check label='Global Economical Effect' />
           </Col> 
           
           <Col><a href='https://www.sofi.com/learn/content/understanding-the-different-types-of-cryptocurrency/' target={'blank'}>
@@ -75,7 +75,7 @@ function EducationPage() {
           </a>
           <br/>
           <br/>
-          <p> Types of Digital Currencies</p>
+          <Form.Check label='Types of Digital Currencies' />
           </Col>
         </Row>
 
@@ -87,7 +87,7 @@ function EducationPage() {
           </a>
           <br/>
           <br/>
-          <p>         Crypto v. Token</p>
+          <Form.Check label=' Crypto v. Token' />
           </Col> 
           
           <Col><a href='https://www.cmcmarkets.com/en/learn-cryptocurrencies/what-are-the-risks' target={'blank'}>
@@ -95,7 +95,7 @@ function EducationPage() {
           </a>
           <br/>
           <br/>
-          <p>      Risk of Crypto Trade</p>
+          <Form.Check label='Risk of Crypto Trade' />
           </Col> 
           
           <Col><a href='https://www.youtube.com/watch?v=SSo_EIwHSd4' target={'blank'}>
@@ -103,7 +103,7 @@ function EducationPage() {
           </a>
           <br/>
           <br/>
-          <p>              Blockchain</p>
+          <Form.Check label='Blockchain' />
           </Col>
         </Row>
 
