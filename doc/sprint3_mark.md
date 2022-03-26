@@ -1,18 +1,17 @@
 # Sprint 2-4 Marking Scheme
 
-**Team Name:** BC Hub  
-
+**Team Name:** BC Hub
 *(Convention: N=sprint number, ex: sprintN.md means sprint2.md for sprint 2, and SR(N-1)md means SR1.md for sprint 2, that is Sprint Retrospective for Sprint 1, to be hold during planning meeting at the beginning of Sprint 2)*
 
 ---
-## Planning Meetings (SR(N-1).md, sprintN.md) (max 2 marks)
+## Planning Meetings (SR(N-1).md, sprintN.md) (max 4 marks)
 
   - SR(N-1).md (Sprint Retrospective) (max 2 marks)
     - 2 marks = Meeting is documented, participants are recorded, everyone has participated, analysis of good practices/bad practices were made.
     - 1 mark  = Meeting is documented, participants are not recorded or the majority has not participated, not enough analysis has been done
     - 0 marks = No meeting document submitted or the submitted document contains no relevant information
   
-    Your Mark: 2
+    Your Mark: 1
  
   - Sprint Planning meeting (sprintN.md) (max 2 marks)
     - 2 marks = Meeting and sprint goal is documented, all spikes clearly identified, team capacity recorded, participants are recorded, everyone has participated, decisions about user stories to be completed this sprint are clear, tasks breakdown is done.
@@ -20,9 +19,9 @@
     there is no clear evidence which user story will be completed or task breakdown is unclear or incomplete
     - 0 marks = No meeting document submitted or the submitted document contains no relevant information to the sprint 1
 
-    Your Mark: 2 
+    Your Mark: 2
 
-  Planning Meetings Total Mark: 4 / 4
+  Planning Meetings Total Mark: 3 / 4
 
 ---
 ## Daily Stand-ups (max 10 marks)
@@ -42,7 +41,7 @@
     - 1 mark  = At least 2 group members or more have not sent their updates or is low-quality
     - 0 marks = At least 3 group members or more have not sent their updates or is low-quality
 
-  Daily Stand-ups Total Mark: 9 / 10
+  Daily Stand-ups Total Mark: 10 / 10
 
 ---
 ## User Stories (Tracked in Jira) (max 10 marks) 
@@ -111,7 +110,7 @@
     - 1 mark  = two or more tasks were not completed as assigned
     - 0 marks = no task was completed by anyone
 
-    Your Mark: 2
+    Your Mark: 1
 
   - Is each pull request made from a separate branch for each individual task? (max 5 marks)
     - 5 marks = pull request for each task made from own separate branch
@@ -121,14 +120,14 @@
     - 1 mark  = pull request for 4 or more tasks not made from own separate branch
     - 0 marks = pull request for the majority of tasks not made from own separate branch
   
-    Your Mark: 5
+    Your Mark: 4
     
   - Is the git commit message clear? (max 2 marks)
     - 2 marks = all commit message begin with the ticket number of the task followed by a short description of commit changes
     - 1 mark  = one or more commit messages do not begin with the ticket number of the task followed by a short description of commit changes
     - 0 marks = majority of commit message do not begin with the ticket number of the task followed by a short description of commit changes
   
-    Your Mark: 1
+    Your Mark: 2
     
   - Tasks Distribution (max 3 marks)
     - 3 marks = every team member had at least one task assigned and completed
@@ -159,7 +158,7 @@
 
     Your Mark: 2
 
-Tracking on Jira Total Mark: 23 / 24
+Tracking on Jira Total Mark: 22 / 24
 
 ---
 ## Sprint Completion (Max 20 marks) 
@@ -169,7 +168,7 @@ Tracking on Jira Total Mark: 23 / 24
   - Started stories that are incomplete will be counted
   - Mark Breakdown: [x = Percentage of story points completed * 20]
 
-  Your Mark: 20 / 20
+  Your Mark: 18 / 20
 
 ---
 ## System Design (PDF or MD file or another suitable format) (max 10 marks) 
@@ -207,7 +206,7 @@ Tracking on Jira Total Mark: 23 / 24
 ---
 
 ## Documentation (max 1 mark)
-  - 1 mark = documentation is updated, is concise & informative for contributors
+	- 1 mark = documentation is updated, is concise & informative for contributors
   - 0 marks = documentation has not been updated or is unclear & not maintained properly
    
   Your Mark: 1 / 1
@@ -222,11 +221,13 @@ Tracking on Jira Total Mark: 23 / 24
   
   Your Mark: 2 / 2
 
+
   - Working software (max 6 marks)
     - 6 marks (two per feature) = at least 3 features are presented, features presented work flawlessly
     - 1 mark removed for each bug/error identified
 
-  Your Mark: 6 / 6
+  Your Mark: 5 / 6
+
 
   - Presentation (max 2 marks)
     - 2 marks = UI demonstrated is visually appealing and intuitive for users
@@ -235,21 +236,26 @@ Tracking on Jira Total Mark: 23 / 24
 
   Your Mark: 2 / 2
 
+
   - Documentation (max 2 marks)
 
   - 2 marks = documentation has been created for frontend and backend systems with great detail
   - 1 mark = documentation has been created for frontend and backend systems with some errors
   - 0 marks = documentation has not been created
 
-  Your Mark: 1 / 2
-
-  Sprint Demo Total: 11 / 12
+  Your Mark: 2 / 2
+  
+  Sprint Demo Mark: 11 / 12
 
 ---
 
 ## Total Mark
 
-88 / 91
+85 / 91
 
 ## Notes
-- Although you got the full marks for the CRC cards, for future reference, I wouldn't use the entire path of the files that you're referencing. It should just be the class name.
+- Adding a bit more description about the new practices that you wanted to use during the next sprint would be ideal (i.e. "Add better comments" is somewhat vague)
+- Make sure that the PRs for your tasks are created by the person to whom the task is assigned to
+- One of your user stories aren't marked as complete (Status is still "To do")
+- PR not found on Jira for BH-15 (Only the commit shows up)
+- Just as a note for next time, the critical path should only be 1 path rather than multiple paths. You should be considering all of your user stories for this sprint and then from there, choosing the 1 critical path
