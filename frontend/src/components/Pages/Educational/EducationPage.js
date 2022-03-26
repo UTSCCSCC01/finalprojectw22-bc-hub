@@ -18,34 +18,33 @@ function EducationPage() {
   return (
     <div class="bg-dark text-white" > 
       <NavBar/>
-      <Container className='ctr'> 
+      <Container className='ctr ' align={"center"}> 
         <Row >
           <Col><h1>Beginner</h1></Col> 
 
-          <Col className='col'>
-              <a href='https://www.youtube.com/watch?v=6Gu2QMTAkEU' target={'blank'}>
+          <Col className='col' >
+              <a href='https://www.youtube.com/watch?v=6Gu2QMTAkEU' target={'blank'} className='btn d-flex hov d-flex align-items-center justify-content-center'>
               <img src={r1c1} alt='' width="200px" height={"150px"} />   
               </a>
               <br/>
-              <br/>
+            
               <Form.Check label='What is Ctypto Currency' />
           </Col> 
           
           
           <Col>
-          <a href='https://www.fool.com/the-ascent/cryptocurrency/best-cryptocurrency-apps/' target={'blank'}>
+          <a href='https://www.fool.com/the-ascent/cryptocurrency/best-cryptocurrency-apps/' target={'blank'} className='btn d-flex hov d-flex align-items-center justify-content-center'>
             <img src={r1c2} alt='' width="200px" height={"150px"} />
           </a>
-          <br/>
           <br/>
           <Form.Check label='Beginner Crypto-App' />
           </Col> 
           
           <Col>
-          <a href='https://coinmarketcap.com/trending-cryptocurrencies/' target={'blank'}>
+          <a href='https://coinmarketcap.com/trending-cryptocurrencies/' target={'blank'} className='btn d-flex hov d-flex align-items-center justify-content-center'>
             <img src={r1c3} alt='' width="200px" height={"150px"} />
           </a>
-          <br/>
+        
           <br/>
           <Form.Check label='How to Find Crypto Trend' />
           </Col>
@@ -54,27 +53,30 @@ function EducationPage() {
         <Row>
           <Col><h1>Intermediate</h1></Col> 
           
-          <Col><a href='https://www.investopedia.com/tech/most-important-cryptocurrencies-other-than-bitcoin/' target={'blank'}>
+          <Col><a href='https://www.investopedia.com/tech/most-important-cryptocurrencies-other-than-bitcoin/' target={'blank'}
+          className='btn d-flex hov d-flex align-items-center justify-content-center' >
             <img src={r2c1} alt='' width="200px" height={"150px"} />
           </a>
           <br/>
-          <br/>
+        
           <Form.Check label=' Investment Choice' />
           </Col> 
           
-          <Col><a href='https://thedailyguardian.com/impact-of-cryptocurrencies-on-the-economy/' target={'blank'}>
+          <Col><a href='https://thedailyguardian.com/impact-of-cryptocurrencies-on-the-economy/' target={'blank'} 
+          className='btn d-flex hov d-flex align-items-center justify-content-center'>
             <img src={r2c2} alt='' width="200px" height={"150px"} />
           </a>
           <br/>
-          <br/>
+          
           <Form.Check label='Global Economical Effect' />
           </Col> 
           
-          <Col><a href='https://www.sofi.com/learn/content/understanding-the-different-types-of-cryptocurrency/' target={'blank'}>
+          <Col><a href='https://www.sofi.com/learn/content/understanding-the-different-types-of-cryptocurrency/' target={'blank'}
+          className='btn d-flex hov d-flex align-items-center justify-content-center'>
             <img src={r2c3} alt='' width="200px" height={"150px"} />
           </a>
           <br/>
-          <br/>
+      
           <Form.Check label='Types of Digital Currencies' />
           </Col>
         </Row>
@@ -82,26 +84,28 @@ function EducationPage() {
         <Row>
           <Col><h1>Advanced</h1></Col> 
           
-          <Col><a href='https://www.youtube.com/watch?v=422HORNUfkU' target={'blank'}>
+          <Col><a href='https://www.youtube.com/watch?v=422HORNUfkU' target={'blank'}
+          className='btn d-flex hov d-flex align-items-center justify-content-center'>
             <img src={r3c1} alt='' width="200px" height={"150px"} />
           </a>
           <br/>
-          <br/>
+      
           <Form.Check label=' Crypto v. Token' />
           </Col> 
           
-          <Col><a href='https://www.cmcmarkets.com/en/learn-cryptocurrencies/what-are-the-risks' target={'blank'}>
+          <Col><a href='https://www.cmcmarkets.com/en/learn-cryptocurrencies/what-are-the-risks' target={'blank'}
+          className='btn d-flex hov d-flex align-items-center justify-content-center'>
             <img src={r3c2} alt='' width="200px" height={"150px"} />
           </a>
           <br/>
-          <br/>
+          
           <Form.Check label='Risk of Crypto Trade' />
           </Col> 
           
-          <Col><a href='https://www.youtube.com/watch?v=SSo_EIwHSd4' target={'blank'}>
+          <Col><a href='https://www.youtube.com/watch?v=SSo_EIwHSd4' target={'blank'}
+          className='btn d-flex hov d-flex align-items-center justify-content-center'>
             <img src={r3c3} alt='' width="200px" height={"150px"} />
           </a>
-          <br/>
           <br/>
           <Form.Check label='Blockchain' />
           </Col>
