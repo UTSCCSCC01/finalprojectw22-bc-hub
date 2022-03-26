@@ -4,6 +4,7 @@
     align-content: flex-end;
     align-items: center;
     width: 1000;
+    font-style: oblique;
 }
 
 .row {
@@ -11,12 +12,7 @@
     align-items: center;
 }
 
-.col {
-    align-items: center;
-    align-content: center;
-    font-style: oblique;
-    width: 200px;
-}
+
 
 .learnimg {
     border-radius: 10%;
