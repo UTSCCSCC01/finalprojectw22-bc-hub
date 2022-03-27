@@ -1,19 +1,39 @@
+import { CommunityPost } from "../models/community_post.js"
+import { User } from "../models/user.js";
+import jwt from 'jsonwebtoken'
 
-const Post = require('../models/community_post');
+//Assumes user is already logged in, must check first separately
+const isPostOwner = async (req, res) => {
 
-const checkPostOwner = async (req, res, next) => {
-  if(req.isAuthenticated()) { // Check if the user is logged in
-    const post = await community_post.findById(req.params.postId).exec();
-    // If logged in, check if they own the comment
-    if(post.user.id.equals(req.user._id)) { // If owner, render the form to edit
-        res.send({status: 200})
+  const token = req.headers['x-access-token']
+  try {
+    const decoded = jwt.verify(token, 'secret123')
+    const username = decoded.username
+    const password = decoded.password
+  }
+  catch (err) { //jwt error
+    res.send({status: 400, error: 'invalid jwt'})
+  }
+
+  try {
+    const user = await User.findOne({ username: username, password: password}) //get user making request
+  } 
+  catch (err) { //user doesnt exist
+    res.send({status: 400, error: 'user does not exist'})
+  }
+
+  try {
+    const post = await CommunityPost.findById(req.params.postId).exec(); //get post from request
+    if(post.owner.name.equals(user.name)) { //if user is the owner
+      res.send({status: 200})
     }
-    else { // If not, redirect back to show Page
-        res.send({status: 401, error: 'not owner'})
+    else {
+      res.send({status: 401, error: 'not owner'})
     }
-  } else { // If not logged in, redirect to /login
-        res.send({status: 401, error: 'not logged in'})
+  } 
+  catch (err) {
+    res.send({status: 400, error: 'post does not exist'})
   }
 }
 
-export default checkPostOwner;
+export default isPostOwner;

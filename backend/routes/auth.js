@@ -1,32 +1,23 @@
 import express from 'express';
-const router = express.Router();
-import mongoose from 'mongoose';
 import {User,userSchema}  from '../models/user.js';
-import passport from 'passport';
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
+import isLoggedIn from '../utils/isLoggedIn.js'
+import isCommentOwner from '../utils/isCommentOwner.js'
+import isPostOwner from '../utils/isPostOwner.js'
 
-
-
-function isLoggedIn (req, res, next){
-    console.log(`req.user in isloggedin: ${JSON.stringify(req.user)}`);
-    if (req.isAuthenticated()){
-        res.send({status: 200})
-    }
-    res.send({status: 401, error: 'not logged in'});
-};
-
-
-// get signup page
-// router.get("/signup", async (req,res) => {
-//     res.render("signup")
-// });
+const router = express.Router();
 
 //signup new user
 router.post("/signup", async (req,res) => {
+    console.log(req)
+    const newpassword = await bcrypt.hash(req.body.password, 10)
     try {
-        const newUser = await User.register(new User({
+        await User.create({
             username: req.body.username,
             email: req.body.email,
             name: req.body.name,
+            password: newpassword,
             profilePicture: null,
             followers: [],
             followingUsers: [],
@@ -35,42 +26,73 @@ router.post("/signup", async (req,res) => {
             Posts: [],
             comments: [],
             educationProgress: [false, false, false, false, false, false, false, false, false],
-        }), req.body.password);
-    
-        console.log(newUser);
-    
-        passport.authenticate('local')(req, res, ()=> {
-            res.send({status: 200})
-        });
-        console.log(req.user.username)
+        })
+        return res.json({status: 200})
     }
     catch (err){
-        console.log(err);
-        res.send({ status: 400, error: err });
+        return res.send({ status: 409, error: 'user already exists' });
     }
 });
 
 //get login page
-router.post("/login", passport.authenticate('local'), function(req, res){
-    console.log('logging in user')
-    console.log(req.user)
-    req.session.user = req.user;
-    res.send({status: 200})
+router.post("/login", async (req, res) => {
+    const user = await User.findOne({
+        username: req.body.username
+    })
+
+    if (!user) {
+        return res.json({status: 400, user: false})
+    }
+    console.log(user)
+    const isPassValid = await bcrypt.compare(
+        req.body.password,
+        user.password
+    )
+
+    if (isPassValid){
+        const token = jwt.sign({username:user.username, password: user.password}, 'secret123', {expiresIn: '2h'})
+        return res.json({status: 200, user: token})
+    }
+    else {
+        return res.json({status: 400, user: false})
+    }
 });
 
 //logout user
-router.get("/logout", isLoggedIn, (req, res) => {
-    console.log('logging out user')
-    console.log(req.user)
-    req.logOut();
-    req.session.destroy();
-    res.send({status: 200})
+router.get("/logout", (req, res) => {
+    const token = req.headers['x-access-token']
+    console.log(token)
+    try {
+      const decoded = jwt.verify(token, 'secret123')
+      const username = decoded.username
+      const password = decoded.password
+      try {
+        const user = await User.findOne({ username: username, password: password}) //get user making request
+        res.send({status: 200})
+      } 
+      catch (err) { //user doesnt exist
+        res.send({status: 400, error: 'user does not exist'})
+      }
+    }
+    catch (err) { //jwt error
+      res.send({status: 400, error: 'invalid jwt'})
+    }
 });
 
-router.get("/user", isLoggedIn, (req, res) => {
-    console.log('getting current user details')
-    console.log(req.user)
-    res.send({status: 200, username: req.user})
+//check if user is logged in
+router.get("/loggedIn", async (req, res) =>{
+    await isLoggedIn(req,res)
+});
+
+//check if user is the owner of a comment
+router.get("/commentOwner", async(req,res) =>{
+    await isCommentOwner(req,res)
 })
+
+//check if user is the owner of a post
+router.get("/postOwner", async(req,res) =>{
+    await isPostOwner(req,res)
+})
+
 
 export default router;
