@@ -1,16 +1,17 @@
 import express from 'express';
-import {User,userSchema}  from '../models/user.js';
+import {User}  from '../models/user.js';
+import {deadToken} from '../models/deadToken.js'
+import isCommentOwner from '../utils/isCommentOwner.js'
+import isPostOwner from '../utils/isPostOwner.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import isLoggedIn from '../utils/isLoggedIn.js'
-import isCommentOwner from '../utils/isCommentOwner.js'
-import isPostOwner from '../utils/isPostOwner.js'
+
 
 const router = express.Router();
 
 //signup new user
 router.post("/signup", async (req,res) => {
-    console.log(req)
     const newpassword = await bcrypt.hash(req.body.password, 10)
     try {
         await User.create({
@@ -43,7 +44,6 @@ router.post("/login", async (req, res) => {
     if (!user) {
         return res.json({status: 400, user: false})
     }
-    console.log(user)
     const isPassValid = await bcrypt.compare(
         req.body.password,
         user.password
@@ -59,23 +59,28 @@ router.post("/login", async (req, res) => {
 });
 
 //logout user
-router.get("/logout", (req, res) => {
+router.get("/logout", async (req, res) => {
     const token = req.headers['x-access-token']
-    console.log(token)
-    try {
-      const decoded = jwt.verify(token, 'secret123')
-      const username = decoded.username
-      const password = decoded.password
-      try {
-        const user = await User.findOne({ username: username, password: password}) //get user making request
-        res.send({status: 200})
-      } 
-      catch (err) { //user doesnt exist
-        res.send({status: 400, error: 'user does not exist'})
+    if (deadToken.findOne({token: token}).limit(1).size() == 0){
+        res.send({status: 400, error: 'invalid token'})
       }
-    }
-    catch (err) { //jwt error
-      res.send({status: 400, error: 'invalid jwt'})
+    else {
+        try {
+            const decoded = jwt.verify(token, 'secret123')
+            const username = decoded.username
+            const password = decoded.password
+            try {
+                const user = await User.findOne({ username: username, password: password}) //get user making request
+                await deadToken.create({token: token});
+                res.send({status: 200})
+            } 
+            catch (err) { //user doesnt exist
+                res.send({status: 400, error: 'user does not exist'})
+            }
+        }
+        catch (err) { //jwt error
+            res.send({status: 400, error: 'error validating token'})
+        }
     }
 });
 
