@@ -11,6 +11,7 @@ import peopleRoutes from "./routes/people.js"
 import communityRoutes from "./routes/community.js"
 import market from "./routes/market.js";
 import users from "./routes/users.js"
+import cryptopage from "./routes/cryptopage.js"
 
 // Model Imports
 import {Person, personSchema} from "./models/person.js"
@@ -32,11 +33,12 @@ app.get('/', async (req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-app.use("/newsfeed", newsfeed)
+app.use("/newsfeed", newsfeed);
 app.use("/people", peopleRoutes);
 app.use("/community", communityRoutes);
 app.use("/market", market);
-app.use("/users", users)
+app.use("/users", users);
+app.use("/market", cryptopage);
 app.use("*", (req, res) => res.status(404).json({error: "not found"}))
 
 
