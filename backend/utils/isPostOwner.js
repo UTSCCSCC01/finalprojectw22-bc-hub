@@ -17,7 +17,7 @@ const isPostOwner = async (req, res) => {
       try {
         const user = await User.findOne({ username: username, password: password}) //get user making request
         try {
-          const post = await CommunityPost.findById(req.params.postId).exec(); //get post from request
+          const post = await CommunityPost.findById(req.body.postId).exec(); //get post from request
           if(post.owner.name.equals(user.name)) { //if user is the owner
             res.send({status: 200})
           }
