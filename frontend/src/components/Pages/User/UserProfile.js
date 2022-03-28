@@ -10,7 +10,7 @@ import UserPost from './UserPost';
 import useFetch from '../../../hooks/useFetch';
 
 const Userprofile = () => {
-    const {data: User, isLoading}  = useFetch('http://localhost:5000/users/6233964b951fe3f4ff65f833/');
+    const {data: User, isLoading}  = useFetch('http://localhost:5000/users/62410e5e4578638ec14e6fff/');
 
     if (isLoading) {
         return(<div><h1>Loading Profile Page...</h1></div>);

@@ -1,4 +1,4 @@
-import { communityComment } from "../models/communityComment.js"
+import { CommunityComment } from "../models/communityComment.js"
 import {User} from "../models/user.js";
 import {deadToken} from '../models/deadToken.js'
 import jwt from 'jsonwebtoken'
