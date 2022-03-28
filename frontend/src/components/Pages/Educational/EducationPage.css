@@ -1,13 +1,10 @@
-.div {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
-}
 
 .ctr {
     margin-top: 5ch;
     align-content: flex-end;
     align-items: center;
+    width: 1000;
+    font-style: oblique;
 }
 
 .row {
@@ -15,12 +12,32 @@
     align-items: center;
 }
 
-.col {
-    align-items: center;
-    align-content: center;
-    font-style: inherit;
+
+
+.learnimg {
+    border-radius: 10%;
+    border: 5px solid rgb(255, 255, 255);
 }
 
-p {
-    white-space: pre;
-  }
+
+
+.labelText {
+    color: white;
+    font-style: oblique;
+
+}
+
+.learn {
+    /* background-image: url('cryp_wallpaper.jpg'); */
+    background:linear-gradient(rgba(41, 37, 37, 0.5), rgba(108, 18, 160, 0.404)), url('cryp_wallpaper.jpg');
+    background-size: 1920px 1080px;
+    /* background-color: blue; */
+}
+.hovE {
+    background-color:rgba(255, 0, 0, 0);
+    transition: 0.3s;
+    opacity: 1;
+    border-radius: 8px;
+}
+
+.hovE:hover {background-color:rgba(255, 255, 255, 0.2);}

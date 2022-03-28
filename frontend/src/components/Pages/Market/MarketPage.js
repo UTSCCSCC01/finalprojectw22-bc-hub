@@ -12,7 +12,7 @@ function searchFun(param) {
   const txtVal = inVal.toUpperCase();
   for (var i = 0; i < param.length; i++){
     if (param[i].symbol.toUpperCase() == txtVal || param[i].name.toUpperCase() == txtVal){
-      window.location = "/" + param[i].symbol;
+      window.location = "market/" + param[i].symbol;
     }
   }
 }
@@ -56,6 +56,10 @@ function butFun(rowNum, marketData){
   } else {
     but.value ='follow';
     but.innerText = 'follow';
+    const rowIndex = followArr.length - 1 - followArr.indexOf(marketData[rowNum])
+    console.log(followArr.indexOf(marketData[rowNum]));
+    followTab.deleteRow(rowIndex);
+    followArr.splice(followArr.indexOf(marketData[rowNum]), 1);
   }
 }
 
@@ -69,7 +73,6 @@ function Market() {
 
   return <div id="market_page">
       <NavBar/>
-      <h1>Market Section</h1>
       <div id='follow-section'>
         <h3>Followed Currencies</h3>
         <Table striped bordered hover id='follow-table'>
@@ -81,7 +84,7 @@ function Market() {
       </div>
       <div id="datatable">
       <SearchBar butFun={searchFun} param={marketData.data} inVal={document.getElementById("my-input")} inFun={filterFun}
-      text={"Enter Symbol"}/>
+      text={"Enter Symbol"} haveBut={true}/>
 
         <Table striped bordered hover id="market-table">
           <thead>
@@ -95,7 +98,7 @@ function Market() {
           <tbody>
             {Array.from({length: marketData.data.length}).map((_, index1) => (
               <tr>
-                <td><a href={"/" + marketData.data[index1].symbol}>{marketData.data[index1].symbol}</a></td>
+                <td><a href={"market/" + marketData.data[index1].symbol}>{marketData.data[index1].symbol}</a></td>
                   <td>{marketData.data[index1].quote.USD.price}</td>
                   <td>{marketData.data[index1].quote.USD.percent_change_24h}</td>
                   <td>{marketData.data[index1].quote.USD.percent_change_7d}</td>
