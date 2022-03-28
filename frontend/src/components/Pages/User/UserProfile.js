@@ -58,7 +58,7 @@ const Userprofile = () => {
                 followingNum={userFollowings.length}
                 emailAddr={userEmail}/>
                 <Currency/>
-                <Learnprogress/>
+                <Learnprogress Progresses={userLearnProgress}/>
                 <UserPost/>
             </Col>
             
