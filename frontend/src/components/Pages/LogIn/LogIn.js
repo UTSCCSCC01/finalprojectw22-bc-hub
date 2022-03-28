@@ -2,8 +2,11 @@ import React, {useState, useEffect} from 'react'
 import NavBar from '../../NavBar/NavBar';
 import './LogIn.css'
 import Alert from 'react-bootstrap/Alert'
+import { useNavigate } from 'react-router-dom'
 
 function LogIn() {
+    const navigate = useNavigate()
+
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [show, setShow] = useState(false);
@@ -21,43 +24,71 @@ function LogIn() {
     const formSubmitHandler = (e) => {
         setErrors([])
         e.preventDefault()
-        if(username === "") {
-            setErrors(arr => [...arr, "Username is required"])
-        }
-        if(password === "") {
-            setErrors(arr => [...arr, "Password is required"])
-        }
+        // if(username === "") {
+        //     setErrors(arr => [...arr, "Username is required"])
+        // }
+        // if(password === "") {
+        //     setErrors(arr => [...arr, "Password is required"])
+        // }
 
-    //     fetch("http://localhost:5000/login", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ username, password }),
-    //   })
-    //   .then(response => {
-    //       console.log(response);
-    //       console.log("then fetch");
-    //   })
-    //   .catch(error => {
-    //       console.log("error occured in fetch")
-    //       console.log(error)
-    //   })
+        // const response = await fetch("http://localhost:5000/login", {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify({ username, password }),
+        // })
+
+        // const data = await response.json()
+
+        // if (data.user) {
+		// 	localStorage.setItem('token', data.user)
+		// 	navigate('/education')
+		// } else {
+		// 	// alert('Please check your username and password')
+        //     setErrors(arr => [...arr, "Username or password is incorrect"])
+		// }
+
+        fetch("http://localhost:5000/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+            })
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                if(data.user){
+                    localStorage.setItem('token', data.user)
+			        navigate('/education')
+                } else {
+                    setErrors(arr => [...arr, "Username or password is incorrect"])
+                }
+            })
+            .catch(error => {
+                alert("signup error")
+                console.log("error occured in fetch")
+                console.log(error)
+            })
+
+        
     }
 
-    const logoutHandler = (e) => {
+    const logoutHandler = async (e) => {
         e.preventDefault()
 
-        fetch("http://localhost:5000/logout", {
+        const r = await fetch("http://localhost:5000/logout", {
             method: "GET",
-            credentials: "include",
+            headers: {
+				'x-access-token': localStorage.getItem('token'),
+			},
           })
-          .then(response => {
-              console.log(response);
-              console.log("then fetch");
-          })
-          .catch(error => {
-              console.log("error occured in fetch")
-              console.log(error)
-          })
+        
+        const d = await r.json()
+
+        if(d.status === 200) {
+            localStorage.removeItem('token')
+        }
+          
+
     }
 
     const userInfoHandler = (e) => {
@@ -91,12 +122,12 @@ function LogIn() {
                         <button type="submit" value="Log In" class="button1">Log In</button>
                         
                     </form>
-                    {/* <form onSubmit={logoutHandler}>
+                    <form onSubmit={logoutHandler}>
                         <button type="submit" value="Log Out">Log Out</button>
                     </form>
                     <form onSubmit={userInfoHandler}>
                         <button type="submit" value="user info">User info</button>
-                    </form> */}
+                    </form>
                 </div>
                 {show && <Alert variant="danger" onClose={() => setShow(false)} dismissible>
                 <Alert.Heading>Errors</Alert.Heading>
