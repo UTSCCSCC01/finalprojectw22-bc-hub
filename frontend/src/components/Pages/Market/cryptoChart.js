@@ -15,10 +15,17 @@ const CryptoChart = (props) => {
                         borderColor: 'rgb(75, 192, 192)'
                     }]
                 }}
-                height={400}
+                height={600}
                 width={600}
                 options={{
-                    maintainAspectRatio: false
+                    maintainAspectRatio: false,
+                    scales: {
+                        xAxis: {
+                            ticks: {
+                                maxTicksLimit: 8                                
+                            }
+                        }
+                    }
                 }}
             />
         </div>

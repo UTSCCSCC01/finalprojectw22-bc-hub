@@ -16,7 +16,7 @@ function CryptoCoin() {
   const priceData = [];
   const dateData = [];
 
-  for (var i = 0; i < graphData.length; i++){
+  for (var i = graphData.length-1; i >= 0; i--){
     dateData.push(graphData[i][0]);
     priceData.push(graphData[i][1]);
   }
@@ -24,7 +24,6 @@ function CryptoCoin() {
 
   return <div id="crypto_page">
       <NavBar/>
-      <h1>HI</h1>
       <CryptoChart dates={dateData} prices={priceData}/>
       
       
