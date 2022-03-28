@@ -5,9 +5,9 @@ import useFetch  from '../../../hooks/useFetch';
 
 function CryptoCoin() {
 
-  //const url = window.location.href;
-  const {data: graphData, isLoading, error} = useFetch("http://localhost:5000/market/BTC-Test");
-
+  const url = window.location.href;
+  const {data: graphData, isLoading, error} = useFetch("http://localhost:5000/market" + url.substring(url.lastIndexOf('/')));
+  // Pages that dont work: XRP, LUNA, BUSD, USDC, NEAR, TRX, LEO, BTCB, VET, HBAR, EGLD, SAND, XMR, FTM, THETA, RUNE, KLAY
  
   if (isLoading) {
     return(<div></div>)
