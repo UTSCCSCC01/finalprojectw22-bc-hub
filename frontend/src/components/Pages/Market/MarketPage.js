@@ -83,7 +83,7 @@ function Market() {
         </Table>
       </div>
       <div id="datatable">
-      <SearchBar butFun={searchFun} param={marketData.data} inVal={document.getElementById("my-input")} inFun={filterFun}
+      <SearchBar butFun={searchFun} param={marketData} inVal={document.getElementById("my-input")} inFun={filterFun}
       text={"Enter Symbol"} haveBut={true}/>
 
         <Table striped bordered hover id="market-table">
@@ -96,14 +96,14 @@ function Market() {
             </tr>
           </thead>
           <tbody>
-            {Array.from({length: marketData.data.length}).map((_, index1) => (
+            {Array.from({length: marketData.length}).map((_, index1) => (
               <tr>
-                <td><a href={"market/" + marketData.data[index1].symbol}>{marketData.data[index1].symbol}</a></td>
-                  <td>{marketData.data[index1].quote.USD.price}</td>
-                  <td>{marketData.data[index1].quote.USD.percent_change_24h}</td>
-                  <td>{marketData.data[index1].quote.USD.percent_change_7d}</td>
+                <td><a href={"market/" + marketData[index1].symbol}>{marketData[index1].symbol}</a></td>
+                  <td>{marketData[index1].quote.USD.price}</td>
+                  <td>{marketData[index1].quote.USD.percent_change_24h}</td>
+                  <td>{marketData[index1].quote.USD.percent_change_7d}</td>
                   <td id="but-col"><button id={"table-but" + index1} class="btn btn-outline-secondary" 
-                  type="buton" onClick={()=>butFun(index1, marketData.data)} value='follow'>follow</button></td>
+                  type="buton" onClick={()=>butFun(index1, marketData)} value='follow'>follow</button></td>
               </tr>
             ))}
           </tbody>

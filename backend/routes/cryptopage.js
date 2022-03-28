@@ -25,7 +25,6 @@ router.use(body_parser.urlencoded({extended: true}));
 
 router.get("/:symbol?", function(req, res) {
     
-    // Figure out how to get and send data of all crypto, not just BTC
     const apiUrl = '/products/' + req.params.symbol + '-USD' + '/candles'
     const url = apiUrl + '?' + "start=" + params["start"] + "&end=" + params["end"] + "&granularity=" + params["granularity"];
     
