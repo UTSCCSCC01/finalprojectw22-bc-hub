@@ -49,8 +49,13 @@ router.get("/BTC-Test", function(req, res) {
 
         response.on("end", function(data) {
             const btc = JSON.parse(btcData);
-            console.log(btc);
-            res.send(btc);
+            const chart_data = [];
+
+            for (var i = 0; i < btc.length; i++){
+                const temp_date = new Date(btc[i][0]*1000)
+                chart_data.push([temp_date, btc[i][1]]);
+            }
+            res.send(chart_data);
         });
     });
 });
