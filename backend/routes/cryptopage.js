@@ -23,10 +23,10 @@ const params = {
 
 router.use(body_parser.urlencoded({extended: true}));
 
-router.get("/BTC-Test", function(req, res) {
-    const apiUrl = '/products/BTC-USD/candles';
-    const sym = 'BTC-USD';
-
+router.get("/:symbol?", function(req, res) {
+    
+    // Figure out how to get and send data of all crypto, not just BTC
+    const apiUrl = '/products/' + req.params.symbol + '-USD' + '/candles'
     const url = apiUrl + '?' + "start=" + params["start"] + "&end=" + params["end"] + "&granularity=" + params["granularity"];
     
     const options = {
@@ -38,7 +38,7 @@ router.get("/BTC-Test", function(req, res) {
             'User-Agent': 'Mozilla/5.0',
         },
     };
-
+    console.log(url);
     https.get(options, function(response) {
         
         let btcData = "";
