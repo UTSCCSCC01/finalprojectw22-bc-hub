@@ -14,7 +14,7 @@ const isLoggedIn = async (req, res) => {
       const password = decoded.password
       try {
         const user = await User.findOne({ username: username, password: password}) //get user making request
-        res.send({status: 200})
+        res.send({status: 200, user})
       } 
       catch (err) { //user doesnt exist
         res.send({status: 400, error: 'user does not exist'})
