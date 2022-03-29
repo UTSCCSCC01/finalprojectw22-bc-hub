@@ -12,15 +12,66 @@ const CommunityComment = (props) => {
     const [modalShow, setModalShow] = React.useState(false);
     const [likeCount, setLikeCount] = useState(comment.likes.length)
     const [dislikeCount, setDislikeCount] = useState(comment.dislikes.length)
+    const [isLoggedIn, setIsLoggedIn] = useState({loggedIn: false, user: null})
+    const [isOwner, setIsOwner] = useState(false)
     const id = comment._id
 
+	useEffect(() => {
+		const token = localStorage.getItem('token')
+		if (token) {
+            fetch('http://localhost:5000/loggedIn/', {
+                headers: {
+                    'x-access-token': token,
+                },
+            })
+            .then(response => response.json())
+            .then(response => {
+                if (response.status === 200){
+                    setIsLoggedIn({loggedIn: true, user: response.user})
+                    fetch('http://localhost:5000/postOwner/' + id, {
+                        headers: {
+                            'x-access-token': token
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(response => {
+                        if (response.status === 200){
+                            setIsOwner(true)
+                        } else {
+                            setIsOwner(false)
+                        }
+                    })
+                    .catch(e2 => {
+                        console.log(e2)
+                        setIsLoggedIn({loggedIn: false, user: null})
+                        setIsOwner(false)
+                    })
+                } else {
+                    setIsLoggedIn({loggedIn: false, user: null})
+                    setIsOwner(false)
+                }
+            })
+            .catch(e1 => {
+                console.log(e1)
+                setIsLoggedIn({loggedIn: false, user: null})
+                setIsOwner(false)
+            })
+
+		} else{
+            setIsLoggedIn({loggedIn: false, user: null})
+            setIsOwner(false)
+        }
+    }, []);
 
     const vote = (voteType, commentId) => {
         console.log("vote ran")
         console.log(`http://localhost:5000/community/${props.post._id}/like-dislike/`)
         fetch(`http://localhost:5000/community/${props.post._id}/comments/${commentId}/like-dislike/`, 
                 {method: 'POST', 
-                headers: {'Content-Type': 'application/json'},
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-access-token': localStorage.getItem('token')
+                },
                 body: JSON.stringify({vote: voteType})})
         .then(res => {
             if (!res.ok){

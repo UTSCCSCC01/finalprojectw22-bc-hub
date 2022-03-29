@@ -9,8 +9,8 @@ const userSchema = new Schema({
     name: { type: String, required: true, unique: true },
     password: {type: String, required: true},
     profilePicture: {type: String, default: "https://th.bing.com/th/id/OIP.9hJkSf63uTq1C9fWXpMR4QAAAA?pid=ImgDet&rs=1"},
-    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
-    followingUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], // The people that are following you
+    followingUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], // the people that you are following
     followingCryptos: [String],
     followingNFTs: [String],
     Posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "communityPost" }],

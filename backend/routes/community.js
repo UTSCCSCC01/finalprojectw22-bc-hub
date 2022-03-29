@@ -4,6 +4,10 @@ import mongoose from 'mongoose';
 
 import {CommunityPost, communityPostSchema} from "../models/community_post.js"
 import {CommunityComment, communityCommentSchema} from "../models/communityComment.js"
+import {User, userSchema} from "../models/user.js"
+
+import isLoggedIn from '../utils/isLoggedIn.js'
+import isPostOwner from '../utils/isPostOwner.js'
 
 // ******************************
 // Endpoints
@@ -37,6 +41,13 @@ router.get("/trending-feed", async (req, res) => {
 
 // CREATE a new social media post
 router.post("", async (req, res) => {
+    // See if the user is logged in
+    const authenticated = await isLoggedIn(req)
+    console.log(authenticated)
+    if (authenticated.status !== 200) {
+      res.status(401).json({Error: 'Client unauthenticated'}).send();
+    }
+
     // Check for required fields
     if (!req.body.title || !req.body.description){
       res.status(400).json({Error: 'title and description are required'})
@@ -60,7 +71,8 @@ router.post("", async (req, res) => {
         dislikes: [],
         totalLikes: 0,
         totalDislikes: 0,
-        comments: []
+        comments: [],
+        owner: authenticated.user.id
     }
 
     try {
@@ -94,7 +106,6 @@ router.get("/:id/comments/", async(req, res) => {
     try {
       
       let comments = await CommunityComment.find().where("_id").in(post.comments).exec();
-      console.log(comments)
       res.json(comments);
     } catch(err) {
       console.log(err);
@@ -136,7 +147,6 @@ router.get("/:pid/comments/:cid", async(req, res) => {
 
   try {
     let replies = await CommunityComment.find().where("_id").in(parentComment.comments).exec();
-    console.log(replies)
     res.json(replies);
   } catch(err) {
     console.log(err);
@@ -210,6 +220,13 @@ router.post("/:pid/comments/:cid/", async(req, res) => {
 
 // Create a new comment under a post
 router.post("/:id/comments/", async(req, res) => {
+  // See if the user is logged in
+  const authenticated = await isLoggedIn(req)
+  console.log(authenticated)
+  if (authenticated.status !== 200) {
+    res.status(401).json({Error: 'Client unauthenticated'}).send();
+  }
+
   // Check if the post exists
   let post = null;
   try {
@@ -241,6 +258,7 @@ router.post("/:id/comments/", async(req, res) => {
     dislikes: [],
     totalLikes: 0,
     totalDislikes: 0,
+    owner: authenticated.user.id,
     comments: []
   }
   try {
@@ -259,7 +277,11 @@ router.post("/:id/comments/", async(req, res) => {
 
 // Add a like/dislike to a post
 router.post("/:id/like-dislike/", async(req, res) => {
-  let user = 'John Cena'
+  const authenticated = await isLoggedIn(req)
+  if (authenticated.status !== 200) {
+    res.status(401).json({Error: 'Client unauthenticated'}).send();
+    return
+  }
 
   // Check if the post exists
   let post = null;
@@ -281,7 +303,7 @@ router.post("/:id/like-dislike/", async(req, res) => {
     return;
   }
 
-  let response = likeDislike(user, post, req.body.vote)
+  let response = likeDislike(authenticated.user.id, post, req.body.vote)
   res.json(response).send();
 })
 
@@ -362,6 +384,20 @@ router.delete("/:id", async (req, res) => {
   } catch(err) {
     console.log(err);
     res.status(404).json({Error: err}).send();
+  }
+
+  // See if the user is logged in
+  const authenticated = await isLoggedIn(req)
+  if (authenticated.status !== 200) {
+    res.status(401).json({Error: 'Client unauthenticated'}).send();
+    return
+  }
+
+  // See if the user is the owner of the post
+  const authorized = await isPostOwner(req)
+  if (authorized.status !== 200) {
+    res.status(403).json({Error: 'Client unauthorized'}).send();
+    return
   }
 
   // Delete the post
