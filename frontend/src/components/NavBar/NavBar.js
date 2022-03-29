@@ -4,9 +4,38 @@ import 'bootstrap/dist/css/bootstrap.css'
 import logo from './BC LOGO.png'
 import avatar from './Profile.png'
 import './NavBar.css';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 // setting Nav Bar from bootstrap
 function NavBar() {
+
+    const [authInfo, setAuthInfo] = useState({isLoggedIn: false, user: null})
+
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if(token) {
+            fetch('http://localhost:5000/loggedIn/', {
+                headers: {
+                    'x-access-token': token,
+                }
+            })
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                if(data.status === 200){
+                    setAuthInfo({isLoggedIn: true, user: data.user})
+                } else {
+                    setAuthInfo({isLoggedIn: false, user: null})
+                }
+            })
+            .catch(err => console.log(err))
+        } else {
+            setAuthInfo({isLoggedIn: false, user: null})
+        }
+    }, [])
+
     return (
         // <div className='NavFont'>
             <Navbar className='fixed-top' bg="bgcolor" variant='dark' sticky='top'>
@@ -31,13 +60,13 @@ function NavBar() {
                         <NavDropdown.Item href="/community/personal-feed">Personal Feed</NavDropdown.Item>
                         <NavDropdown.Item href="/community/trending-feed">Trending Feed</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link href='/login'>Log In</Nav.Link>
-                    <Nav.Link href='/register'>Register</Nav.Link>
+                    {authInfo.isLoggedIn ? <Nav.Link href='/logout'>Log Out</Nav.Link> : <Nav.Link href='/login'>Log In</Nav.Link>}
+                    {!authInfo.isLoggedIn && <Nav.Link href='/register'>Register</Nav.Link>}
                 </Nav>
          
                 <Nav className='ms-auto' style={{marginRight: 10}}>
                     <Nav.Link href='/profile'>
-                        <img src={avatar} width='40px' height= "40px" alt="" />
+                        <img src={authInfo.isLoggedIn ? authInfo.user.profilePicture : avatar} width='40px' height= "40px" alt="" />
                     </Nav.Link>
                 </Nav>
                 

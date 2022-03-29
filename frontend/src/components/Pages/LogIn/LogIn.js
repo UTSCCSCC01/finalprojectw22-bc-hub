@@ -24,28 +24,6 @@ function LogIn() {
     const formSubmitHandler = (e) => {
         setErrors([])
         e.preventDefault()
-        // if(username === "") {
-        //     setErrors(arr => [...arr, "Username is required"])
-        // }
-        // if(password === "") {
-        //     setErrors(arr => [...arr, "Password is required"])
-        // }
-
-        // const response = await fetch("http://localhost:5000/login", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({ username, password }),
-        // })
-
-        // const data = await response.json()
-
-        // if (data.user) {
-		// 	localStorage.setItem('token', data.user)
-		// 	navigate('/education')
-		// } else {
-		// 	// alert('Please check your username and password')
-        //     setErrors(arr => [...arr, "Username or password is incorrect"])
-		// }
 
         fetch("http://localhost:5000/login", {
             method: "POST",
@@ -122,12 +100,12 @@ function LogIn() {
                         <button type="submit" value="Log In" class="button1">Log In</button>
                         
                     </form>
-                    <form onSubmit={logoutHandler}>
+                    {/* <form onSubmit={logoutHandler}>
                         <button type="submit" value="Log Out">Log Out</button>
                     </form>
                     <form onSubmit={userInfoHandler}>
                         <button type="submit" value="user info">User info</button>
-                    </form>
+                    </form> */}
                 </div>
                 {show && <Alert variant="danger" onClose={() => setShow(false)} dismissible>
                 <Alert.Heading>Errors</Alert.Heading>
