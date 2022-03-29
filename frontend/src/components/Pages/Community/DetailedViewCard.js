@@ -8,6 +8,7 @@ import CommunityComment from './CommunityComment';
 import React, {useEffect, useState } from 'react';
 import {FacebookIcon, TwitterIcon, LinkedinIcon} from "react-share";
 import {FacebookShareButton, TwitterShareButton, LinkedinShareButton} from "react-share";
+import ShareButtons from './ShareButtons';
 
 
 // import vote from './vote';
@@ -248,12 +249,7 @@ const DetailedViewCard = (props) => {
                 <div className="d-flex flex-row align-items-center justify-content-between">
                     <div className="d-flex flex-row align-items-center"> 
                         {errorOwner && <div>{errorOwner}</div>}
-                        {isLoadingOwner && 
-                            <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                            </svg>
-                        }
-                        {owner && owner.profilePicture ?
+                        {owner && owner.profilePicture && !isLoadingOwner ?
                             <img 
                                 src={owner.profilePicture} 
                                 alt={owner.username + " profile picture"} 
@@ -263,7 +259,7 @@ const DetailedViewCard = (props) => {
                             <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                             </svg>
-                        }
+                        } 
                         <div className='d-flex flex-column'>
                             <Card.Subtitle>
                                 {errorOwner && <div>{errorOwner}</div>}
@@ -277,17 +273,7 @@ const DetailedViewCard = (props) => {
                     </div>
                     <div>
                         {isLoggedIn.loggedIn && isOwner && <Button variant="danger" className='me-2' onClick={deletePost}>Delete</Button>}
-                        <FacebookShareButton url={"http://bchub.com"} quote={props.post.title} hashtag="BC Hub">
-                            <FacebookIcon size={32} round />
-                        </FacebookShareButton>
-
-                        <TwitterShareButton url={"http://bchub.com"} title={props.post.title} hashtags={["BC Hub"]}>
-                            <TwitterIcon size={32} round />
-                        </TwitterShareButton>
-
-                        <LinkedinShareButton url={"http://bchub.com"} title={props.post.title} summary={props.post.description} source={"BC Hub"}>
-                            <LinkedinIcon size={32} round />
-                        </LinkedinShareButton>
+                        <ShareButtons post={props.post}></ShareButtons>
                     </div>
                 </div>
                 <Card.Title>{props.post.title}</Card.Title> 

@@ -96,8 +96,8 @@ router.get("/loggedIn", async (req, res) =>{
 });
 
 //check if user is the owner of a comment
-router.get("/commentOwner", async(req,res) =>{
-    const body = await isCommentOwner(req,res)
+router.get("/commentOwner/:id", async(req,res) =>{
+    const body = await isCommentOwner(req)
     res.send(body)
 })
 

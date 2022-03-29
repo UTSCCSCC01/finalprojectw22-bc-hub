@@ -15,6 +15,7 @@ router.get("/:id", async (req, res) => {
         }
         var data = profile.toObject()
         delete data.password
+        console.log(data)
         res.json(data);
       } catch(err) {
         console.log(err);

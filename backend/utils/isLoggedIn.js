@@ -4,9 +4,6 @@ import jwt from 'jsonwebtoken'
 
 const isLoggedIn = async (req) => {
   const token = req.headers['x-access-token']
-  console.log()
-  console.log(token)
-  console.log()
   if (deadToken.findOne({token: token}).limit(1).size() === 0){
     return ({status: 400, error: 'invalid token'})
   }

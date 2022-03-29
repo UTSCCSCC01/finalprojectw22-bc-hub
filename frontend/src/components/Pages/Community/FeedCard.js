@@ -9,6 +9,8 @@ import React, {useEffect, useState } from 'react';
 import sendHttpRequest from './HttpHandler';
 import useFetch from "../../../hooks/useFetch";
 import { useNavigate } from 'react-router-dom'
+import ShareButtons from './ShareButtons';
+
 
 
 
@@ -133,12 +135,7 @@ const FeedCard = (props) => {
                     <div className="d-flex flex-row align-items-center justify-content-between">
                         <div className="d-flex flex-row align-items-center">
                             {error && <div>{error}</div>}
-                            {isLoading && 
-                                <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                                </svg>
-                            }
-                            {owner && owner.profilePicture ?
+                            {owner && owner.profilePicture && !isLoading ?
                                 <img 
                                     src={owner.profilePicture} 
                                     alt={owner.username + " profile picture"} 
@@ -163,17 +160,7 @@ const FeedCard = (props) => {
                         </div>
                         {/* <Button variant="danger" onClick={deletePost}>Delete</Button> */}
                         <div>
-                            <FacebookShareButton url={"http://bchub.com"} quote={props.post.title} hashtag="BC Hub">
-                                <FacebookIcon size={32} round />
-                            </FacebookShareButton>
-
-                            <TwitterShareButton url={"http://bchub.com"} title={props.post.title} hashtags={["BC Hub"]}>
-                                <TwitterIcon size={32} round />
-                            </TwitterShareButton>
-
-                            <LinkedinShareButton url={"http://bchub.com"} title={props.post.title} summary={props.post.description} source={"BC Hub"}>
-                                <LinkedinIcon size={32} round />
-                            </LinkedinShareButton>
+                            <ShareButtons post={props.post}></ShareButtons>
                         </div>
                     </div>
                     <Card.Title>{props.post.title}</Card.Title> 
@@ -245,7 +232,7 @@ const FeedCard = (props) => {
                     }
 
                 </div>
-                <HashLink to={`/community/${props.post._id}#comment-section`} style={{color: 'inherit', textDecoration: 'inherit'}}>
+                <Link to={`/community/${props.post._id}#comment-section`}>
                     <div className="d-flex flex-row justify-content-center">
                         <svg className="me-1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-right-dots" viewBox="0 0 16 16">
                             <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
@@ -255,7 +242,19 @@ const FeedCard = (props) => {
                             {commentCount} Comments
                         </Card.Text>
                     </div>
-                </HashLink>
+                </Link>
+                
+                {/* <HashLink smooth to={`/community/${props.post._id}#comment-section`} elementid={'#comment-section'} style={{color: 'inherit', textDecoration: 'inherit'}}>
+                    <div className="d-flex flex-row justify-content-center">
+                        <svg className="me-1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-right-dots" viewBox="0 0 16 16">
+                            <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+                            <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                        </svg>
+                        <Card.Text>
+                            {commentCount} Comments
+                        </Card.Text>
+                    </div>
+                </HashLink> */}
             </div>
         </Card>
 

@@ -15,9 +15,16 @@ import isPostOwner from '../utils/isPostOwner.js'
 
 // INDEX the personal feed
 router.get("/personal-feed", async (req, res) => {
+    // Check if the user is logged in
+    const authenticated = await isLoggedIn(req)
+    console.log(authenticated)
+    if (authenticated.status !== 200) {
+      res.status(401).json({Error: 'Client unauthenticated'}).send();
+    }
+
     try {
-        // Query community posts (not just from people you follow) and sort in reverse chronological order
-        let posts = await CommunityPost.find().sort('-date').exec();
+        // Query community posts from yourself and people you follow, and sort in reverse chronological order
+        let posts = await CommunityPost.find({ owner: { "$in" : [...authenticated.user.followingUsers, authenticated.user.id]} }).sort('-date').exec();
         res.json(posts);
       } catch(err) {
         console.log(err);
@@ -29,7 +36,7 @@ router.get("/personal-feed", async (req, res) => {
 // INDEX the trending feed
 router.get("/trending-feed", async (req, res) => {
     try {
-        // Query all posts (from all time, not just recent posts) and sort by non-increasing like count
+        // Query all posts and sort by non-increasing like count
         let posts = await CommunityPost.find().sort({"totalLikes": "-1"}).exec();
         res.json(posts);
       } catch(err) {
@@ -105,7 +112,7 @@ router.get("/:id/comments/", async(req, res) => {
 
     try {
       
-      let comments = await CommunityComment.find().where("_id").in(post.comments).exec();
+      let comments = await CommunityComment.find().where("_id").in(post.comments).sort('-date').exec();
       res.json(comments);
     } catch(err) {
       console.log(err);
@@ -157,6 +164,13 @@ router.get("/:pid/comments/:cid", async(req, res) => {
 
 // Create a reply to a comment
 router.post("/:pid/comments/:cid/", async(req, res) => {
+  // See if the user is logged in
+  const authenticated = await isLoggedIn(req)
+  console.log(authenticated)
+  if (authenticated.status !== 200) {
+    res.status(401).json({Error: 'Client unauthenticated'}).send();
+  }
+
   // Check if the post exists
   let post = null;
   try {
@@ -203,6 +217,7 @@ router.post("/:pid/comments/:cid/", async(req, res) => {
     dislikes: [],
     totalLikes: 0,
     totalDislikes: 0,
+    owner: authenticated.user.id,
     comments: []
   }
   try {
@@ -310,7 +325,11 @@ router.post("/:id/like-dislike/", async(req, res) => {
 
 // Add a like or dislike to a comment (parent comment or reply)
 router.post("/:pid/comments/:cid/like-dislike/", async(req, res) => {
-  let user = 'John Cena'
+  const authenticated = await isLoggedIn(req)
+  if (authenticated.status !== 200) {
+    res.status(401).json({Error: 'Client unauthenticated'}).send();
+    return
+  }
 
   // Check if the post exists
   let post = null;
@@ -347,7 +366,7 @@ router.post("/:pid/comments/:cid/like-dislike/", async(req, res) => {
     return;
   }
 
-  let response = likeDislike(user, comment, req.body.vote)
+  let response = likeDislike(authenticated.user.id, comment, req.body.vote)
   res.json(response).send();
 
 })
