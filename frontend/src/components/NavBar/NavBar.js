@@ -55,19 +55,19 @@ function NavBar() {
                     <Nav.Link href='/news'>News</Nav.Link>
                     <Nav.Link href='/market'>Market</Nav.Link>
                     <Nav.Link href='/education'>Learn</Nav.Link>
-                    {/* <Nav.Link href='community'>Community</Nav.Link> */}
-                    <NavDropdown title="Community" id="community-nav-dropdown">
+                    <Nav.Link href='/community/trending-feed'>Community</Nav.Link>
+                    {/* <NavDropdown title="Community" id="community-nav-dropdown">
                         <NavDropdown.Item href="/community/personal-feed">Personal Feed</NavDropdown.Item>
                         <NavDropdown.Item href="/community/trending-feed">Trending Feed</NavDropdown.Item>
-                    </NavDropdown>
+                    </NavDropdown> */}
                     {authInfo.isLoggedIn ? <Nav.Link href='/logout'>Log Out</Nav.Link> : <Nav.Link href='/login'>Log In</Nav.Link>}
                     {!authInfo.isLoggedIn && <Nav.Link href='/register'>Register</Nav.Link>}
                 </Nav>
          
                 <Nav className='ms-auto' style={{marginRight: 10}}>
-                    <Nav.Link href='/profile'>
-                        <img src={authInfo.isLoggedIn ? authInfo.user.profilePicture : avatar} width='40px' height= "40px" alt="" />
-                    </Nav.Link>
+                    {authInfo.isLoggedIn && <Nav.Link href='/profile'>
+                        <img src={authInfo.user.profilePicture} width='40px' height= "40px" alt="" />
+                    </Nav.Link>}
                 </Nav>
                 
             </Navbar>
