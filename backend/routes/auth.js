@@ -99,5 +99,105 @@ router.get("/postOwner", async(req,res) =>{
     await isPostOwner(req,res)
 })
 
+router.post("/updateProfilePic", async(req,res) =>{
+    const token = req.headers['x-access-token']
+    if (deadToken.findOne({token: token}).limit(1).size() == 0){
+        res.send({status: 400, error: 'invalid token'})
+    }
+    else {
+        try {
+            const decoded = jwt.verify(token, 'secret123')
+            const username = decoded.username
+            const password = decoded.password
+            try {
+                const user = await User.findOne({ username: username, password: password}) //get user making request
+                user.profilePicture = req.body.newPic;
+                user.save()
+                res.send({status: 200})
+            } 
+            catch (err) { //user doesnt exist
+                res.send({status: 400, error: 'user does not exist'})
+            }
+        }
+        catch (err) { //jwt error
+            res.send({status: 400, error: 'error validating token'})
+        }
+    }
+})
 
+router.post("/followCurrency", async(req,res) => {
+    const token = req.headers['x-access-token']
+    if (deadToken.findOne({token: token}).limit(1).size() == 0){
+        res.send({status: 400, error: 'invalid token'})
+    }
+    else {
+        try {
+            const decoded = jwt.verify(token, 'secret123')
+            const username = decoded.username
+            const password = decoded.password
+            try {
+                const user = await User.findOneAndUpdate({username: username, password: password}, 
+                    {$push : {followingCryptos: req.body.newCrypto}}) //get user and update
+                res.send({status: 200})
+            } 
+            catch (err) { //user doesnt exist or update couldnt be done
+                res.send({status: 400, error: 'user does not exist'})
+            }
+        }
+        catch (err) { //jwt error
+            res.send({status: 400, error: 'error validating token'})
+        }
+    }
+})
+
+router.post("/unfollowCurrency", async(req,res) => {
+    const token = req.headers['x-access-token']
+    if (deadToken.findOne({token: token}).limit(1).size() == 0){
+        res.send({status: 400, error: 'invalid token'})
+      }
+    else {
+        try {
+            const decoded = jwt.verify(token, 'secret123')
+            const username = decoded.username
+            const password = decoded.password
+            try {
+                const user = await User.findOneAndUpdate({username: username, password: password}, 
+                    {$pull : {followingCryptos: req.body.newCrypto}}) //get user and update
+                res.send({status: 200})
+            } 
+            catch (err) { //user doesnt exist or update couldnt be done
+                res.send({status: 400, error: 'user does not exist'})
+            }
+        }
+        catch (err) { //jwt error
+            res.send({status: 400, error: 'error validating token'})
+        }
+    }
+})
+
+router.post("/updateEducationProgress", async(req,res) => {
+    const token = req.headers['x-access-token']
+    if (deadToken.findOne({token: token}).limit(1).size() == 0){
+        res.send({status: 400, error: 'invalid token'})
+      }
+    else {
+        try {
+            const decoded = jwt.verify(token, 'secret123')
+            const username = decoded.username
+            const password = decoded.password
+            try {
+                const user = await User.findOne({username: username, password: password}) //get user 
+                user.educationProgress = req.body.newProgress
+                user.save()
+                res.send({status: 200})
+            } 
+            catch (err) { //user doesnt exist
+                res.send({status: 400, error: 'user does not exist'})
+            }
+        }
+        catch (err) { //jwt error
+            res.send({status: 400, error: 'error validating token'})
+        }
+    }
+})
 export default router;
