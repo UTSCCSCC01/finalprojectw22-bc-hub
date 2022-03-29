@@ -8,7 +8,7 @@ const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
     name: { type: String, required: true, unique: true },
     password: {type: String, required: true},
-    profilePicture: {type: String, default: "https://th.bing.com/th/id/OIP.9hJkSf63uTq1C9fWXpMR4QAAAA?pid=ImgDet&rs=1"},
+    profilePicture: {type: String, default: "https://img.favpng.com/25/13/19/samsung-galaxy-a8-a8-user-login-telephone-avatar-png-favpng-dqKEPfX7hPbc6SMVUCteANKwj.jpg"},
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     followingUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     followingCryptos: [String],

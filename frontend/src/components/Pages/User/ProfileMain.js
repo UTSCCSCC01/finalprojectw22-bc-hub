@@ -1,12 +1,17 @@
 import React from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
-const Profilemain = ({userName, userNickName, userId, postNum, followerNum, followingNum, emailAddr}) => {
+import ProfileLink from './ProfileLink';
+const Profilemain = ({userName, userNickName, userId, postNum, followerNum, followingNum, emailAddr, profilePic}) => {
     return (
         <div id='ProfileMain'> 
+        <ProfileLink/>
             <Container className='d-flex align-items-center justify-content-center pt-5 ' align={"center"}>
-                <img className='square mx-5' src='https://media.altchar.com/prod/images/620_350/gm-96146c1a-36df-4399-b6d1-84d4a30512cb-genshin-impact-shogun-raiden-baal.jpg' alt = ''
-                />
+                <a className='hov btn' >
+                    <img className='square mx-5 ' src={profilePic} alt = ''/>
+                </a>
+                
+
                 <Col className='col-2' >
                     <h4>{postNum}</h4>
                     <h3 style={{fontWeight: 'normal'}}>Posts</h3>

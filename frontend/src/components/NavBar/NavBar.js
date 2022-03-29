@@ -66,7 +66,7 @@ function NavBar() {
          
                 <Nav className='ms-auto' style={{marginRight: 10}}>
                     <Nav.Link href='/profile'>
-                        <img src={authInfo.isLoggedIn ? authInfo.user.profilePicture : avatar} width='40px' height= "40px" alt="" />
+                        <img className='Navsquare'  src={authInfo.isLoggedIn ? authInfo.user.profilePicture : avatar} width='40px' height= "40px" alt="" />
                     </Nav.Link>
                 </Nav>
                 
