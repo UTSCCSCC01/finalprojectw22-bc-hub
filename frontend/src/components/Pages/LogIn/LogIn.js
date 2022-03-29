@@ -29,29 +29,6 @@ function LogIn() {
     const formSubmitHandler = (e) => {
         setErrors([])
         e.preventDefault()
-        // if(username === "") {
-        //     setErrors(arr => [...arr, "Username is required"])
-        // }
-        // if(password === "") {
-        //     setErrors(arr => [...arr, "Password is required"])
-        // }
-
-        // const response = await fetch("http://localhost:5000/login", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({ username, password }),
-        // })
-
-        // const data = await response.json()
-
-        // if (data.user) {
-		// 	localStorage.setItem('token', data.user)
-		// 	navigate('/education')
-		// } else {
-		// 	// alert('Please check your username and password')
-        //     setErrors(arr => [...arr, "Username or password is incorrect"])
-		// }
-
         fetch("http://localhost:5000/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
