@@ -19,7 +19,7 @@ router.post("/signup", async (req,res) => {
             email: req.body.email,
             name: req.body.name,
             password: newpassword,
-            profilePicture: null,
+            // profilePicture: null,
             followers: [],
             followingUsers: [],
             followingCryptos: [],
