@@ -2,13 +2,16 @@ import React from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ProfileLink from './ProfileLink';
+import { useState } from 'react';
+
 const Profilemain = ({userName, userNickName, userId, postNum, followerNum, followingNum, emailAddr, profilePic}) => {
+    const [openModal, setOpenModal] = useState(false);
     return (
         <div id='ProfileMain'> 
-        <ProfileLink/>
+        {openModal && <ProfileLink closeModal={setOpenModal} />}
             <Container className='d-flex align-items-center justify-content-center pt-5 ' align={"center"}>
-                <a className='hov btn' >
-                    <img className='square mx-5 ' src={profilePic} alt = ''/>
+                <a className=''>
+                    <img className='square mx-5 rounded-cricle btn hov' src={profilePic} alt = '' width={200} height={200} onClick={() => {setOpenModal(true)}} />
                 </a>
                 
 
