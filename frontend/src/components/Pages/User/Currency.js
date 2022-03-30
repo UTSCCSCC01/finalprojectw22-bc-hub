@@ -7,8 +7,10 @@ const Currency = () => {
         <h3>Followed Currencies</h3>
         <Table striped bordered hover id='follow-table'>
           <thead>
-            <th>Coin</th>
-            <th>Price</th>
+            <tr>
+              <th>Coin</th>
+              <th>Price</th>
+            </tr>
           </thead>
         </Table>
         <hr/>
