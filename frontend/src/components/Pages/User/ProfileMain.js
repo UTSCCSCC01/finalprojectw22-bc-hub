@@ -19,7 +19,7 @@ const Profilemain = ({userName, userNickName, userId, postNum, followerNum, foll
         {openModal && <ProfileLink closeModal={setOpenModal} />}
             <Container className='d-flex align-items-center justify-content-center pt-5 ' align={"center"}>
                 <a className=''>
-                    <img className='square mx-5 rounded-cricle btn hov' src={profilePic} alt = 'Not Found'  width={200} height={200} onClick={() => setOpenModal(true)} />
+                    
                 </a>
                 
 
