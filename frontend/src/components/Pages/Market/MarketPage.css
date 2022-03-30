@@ -1,13 +1,44 @@
+.main-market-page{
+  background-image: url("market-background.jpg");
+  color: white;
+  height: auto;
+  width: auto;
+}
+
+.link-color{
+  color:rgb(0, 174, 255);
+  font-size: large;
+}
+
 .table-hover > tbody > tr:hover {
-    background-color: #D2D2D2;
+    background-color: #faceced7;
   }
+
+.market-follow-button{
+  display:inline-block;
+  padding:0.35em 1.2em;
+  border:0.12em solid #8506fc;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-size: 20px;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:#8506fc;
+  background-color:#e8c8fd;
+  text-align:center;
+  transition: all 0.2s;
+}
 
 #market-table {
   table-layout: fixed;
+  color: white;
 }
 
 #follow-table {
   width: 500px;
+  color: white;
 }
 
 #follow-section {

@@ -71,7 +71,7 @@ function Market() {
     return(<div></div>)
   }
 
-  return <div id="market_page">
+  return <div class="main-market-page" id="market_page">
       <NavBar/>
       <div id='follow-section'>
         <h3>Followed Currencies</h3>
@@ -98,11 +98,11 @@ function Market() {
           <tbody>
             {Array.from({length: marketData.data.length}).map((_, index1) => (
               <tr>
-                <td><a href={"market/" + marketData.data[index1].symbol}>{marketData.data[index1].symbol}</a></td>
+                <td><a class="link-color" href={"market/" + marketData.data[index1].symbol}>{marketData.data[index1].symbol}</a></td>
                   <td>{marketData.data[index1].quote.USD.price}</td>
                   <td>{marketData.data[index1].quote.USD.percent_change_24h}</td>
                   <td>{marketData.data[index1].quote.USD.percent_change_7d}</td>
-                  <td id="but-col"><button id={"table-but" + index1} class="btn btn-outline-secondary" 
+                  <td id="but-col"><button id={"table-but" + index1} class="market-follow-button" 
                   type="buton" onClick={()=>butFun(index1, marketData.data)} value='follow'>follow</button></td>
               </tr>
             ))}
