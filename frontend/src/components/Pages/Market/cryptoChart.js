@@ -10,7 +10,7 @@ const CryptoChart = (props) => {
                 data={{
                     labels: props.dates,
                     datasets: [{
-                        label: "BTC Data",
+                        label: props.coin,
                         data: props.prices,
                         borderColor: 'rgb(75, 192, 192)'
                     }]

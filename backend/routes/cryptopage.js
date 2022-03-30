@@ -6,24 +6,29 @@ import body_parser from "body-parser";
 
 const router = express.Router();
 
-const barSize = 300;
+//const barSize = 86400;
 const MS_PER_MINUTE = 60000;
-const date =  new Date();
-const date1 = new Date(date - barSize*5*MS_PER_MINUTE);
+
 //const rounded = new Date(date - MS_PER_MINUTE*60);
-
-const timeEnd = date.toISOString();
-const timeStart = date1.toISOString();
-
-const params = {
-    "start": timeStart,
-    "end": timeEnd,
-    "granularity": barSize.toString()
-};
+// Possible times: 25 hours, 3 days, 12 days, 2.5 months, 9 months
 
 router.use(body_parser.urlencoded({extended: true}));
 
-router.get("/:symbol?", function(req, res) {
+router.get("/:symbol?/:time", function(req, res) {
+
+    // Time is span between data point in ms.
+    let barSize = req.params.time;
+    const date =  new Date();
+    const date1 = new Date(date - barSize*5*MS_PER_MINUTE);
+
+    const timeEnd = date.toISOString();
+    const timeStart = date1.toISOString();
+
+    const params = {
+        "start": timeStart,
+        "end": timeEnd,
+        "granularity": barSize.toString()
+    };
     
     const apiUrl = '/products/' + req.params.symbol + '-USD' + '/candles'
     const url = apiUrl + '?' + "start=" + params["start"] + "&end=" + params["end"] + "&granularity=" + params["granularity"];
