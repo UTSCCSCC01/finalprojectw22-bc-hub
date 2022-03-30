@@ -1,11 +1,14 @@
 import express from 'express';
-import {User}  from '../models/user.js';
 import {deadToken} from '../models/deadToken.js'
 import isCommentOwner from '../utils/isCommentOwner.js'
 import isPostOwner from '../utils/isPostOwner.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import isLoggedIn from '../utils/isLoggedIn.js'
+
+import {CommunityPost, communityPostSchema} from "../models/community_post.js"
+import {User}  from '../models/user.js';
+
 
 
 const router = express.Router();
@@ -37,11 +40,13 @@ router.post("/signup", async (req,res) => {
 
 //get login page
 router.post("/login", async (req, res) => {
+    console.log(req.body.username)
     const user = await User.findOne({
         username: req.body.username
     })
 
     if (!user) {
+        console.log("sdasds")
         return res.json({status: 400, user: false})
     }
     const isPassValid = await bcrypt.compare(
@@ -86,17 +91,20 @@ router.get("/logout", async (req, res) => {
 
 //check if user is logged in
 router.get("/loggedIn", async (req, res) =>{
-    await isLoggedIn(req,res)
+    const body = await isLoggedIn(req)
+    res.send(body)
 });
 
 //check if user is the owner of a comment
-router.get("/commentOwner", async(req,res) =>{
-    await isCommentOwner(req,res)
+router.get("/commentOwner/:id", async(req,res) =>{
+    const body = await isCommentOwner(req)
+    res.send(body)
 })
 
 //check if user is the owner of a post
-router.get("/postOwner", async(req,res) =>{
-    await isPostOwner(req,res)
+router.get("/postOwner/:id", async(req,res) =>{
+    const body = await isPostOwner(req)
+    res.send(body)
 })
 
 router.post("/updateProfilePic", async(req,res) =>{

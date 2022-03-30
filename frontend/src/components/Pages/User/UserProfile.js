@@ -9,52 +9,67 @@ import Learnprogress from './LearnProgress';
 import UserPost from './UserPost';
 import useFetch from '../../../hooks/useFetch';
 import {useState, useEffect} from 'react';
-const Userprofile = () => {
-    // const {data: User, isLoading}  = useFetch('http://localhost:5000/users/62410e5e4578638ec14e6fff/');
-    const [User, setUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+import {useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom"
 
-    useEffect(() => {
-        const token = localStorage.getItem('token')
-        if(token) {
+
+const Userprofile = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState({loggedIn: false, user: null})
+    const [isOwner, setIsOwner] = useState(false)
+    const params = useParams();
+    const {data: User, isLoading, errorUser}  = useFetch('http://localhost:5000/users/username/' + params.username);
+    const [userStatus, setUserStatus] = useState(false)
+    const navigate = useNavigate()
+
+
+	useEffect(() => {
+        // Check if the current user is logged in, and if this is their profile page
+		const token = localStorage.getItem('token')
+		if (token) {
             fetch('http://localhost:5000/loggedIn/', {
                 headers: {
                     'x-access-token': token,
-                }
+                },
             })
+            .then(response => response.json())
             .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                if(data.status === 200){
-                    setUser(data.user)
-                    setIsLoading(false);
+                if (response.status === 200){
+                    console.log(response.user.username)
+                    console.log(params.username)
+                    setIsLoggedIn({loggedIn: true, user: response.user})
+                    setIsOwner(response.user.username === params.username)
                 } else {
-                    setUser(null)
+                    setIsLoggedIn({loggedIn: false, user: null})
                 }
             })
-            .catch(err => {console.log(err); setIsLoading(false); })
-        } else {
-            setUser(null)
-        }
-    }, []) 
+            .catch(e1 => {
+                console.log(e1)
+                setIsLoggedIn({loggedIn: false, user: null})
+            })
 
-    if (isLoading) {
-        return(<div><h1>Loading Profile Page...</h1></div>);
-    } 
+		} else{
+            setIsLoggedIn({loggedIn: false, user: null})
+            navigate('/logIn', { state: "You must be logged in to view other users' profiles!" })
+        }
+        setUserStatus(true)
+    }, []);
+
+    // if (isLoading || !isLoaded) {
+    //     return(<div><h1>Loading Profile Page...</h1></div>);
+    // } 
  
-    var userID = User._id;
-    var userName = User.username;
-    var userEmail = User.email;
-    var userNickName = User.name;
-    var userPic = User.profilePicture;
-    var userFollowers = User.followers;
-    var userFollowings = User.followingUsers;
-    var userFollowCryptos = User.followingCryptos;
-    var userFollowNFTs = User.followingNFTs;
-    var userPosts = User.Posts;
-    var userComments = User.comments;
-    var userLearnProgress = User.educationProgress;
+    // var userID = User._id;
+    // var userName = User.username;
+    // var userEmail = User.email;
+    // var userNickName = User.name;
+    // var userPic = User.profilePicture;
+    // var userFollowers = User.followers;
+    // var userFollowings = User.followingUsers;
+    // var userFollowCryptos = User.followingCryptos;
+    // var userFollowNFTs = User.followingNFTs;
+    // var userPosts = User.Posts;
+    // var userComments = User.comments;
+    // var userLearnProgress = User.educationProgress;
  
     
 
@@ -80,18 +95,24 @@ const Userprofile = () => {
     return (
         <div >
             <NavBar/>
-            <ProfileSideBar/>
-            <Col className='col-9 ' style={{marginLeft: 300}}>
-                <Profilemain userName={userName} userNickName={userNickName} userId={userID} profilePic ={userPic} 
-                postNum={userPosts.length} followerNum={userFollowers.length} 
-                followingNum={userFollowings.length}
-                emailAddr={userEmail}/>
-                <Currency/>
-                <Learnprogress Progresses={userLearnProgress}/>
-                <UserPost/>
-            </Col>
-            
+            {(!isLoading && userStatus) ?
+                <>
+                <ProfileSideBar isOwner={isOwner}/>
+                <Col className='col-9 ' style={{marginLeft: 300}}>
+                    <Profilemain userName={User.username} userNickName={User.name} userId={User._id} profilePic ={User.profilePicture} 
+                    postNum={User.Posts.length} followerNum={User.followers.length} 
+                    followingNum={User.followingUsers.length}
+                    emailAddr={User.email} isOwner={isOwner} isLoggedIn={isLoggedIn}/>
+                    <Currency/>
+                    <Learnprogress Progresses={User.educationProgress}/>
+                    <UserPost userID={User._id} username={User.username} isOwner={isOwner}/>
+                </Col>
+                </>
+                :
+                <div><h1>Loading Profile Page...</h1></div>
+            }
         </div>
+        
     );
 }
 
