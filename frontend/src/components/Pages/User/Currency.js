@@ -9,6 +9,12 @@ const Currency = (props) => {
     const coinData = props.userCurrency;
     console.log('coinDataAiden');
     console.log(coinData);
+    const {data: marketData, isLoading, error} = useFetch("http://localhost:5000/market/main");
+
+    if (isLoading) {
+      return(<div></div>)
+    }
+    console.log(marketData);
     // coinData.push("BTC", "ETH");
     return (
     <div id='Currency'>
