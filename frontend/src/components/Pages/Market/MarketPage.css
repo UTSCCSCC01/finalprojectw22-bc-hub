@@ -5,6 +5,13 @@
   width: auto;
 }
 
+.main-crypto-page{
+  background-image: url("crypto-background.jpg");
+  color: white;
+  height: 2000px;
+  width: 2000px;
+}
+
 .link-color{
   color:rgb(0, 174, 255);
   font-size: large;

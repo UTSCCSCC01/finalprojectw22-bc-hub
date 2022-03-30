@@ -12,7 +12,7 @@ function CryptoCoin() {
     return(<div></div>)
   }
 
-  return <div id="crypto_page">
+  return <div class="main-crypto-page" id="crypto_page">
       <NavBar/>
       <h1>Cryptocurrency Data</h1>
       <p> Name: {marketData.name}</p>
