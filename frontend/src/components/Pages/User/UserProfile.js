@@ -58,25 +58,25 @@ const Userprofile = () => {
  
     
 
-    console.log('Testing purpose');
-    console.log(User);
-    console.log(userID);
-    console.log(userName);
-    console.log(userEmail);
-    console.log(userNickName);
-    console.log(userPic);
-    console.log(userFollowers);
-    console.log(userFollowings);
-    console.log(userFollowCryptos);
-    console.log(userFollowNFTs);
-    console.log(userPosts);
-    console.log(userComments);
-    console.log(userLearnProgress);
+    // console.log('Testing purpose');
+    // console.log(User);
+    // console.log(userID);
+    // console.log(userName);
+    // console.log(userEmail);
+    // console.log(userNickName);
+    // console.log(userPic);
+    // console.log(userFollowers);
+    // console.log(userFollowings);
+    // console.log(userFollowCryptos);
+    // console.log(userFollowNFTs);
+    // console.log(userPosts);
+    // console.log(userComments);
+    // console.log(userLearnProgress);
     
     
 
 
-    console.log('Testing end');
+    // console.log('Testing end');
     return (
         <div >
             <NavBar/>

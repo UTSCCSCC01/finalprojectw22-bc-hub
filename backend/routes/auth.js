@@ -195,7 +195,8 @@ router.post("/updateEducationProgress", async(req,res) => {
             const password = decoded.password
             try {
                 const user = await User.findOne({username: username, password: password}) //get user 
-                user.educationProgress = req.body.newProgress
+                // user.educationProgress = req.body.newProgress
+                user.educationProgress[req.body.index] = req.body.newProgress
                 user.save()
                 res.send({status: 200})
             } 
