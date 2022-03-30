@@ -8,6 +8,7 @@ import FollowButton from './FollowButton';
 const Profilemain = ({userName, userNickName, userId, postNum, followerNum, followingNum, emailAddr, profilePic, isOwner, isLoggedIn}) => {
     const [openModal, setOpenModal] = useState(false);
     const attemptChangeAvatar = () => {
+        console.log('blah bah blah',isOwner)
         if (isOwner){
             setOpenModal(true)
         }
@@ -18,7 +19,7 @@ const Profilemain = ({userName, userNickName, userId, postNum, followerNum, foll
         {openModal && <ProfileLink closeModal={setOpenModal} />}
             <Container className='d-flex align-items-center justify-content-center pt-5 ' align={"center"}>
                 <a className=''>
-                    <img className='square mx-5 rounded-cricle btn hov' src={profilePic} alt = '' width={200} height={200} onClick={() => attemptChangeAvatar} />
+                    <img className='square mx-5 rounded-cricle btn hov' src={profilePic} alt = '' width={200} height={200} onClick={attemptChangeAvatar} />
                 </a>
                 
 

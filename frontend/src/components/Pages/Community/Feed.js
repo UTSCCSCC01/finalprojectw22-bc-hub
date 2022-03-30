@@ -52,6 +52,17 @@ const Feed = (props) => {
                     Your Personal Feed is empty. Follow more users to populate your feed
                 </h3>
             }
+            {feedType === 'Trending Feed' && !props.posts.length && 
+                <h3>
+                    Looks like no one has posted anything :(
+                </h3>
+            }
+            {
+                feedType !== 'Personal Feed' && feedType !== 'Trending Feed' && !props.posts.length &&
+                <h3>
+                    No posts yet
+                </h3>
+            }
             <h3 id='no-results'></h3>
             <div className='mt-4'>
                 {props.posts.map((post) => (

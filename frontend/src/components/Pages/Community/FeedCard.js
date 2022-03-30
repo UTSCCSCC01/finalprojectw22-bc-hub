@@ -23,16 +23,17 @@ const FeedCard = (props) => {
     const [likeCount, setLikeCount] = useState(props.post.likes.length)
     const [dislikeCount, setDislikeCount] = useState(props.post.dislikes.length)
     const {data: owner, isLoading, error}  = useFetch('http://localhost:5000/users/' + props.post.owner);
-    const [isValidImage, setIsValidImage] = useState(false)
+    const [isValidImage, setIsValidImage] = useState(true)
     const navigate = useNavigate()
     const id = props.post._id
     console.log(id)
 
     fetch(props.post.image, { method: 'HEAD' })
     .then(response => {
-        setIsValidImage(response.ok)
+        setIsValidImage(response.status !== 404)
     })
     .catch(err => console.log(err));
+
 
 
     const deletePost = () => {
@@ -136,11 +137,13 @@ const FeedCard = (props) => {
                         <div className="d-flex flex-row align-items-center">
                             {error && <div>{error}</div>}
                             {owner && owner.profilePicture && !isLoading ?
-                                <img 
-                                    src={owner.profilePicture} 
-                                    alt={owner.username + " profile picture"} 
-                                    style={{height: '48px', width: '48px'}}
-                                />
+                                <Link to={`/profile/${owner.username}`} style={{color: 'inherit', textDecoration: 'inherit'}}>
+                                    <img 
+                                        src={owner.profilePicture} 
+                                        alt={owner.username + " profile picture"} 
+                                        style={{height: '48px', width: '48px'}}
+                                    />
+                                </Link>
                                 :
                                 <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
@@ -151,7 +154,7 @@ const FeedCard = (props) => {
                                 <Card.Subtitle>
                                     {error && <div>{error}</div>}
                                     {isLoading && <div>Loading user...</div>}
-                                    {owner && owner.username}
+                                    {owner && <Link to={`/profile/${owner.username}`} style={{color: 'inherit', textDecoration: 'inherit'}}>{owner.username}</Link>}
                                 </Card.Subtitle>
                                 <Card.Text>
                                     {props.post.dateString}

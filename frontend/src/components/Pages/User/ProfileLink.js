@@ -33,7 +33,7 @@ export default function ProfileLink({closeModal}) {
             <Form.Group className="mb-3" controlId="imageLink">
                 <h5>Profile Image</h5>
                 <hr/>
-                <Form.Control placeholder="Enter Prifile Image Link here" />
+                <Form.Control placeholder="Enter New Profile Image Link here" />
             </Form.Group>
             
 
