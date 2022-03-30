@@ -103,7 +103,7 @@ const Userprofile = () => {
                     postNum={User.Posts.length} followerNum={User.followers.length} 
                     followingNum={User.followingUsers.length}
                     emailAddr={User.email} isOwner={isOwner} isLoggedIn={isLoggedIn}/>
-                    <Currency isOwner={isOwner} />
+                    <Currency isOwner={isOwner} userID={User._id}/>
                     <Learnprogress Progresses={User.educationProgress} isOwner={isOwner}/>
                     <UserPost userID={User._id} username={User.username} isOwner={isOwner}/>
                 </Col>

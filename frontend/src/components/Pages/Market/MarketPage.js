@@ -1,8 +1,9 @@
 import NavBar from '../../NavBar/NavBar';
 import SearchBar from '../../SearchBar/SearchBar';
 import useFetch  from '../../../hooks/useFetch';
-import Table from 'react-bootstrap/Table'
-import './MarketPage.css'
+import Table from 'react-bootstrap/Table';
+import './MarketPage.css';
+import UserSendHttpRequest from '../User/UserHttpHandler';
 
 const followArr = [];
 
@@ -52,6 +53,11 @@ function butFun(rowNum, marketData){
 
     cell1.innerHTML = marketData[rowNum].symbol;
     cell2.innerHTML = marketData[rowNum].quote.USD.price;
+    let info = {
+      "crypto": marketData[rowNum].symbol
+    };
+    sendCurData(info);
+
     
   } else {
     but.value ='follow';
@@ -61,6 +67,10 @@ function butFun(rowNum, marketData){
     followTab.deleteRow(rowIndex);
     followArr.splice(followArr.indexOf(marketData[rowNum]), 1);
   }
+}
+
+function sendCurData(info) {
+  UserSendHttpRequest('POST', 'localhost:5000/followCurrency', info).then(responseData => {console.log(responseData)})
 }
 
 function Market() {
