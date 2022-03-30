@@ -3,10 +3,12 @@ import { useState } from "react";
 import MakePost from './MakePost';
 import './communitySidebar.css';
 import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const CommunitySideBar = () => {
     const [openModal, setOpenModal] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
         const token = localStorage.getItem('token')
@@ -31,6 +33,14 @@ const CommunitySideBar = () => {
             setIsLoggedIn(false)
         }
     }, [])
+
+    const attemptCreatePost = () => {
+        if (!isLoggedIn){
+            navigate('/login', { state: "You must be logged in to create social media posts!" })
+        } else{
+            setOpenModal(true)
+        }
+    }
 
     return (
         <div className="d-flex flex-column justify-content-center h-100" style={{"overflow": "hidden", "position": "fixed"}}>
@@ -59,6 +69,13 @@ const CommunitySideBar = () => {
                     Create Post
                 </Button> : <></>}
             </div>       
+            {/* <div className='d-flex ps-3'>
+            {openModal && <MakePost closeModal={setOpenModal} />}
+                <Button variant= 'dark' className={'mt-4 w-100'}size = "lg" style={{padding: 15, borderRadius : 100, zIndex:10}} 
+                onClick={attemptCreatePost}>
+                    Create Post
+                </Button>
+            </div>   */}
         </div>
         
 

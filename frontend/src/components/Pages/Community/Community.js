@@ -23,12 +23,12 @@ const Community = (props) => {
             })
             .then(data => {
                 if(data.status !== 200){
-                    navigate('/login')
+                    navigate('/login', { state: "You must be logged in to access your personal feed!" })
                 }
             })
             .catch(err => console.log(err))
         } else {
-            navigate('/login')
+            navigate('/login', { state: "You must be logged in to access your personal feed!" })
         }   
     }
     const {data: communityPosts, isLoading, error}  = useFetch('http://localhost:5000/community/' + props.feed);

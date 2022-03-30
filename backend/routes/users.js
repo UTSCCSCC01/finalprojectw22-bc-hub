@@ -5,6 +5,23 @@ import mongoose from 'mongoose';
 import {User, userSchema} from "../models/user.js"
 import isLoggedIn from '../utils/isLoggedIn.js' 
 
+router.get("/username/:username", async (req, res) => {
+    try {
+        let profile = await User.findOne({username: req.params.username}).exec();
+        if (!profile){
+            res.status(404).json({Error: 'user does not exist'}).send();
+            return;
+        }
+        var data = profile.toObject()
+        delete data.password
+        console.log(data)
+        res.json(data)
+      } catch(err) {
+        console.log(err);
+        res.status(404).json({Error: err})
+    }
+});
+
 router.get("/:id", async (req, res) => {
     try {
         // Query community posts (not just from people you follow) and sort in reverse chronological order
@@ -16,12 +33,26 @@ router.get("/:id", async (req, res) => {
         var data = profile.toObject()
         delete data.password
         console.log(data)
-        res.json(data);
+        res.json(data)
+        // res.json(getUser('id', req.params.id))
       } catch(err) {
         console.log(err);
         res.status(404).json({Error: err})
     }
 });
+
+const getUser = async (fieldName, fieldValue) => {
+    let profile;
+    if (fieldName === 'username'){
+        profile = await User.findOne({username: fieldValue}).exec();
+    } else if (fieldName === 'id'){
+        profile = await User.findById(fieldValue).exec();
+    }
+    var data = profile.toObject()
+    delete data.password
+    console.log(data)
+    return data
+}
 
 router.post("/:id/follow-unfollow", async (req, res) => {
     // See if the user is logged in
@@ -57,13 +88,13 @@ router.post("/:id/follow-unfollow", async (req, res) => {
         user.followers.push(myUser.id)
         myUser.save()
         user.save()
-        res.status(200).json({Outcome: 'You have successfully followed the user'}).send();
+        res.status(200).json({Outcome: 'You have successfully followed the user', code: 1}).send();
     } else { // Already following, so unfollow the user
         myUser.followingUsers.splice(checkFollowing, 1);
         user.followers.splice(user.followers.indexOf(myUser.id), 1)
         myUser.save()
         user.save()
-        res.status(200).json({Outcome: 'You have successfully unfollowed the user'}).send();
+        res.status(200).json({Outcome: 'You have successfully unfollowed the user', code: -1}).send();
     }
 
 })
