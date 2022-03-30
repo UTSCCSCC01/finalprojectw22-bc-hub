@@ -1,8 +1,6 @@
 import React from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { useState } from 'react'
 import UserSendHttpRequest from './UserHttpHandler'
-import { imageExists } from '../../Utils/ExistImage'
 export default function ProfileLink({closeModal}) {
 
   function sendPicData(link) {
@@ -27,7 +25,6 @@ export default function ProfileLink({closeModal}) {
   return (
     
     <div className='m-3 rounded-3 shadow-lg' style={{width:500, height:200, position: 'fixed', top: '20%', right: '30%', zIndex: 12, backgroundColor: 'pink' }}>
-      {console.log('exist??' + imageExists('https://s3.getstickerpack.com/storage/uploads/sticker-pack/genshin-impact-qiqi/sticker_10.png?d32bc63238d717561bba67d8a5aabca9&d=200x200'))}
         <Form className='m-3'>
           
             <Form.Group className="mb-3" controlId="imageLink">
