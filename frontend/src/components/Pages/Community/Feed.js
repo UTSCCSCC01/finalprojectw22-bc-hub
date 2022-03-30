@@ -7,10 +7,13 @@ import React, {useEffect, useState } from 'react';
 
 const Feed = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState({loggedIn: false, user: null})
+    console.log(props.posts)
     
-    let feedType = "Personal Feed"
+    let feedType = props.feed
     if (props.feed === "trending-feed"){
         feedType = "Trending Feed"
+    } else if (props.feed === 'personal-feed'){
+        feedType = "Personal Feed"
     }
 
 	useEffect(() => {

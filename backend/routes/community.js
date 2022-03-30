@@ -8,6 +8,7 @@ import {User, userSchema} from "../models/user.js"
 
 import isLoggedIn from '../utils/isLoggedIn.js'
 import isPostOwner from '../utils/isPostOwner.js'
+import getUser from '../utils/getUser.js'
 
 // ******************************
 // Endpoints
@@ -43,6 +44,33 @@ router.get("/trending-feed", async (req, res) => {
         console.log(err);
         res.status(500).json({Error: err})
     }
+});
+
+
+// INDEX a user's posts
+router.get("/user-posts/:id", async (req, res) => {
+  // Confirm user exists
+  let user = null;
+  try {
+    user = await getUser('id', req.params.id);
+  } catch(err) {
+    console.log(err);
+    res.status(404).json({Error: err}).send();
+    return;
+  }
+
+  if (!user){
+    res.status(404).json({Error: 'User does not exist'}).send();
+  }
+
+  try {
+    // Query community posts from yourself, and sort in reverse chronological order
+    let posts = await CommunityPost.find({owner: user._id}).sort('-date').exec();
+    res.json(posts);
+  } catch(err) {
+    console.log(err);
+    res.status(500).json({Error: err})
+  }
 });
 
 
