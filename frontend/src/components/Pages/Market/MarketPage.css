@@ -14,8 +14,13 @@
 }
 
 .link-color{
-  color:rgb(0, 174, 255);
+  color:rgb(255, 255, 255);
   font-size: large;
+  text-decoration: underline;
+}
+
+.table-text{
+  color: white;
 }
 
 .table-hover > tbody > tr:hover {
