@@ -69,7 +69,7 @@ function butFun(rowNum, marketDataSymbol){
   } else {
     but.value ='follow';
     but.innerText = 'follow';
-    tbrow.style.backgroundColor='white';
+    tbrow.style.backgroundColor='transparent';
     sendunFolData(cryInfo);
     console.log(marketDataSymbol);
     // const rowIndex = followArr.length - 1 - followArr.indexOf(marketData[rowNum])
