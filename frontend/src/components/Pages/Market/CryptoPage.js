@@ -1,6 +1,6 @@
 import NavBar from '../../NavBar/NavBar';
 import useFetch  from '../../../hooks/useFetch';
-
+import './MarketPage.css'
 
 function CryptoCoin() {
 
