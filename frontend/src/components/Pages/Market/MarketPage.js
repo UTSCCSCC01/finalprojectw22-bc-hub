@@ -148,15 +148,16 @@ function Market() {
     }, []);
 
     if (mkload) {
-      return(<div></div>)
+      return(<div><h1>Loading....</h1></div>)
     }
     if (userLoad) {
-      return(<div></div>)
+      return(<div><h1>Loading 2 ....</h1></div>)
     }
 
+  var User = null;
   var coinData = []
   if (isLoggedIn.loggedIn) {
-    var User = isLoggedIn.user;
+    User = isLoggedIn.user;
     coinData = User.followingCryptos;
   }
 
