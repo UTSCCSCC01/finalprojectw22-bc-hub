@@ -1,4 +1,5 @@
 input[type="text"]{
+    height: 50px;
     max-width: 400px;
   }
 
@@ -7,6 +8,7 @@ input[type="text"]{
 }
 
 .market-search-button{
+  height: 50px;
   display:inline-block;
   padding:0.35em 1.2em;
   border:0.12em solid #8506fc;
@@ -21,8 +23,4 @@ input[type="text"]{
   background-color:#e8c8fd;
   text-align:center;
   transition: all 0.2s;
-  border-top-left-radius:25px;
-  border-top-right-radius:25px;
-  border-bottom-right-radius:25px;
-  border-bottom-left-radius:25px;
 }
