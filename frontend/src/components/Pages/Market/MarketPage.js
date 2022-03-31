@@ -44,20 +44,24 @@ function filterFun(param){
 function sendCurData(info) {
   UserSendHttpRequest('POST', 'http://localhost:5000/followCurrency', info).then(responseData => {console.log(responseData)})
 }
+
+function sendunFolData(info) {
+  UserSendHttpRequest('POST', 'http://localhost:5000/unfollowCurrency', info).then(responseData => {console.log(responseData)})
+}
+
 function butFun(rowNum, marketDataSymbol){
-  console.log('INDEXX??  ' + rowNum);
   const but = document.getElementById('table-but' + rowNum);
   const tbrow = document.getElementById('table_row' + rowNum);
   //const followTab = document.getElementById('follow-table');
-  
+  var cryInfo = {
+    "newCrypto" : marketDataSymbol
+  }
   if (but.value == 'follow'){
     but.value = 'unfollow';
     but.innerText = 'unfollow';
     tbrow.style.backgroundColor='RGB(247, 143, 195)';
 
-    var cryInfo = {
-      "newCrypto" : marketDataSymbol
-    }
+    
 
     sendCurData(cryInfo);
 
@@ -66,6 +70,8 @@ function butFun(rowNum, marketDataSymbol){
     but.value ='follow';
     but.innerText = 'follow';
     tbrow.style.backgroundColor='white';
+    sendunFolData(cryInfo);
+    console.log(marketDataSymbol);
     // const rowIndex = followArr.length - 1 - followArr.indexOf(marketData[rowNum])
     // console.log(followArr.indexOf(marketData[rowNum]));
     // followTab.deleteRow(rowIndex);
@@ -78,13 +84,17 @@ function allPaint(marketData, coinLst) {
   for (var i = 0; i <marketData.length; i ++) {
     for (var j = 0; j < coinLst.length; j++) {
       if (coinLst[j] === marketData[i].symbol) {
-        console.log("numer is   " + i);
-        // const but = document.getElementById('table-but' + i);
-        // but.value ='unfollow';
-        // but.innerText = 'unfollow';
+        const but = document.getElementById('table-but' + i);
+        const tbrow = document.getElementById('table_row' + i);
+        if (but === null || tbrow === null) {
+          console.log('Market Not Ready');
+        } else {
+          but.value ='unfollow';
+          but.innerText = 'unfollow';
+          tbrow.style.backgroundColor='RGB(247, 143, 195)';
+        }
         // console.log("btn is   " + but);
-        // const tbrow = document.getElementById('table_row' + i);
-        // tbrow.style.backgroundColor='RGB(247, 143, 195)';
+        
       }
     }
     
@@ -144,10 +154,10 @@ function Market() {
       return(<div></div>)
     }
 
-  
+  var coinData = []
   if (isLoggedIn.loggedIn) {
     var User = isLoggedIn.user;
-    var coinData = User.followingCryptos;
+    coinData = User.followingCryptos;
   }
 
 
@@ -180,16 +190,15 @@ function Market() {
                   <td>{marketData[index1].quote.USD.percent_change_7d}</td>
                   <td id="but-col"><button id={"table-but" + index1} class="btn btn-outline-secondary" 
                   type="buton" onClick={()=>butFun(index1, marketData[index1].symbol)} value='follow'>follow</button></td>
-                  {() => {console.log(document.getElementById('table-but' + index1))}}
-                  {/* {matchCoin(coinData, marketData[index1].symbol, butFunNoSend, index1)} */}
-                  {/* {butFunNoSend(index1)} */}
+                  {allPaint(marketData, coinData)}
+                  
               </tr>
             ))}
           </tbody>
         </Table>
-        {allPaint(marketData, coinData)}
+        
       </div>
-      
+      {/* {allPaint(marketData, coinData)} */}
   </div>;
   
 }
