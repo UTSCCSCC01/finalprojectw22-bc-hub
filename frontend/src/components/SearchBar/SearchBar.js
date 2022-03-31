@@ -9,7 +9,7 @@ function SearchBar(props){
                 <input type="text" className="form-control" placeholder={props.text} 
                 aria-label="Search" aria-describedby="basic-addon2" id="my-input" onKeyUp={()=>props.inFun(props.param)}/>
                 <div className="input-group-append">
-                <button className="market-search-button" type="button" onClick={()=>props.butFun(props.param)} id="search-but">Search</button>
+                <button className="button-54" type="button" onClick={()=>props.butFun(props.param)} id="search-but">Search</button>
                 </div>
             </div>
             

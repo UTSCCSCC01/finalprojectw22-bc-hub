@@ -59,7 +59,7 @@ function butFun(rowNum, marketDataSymbol){
   if (but.value == 'follow'){
     but.value = 'unfollow';
     but.innerText = 'unfollow';
-    tbrow.style.backgroundColor='RGB(247, 143, 195)';
+    tbrow.style.backgroundColor='purple';
 
     
 
@@ -69,7 +69,7 @@ function butFun(rowNum, marketDataSymbol){
   } else {
     but.value ='follow';
     but.innerText = 'follow';
-    tbrow.style.backgroundColor='transparent';
+    tbrow.style.backgroundColor='rgb(41, 0, 0, 0.7)';
     sendunFolData(cryInfo);
     console.log(marketDataSymbol);
     // const rowIndex = followArr.length - 1 - followArr.indexOf(marketData[rowNum])
@@ -91,7 +91,7 @@ function allPaint(marketData, coinLst) {
         } else {
           but.value ='unfollow';
           but.innerText = 'unfollow';
-          tbrow.style.backgroundColor='RGB(247, 143, 195)';
+          tbrow.style.backgroundColor='purple';
         }
         // console.log("btn is   " + but);
         
@@ -171,9 +171,9 @@ function Market() {
       </Container>
       <div id="datatable">
       
-
-        <Table striped bordered hover id="market-table" align={'center'}>
-          <thead>
+      <Container className='d-flex align-items-center justify-content-center pt-1'>
+        <Table striped bordered hover id="market-table" align={'center'} style={{opacity: 1}}>
+          <thead style={{backgroundColor: 'black'}}>
             <tr>
             <th><h3><center>Coin</center></h3></th>
               <th><h3><center>Price (USD)</center></h3></th>
@@ -184,12 +184,12 @@ function Market() {
           </thead>
           <tbody>
             {Array.from({length: marketData.length}).map((_, index1) => (
-              <tr id={'table_row' + index1}>
+              <tr id={'table_row' + index1} style={{backgroundColor: 'rgb(41, 0, 0, 0.7)'}}>
                 <td><center><a className="link-color" href={"market/" + marketData[index1].symbol}>{marketData[index1].symbol}</a></center></td>
                   <td><center><a className="table-text">{marketData[index1].quote.USD.price}</a></center></td>
                   <td><center><a className="table-text">{marketData[index1].quote.USD.percent_change_24h}</a></center></td>
                   <td><center><a className="table-text">{marketData[index1].quote.USD.percent_change_7d}</a></center></td>
-                  <td id="but-col"><button id={"table-but" + index1} className="market-follow-button" 
+                  <td id="but-col"><button id={"table-but" + index1} className="button-31" 
                   type="buton" onClick={()=>butFun(index1, marketData[index1].symbol)} value='follow'>follow</button></td>
                   {allPaint(marketData, coinData)}
                   
@@ -197,7 +197,7 @@ function Market() {
             ))}
           </tbody>
         </Table>
-        
+        </Container>
       </div>
       {/* {allPaint(marketData, coinData)} */}
   </div>;
