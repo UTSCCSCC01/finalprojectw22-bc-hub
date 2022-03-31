@@ -25,7 +25,7 @@ const DetailedViewCard = (props) => {
     const [dislikeCount, setDislikeCount] = useState(props.post.dislikes.length)
     const [isLoggedIn, setIsLoggedIn] = useState({loggedIn: false, user: null})
     const [isOwner, setIsOwner] = useState(false)
-    const [isValidImage, setIsValidImage] = useState(true)
+    const [isValidImage, setIsValidImage] = useState(false)
 
 
 
@@ -36,13 +36,25 @@ const DetailedViewCard = (props) => {
     // .then(response => {
     //     setIsValidImage(response.ok)
     // })
-    fetch(props.post.image, { method: 'HEAD'})
-    .then(response => {
-        console.log(response.status)
-        setIsValidImage(response.status !== 404)
-    })
-    .catch(err => console.log(err));
-
+    // fetch(props.post.image, { method: 'GET'})
+    // .then(response => {
+    //     console.log(response.status)
+    //     setIsValidImage(response.status !== 404)
+    // })
+    // .catch(err => {});
+    function checkImage(url) {
+        var image = new Image();
+        image.onload = function() {
+          if (this.width > 0) {
+            setIsValidImage(true)
+          }
+        }
+        image.onerror = function() {
+          console.log("image doesn't exist");
+        }
+        image.src = url;  
+    }
+    checkImage(props.post.image)
 
 	useEffect(() => {
 		const token = localStorage.getItem('token')
@@ -253,18 +265,19 @@ const DetailedViewCard = (props) => {
                         {errorOwner && <div>{errorOwner}</div>}
                         {owner && owner.profilePicture && !isLoadingOwner ?
                             <Link to={`/profile/${owner.username}`} style={{color: 'inherit', textDecoration: 'inherit'}}>
-                                <img 
+                                <img
+                                    className="me-2" 
                                     src={owner.profilePicture} 
                                     alt={owner.username + " profile picture"} 
                                     style={{height: '48px', width: '48px'}}
                                 />
                             </Link>
                             :
-                            <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" className="me-2 bi bi-person-fill" viewBox="0 0 16 16">
                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                             </svg>
                         } 
-                        <div className='d-flex flex-column ms-3'>
+                        <div className='d-flex flex-column'>
                             <Card.Subtitle>
                                 {errorOwner && <div>{errorOwner}</div>}
                                 {isLoadingOwner && <div>Loading user...</div>}

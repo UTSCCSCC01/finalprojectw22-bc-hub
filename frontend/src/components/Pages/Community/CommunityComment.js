@@ -3,7 +3,7 @@ import React, { Component, useEffect, useState } from 'react';
 import ShowMoreText from "react-show-more-text";
 import useFetch from '../../../hooks/useFetch';
 import ReplyCommentModal from './ReplyCommentModal';
-import {useNavigate} from "react-router-dom"
+import {useNavigate, Link} from "react-router-dom"
 
 const CommunityComment = (props) => {
     let comment = props.comment;
@@ -154,13 +154,16 @@ const CommunityComment = (props) => {
             <div className="d-flex flex-row align-items-center"> 
                 {errorOwner && <div>{errorOwner}</div>}
                 {owner && owner.profilePicture && !isLoadingOwner ?
-                    <img 
-                        src={owner.profilePicture} 
-                        alt={owner.username + " profile picture"} 
-                        style={{height: '48px', width: '48px'}}
-                    />
+                    <Link to={`/profile/${owner.username}`} style={{color: 'inherit', textDecoration: 'inherit'}}>
+                        <img
+                            className="me-2" 
+                            src={owner.profilePicture} 
+                            alt={owner.username + " profile picture"} 
+                            style={{height: '48px', width: '48px'}}
+                        />
+                    </Link>
                     :
-                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" className="me-2 bi bi-person-fill" viewBox="0 0 16 16">
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                     </svg>
                 }
@@ -168,7 +171,7 @@ const CommunityComment = (props) => {
                     <Card.Subtitle>
                         {errorOwner && <div>{errorOwner}</div>}
                         {isLoadingOwner && <div>Loading user...</div>}
-                        {owner && owner.username}
+                        {owner && <Link to={`/profile/${owner.username}`} style={{color: 'inherit', textDecoration: 'inherit'}}>{owner.username}</Link>}
                     </Card.Subtitle>
                     <Card.Text>
                         {comment.dateString}

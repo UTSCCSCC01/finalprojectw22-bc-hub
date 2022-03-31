@@ -41,6 +41,42 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+// Get all of the users that this user is following/followed by
+router.get('/followers/:type/:id', async(req, res) => {
+    // Get the user with the given ID
+    let profile;
+    try{
+        profile = await User.findById(req.params.id).exec();
+        if (!profile){
+            res.status(404).json({Error: 'user does not exist'}).send();
+        }
+    } catch (e) {
+        res.status(404).json({Error: e}).send()
+    }
+
+    if (!req.params.type || (req.params.type !== 'following' && req.params.type !== 'followers')){
+        res.status(400).json({Error: "type must be either 'following' or 'followers'"}).send();
+    }
+    try{
+        let users;
+        if (req.params.type === 'following'){
+            users = await User.find({ _id: { "$in" : profile.followingUsers}})
+        } else {
+            users = await User.find({ _id: { "$in" : profile.followers}})
+        }
+        var data = []
+        for (let i = 0; i < users.length; i++){
+            data.push(users[i].toObject())
+            delete (data[i]).password
+        }
+        console.log(data)
+        res.json(data)
+    } catch(err){
+        console.log(err);
+        res.status(404).json({Error: err})
+    }
+})
+
 const getUser = async (fieldName, fieldValue) => {
     let profile;
     if (fieldName === 'username'){
