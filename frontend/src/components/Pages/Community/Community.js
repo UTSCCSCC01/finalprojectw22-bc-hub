@@ -6,8 +6,31 @@ import NavBar from '../../NavBar/NavBar';
 import Feed from './Feed';
 import CommunitySideBar from './CommunitySidebar';
 import MakePost from './MakePost';
+import { useNavigate } from 'react-router-dom';
 
 const Community = (props) => {
+    const navigate = useNavigate()
+    if(props.feed === "personal-feed"){
+        const token = localStorage.getItem('token')
+        if(token) {
+            fetch('http://localhost:5000/loggedIn/', {
+                headers: {
+                    'x-access-token': token,
+                }
+            })
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                if(data.status !== 200){
+                    navigate('/login', { state: "You must be logged in to access your personal feed!" })
+                }
+            })
+            .catch(err => console.log(err))
+        } else {
+            navigate('/login', { state: "You must be logged in to access your personal feed!" })
+        }   
+    }
     const {data: communityPosts, isLoading, error}  = useFetch('http://localhost:5000/community/' + props.feed);
     const [openModal, setOpenModal] = useState(false);
 

@@ -2,17 +2,17 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const communityPostSchema = new Schema ({
-    //owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     title: String,
     description: String,
     image: String,
     date: { type: Date, default: Date.now },
     dateString: String,
-    likes: [String],
-    dislikes: [String],
+    // likes: [String],
+    // dislikes: [String],
     // Commented these out for now, add back when we get auth done
-    // likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
-    // dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 
     totalLikes: Number,
     totalDislikes: Number,

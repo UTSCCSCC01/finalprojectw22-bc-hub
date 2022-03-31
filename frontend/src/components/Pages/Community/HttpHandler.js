@@ -3,6 +3,7 @@ function sendHttpRequest(method, url, data) {
         const xhr = new XMLHttpRequest();
         xhr.open(method, url);
         xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('x-access-token', localStorage.getItem('token'))
         xhr.onload = () => {
 
     }

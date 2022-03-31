@@ -2,8 +2,11 @@ import React, {useState, useEffect} from 'react'
 import NavBar from '../../NavBar/NavBar';
 import './Register.css'
 import Alert from 'react-bootstrap/Alert'
+import { useNavigate } from 'react-router-dom'
 
 function Register() {
+    const navigate = useNavigate()
+
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -17,6 +20,7 @@ function Register() {
     useEffect(() => {
         if(errors.length === 0) {
             setShow(false)
+            console.log("no errors")
         } else {
             setShow(true)
         }
@@ -50,26 +54,28 @@ function Register() {
             }
         }
 
+        console.log("signing up")
+        fetch("http://localhost:5000/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: firstName + " " + lastName, email, username, password }),
+            })
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                if(data.status === 200){
+                    navigate('/login')
+                }
+            })
+            .catch(error => {
+                alert("signup error")
+                console.log("error occured in fetch")
+                console.log(error)
+            })
+
         
-
-    //     fetch("http://localhost:5000/signup", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ name, email, username, password }),
-    //   })
-    //   .then(response => {
-    //       console.log(response);
-    //       console.log("then fetch");
-    //   })
-    //   .catch(error => {
-    //       console.log("error occured in fetch")
-    //       console.log(error)
-    //   })
     }
-
-    
-
-
 
     return (
         <>
