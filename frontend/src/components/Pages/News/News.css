@@ -1,5 +1,8 @@
 .main-news-page{
   background-image: url("news-background.jpg");
-  height: auto;
-  width: auto;
+  height: 1920;
+  width: 1080;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
