@@ -18,6 +18,7 @@ const Userprofile = () => {
     const [isOwner, setIsOwner] = useState(false)
     const params = useParams();
     const {data: User, isLoading, errorUser}  = useFetch('http://localhost:5000/users/username/' + params.username);
+    console.log('http://localhost:5000/users/username/' + params.username);
     const [userStatus, setUserStatus] = useState(false)
     const navigate = useNavigate()
 

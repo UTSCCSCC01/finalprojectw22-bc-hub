@@ -47,7 +47,6 @@ app.get('/', async (req, res) => {
 });
 
 
-app.use("/people", peopleRoutes);
 app.use("/users", users);
 app.use("/market", cryptopage);
 app.use("*", (req, res) => res.status(404).json({error: "not found"}))

@@ -4,9 +4,13 @@ import useFetch  from '../../../hooks/useFetch';
 import Table from 'react-bootstrap/Table';
 import './MarketPage.css';
 import UserSendHttpRequest from '../User/UserHttpHandler';
+import Currency from '../User/Currency';
+import {useState, useEffect} from 'react';
+import {useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom"
+import { Container } from 'react-bootstrap';
 
 const followArr = [];
-
 
 function searchFun(param) {
   const inVal = document.getElementById('my-input').value;
@@ -37,64 +41,126 @@ function filterFun(param){
     }
   }
 }
-
-function butFun(rowNum, marketData){
+function sendCurData(info) {
+  UserSendHttpRequest('POST', 'http://localhost:5000/followCurrency', info).then(responseData => {console.log(responseData)})
+}
+function butFun(rowNum, marketDataSymbol){
+  console.log('INDEXX??  ' + rowNum);
   const but = document.getElementById('table-but' + rowNum);
-  const followTab = document.getElementById('follow-table');
+  const tbrow = document.getElementById('table_row' + rowNum);
+  //const followTab = document.getElementById('follow-table');
   
   if (but.value == 'follow'){
     but.value = 'unfollow';
     but.innerText = 'unfollow';
-    followArr.push(marketData[rowNum]);
+    tbrow.style.backgroundColor='RGB(247, 143, 195)';
 
-    const row = followTab.insertRow(0);
-    const cell1 = row.insertCell(0);
-    const cell2 = row.insertCell(1);
+    var cryInfo = {
+      "newCrypto" : marketDataSymbol
+    }
 
-    cell1.innerHTML = marketData[rowNum].symbol;
-    cell2.innerHTML = marketData[rowNum].quote.USD.price;
-    let info = {
-      "crypto": marketData[rowNum].symbol
-    };
-    sendCurData(info);
+    sendCurData(cryInfo);
 
-    
+    console.log(marketDataSymbol);
   } else {
     but.value ='follow';
     but.innerText = 'follow';
-    const rowIndex = followArr.length - 1 - followArr.indexOf(marketData[rowNum])
-    console.log(followArr.indexOf(marketData[rowNum]));
-    followTab.deleteRow(rowIndex);
-    followArr.splice(followArr.indexOf(marketData[rowNum]), 1);
+    tbrow.style.backgroundColor='white';
+    // const rowIndex = followArr.length - 1 - followArr.indexOf(marketData[rowNum])
+    // console.log(followArr.indexOf(marketData[rowNum]));
+    // followTab.deleteRow(rowIndex);
+    // followArr.splice(followArr.indexOf(marketData[rowNum]), 1);
   }
 }
 
-function sendCurData(info) {
-  UserSendHttpRequest('POST', 'localhost:5000/followCurrency', info).then(responseData => {console.log(responseData)})
+
+function allPaint(marketData, coinLst) {
+  for (var i = 0; i <marketData.length; i ++) {
+    for (var j = 0; j < coinLst.length; j++) {
+      if (coinLst[j] === marketData[i].symbol) {
+        console.log("numer is   " + i);
+        // const but = document.getElementById('table-but' + i);
+        // but.value ='unfollow';
+        // but.innerText = 'unfollow';
+        // console.log("btn is   " + but);
+        // const tbrow = document.getElementById('table_row' + i);
+        // tbrow.style.backgroundColor='RGB(247, 143, 195)';
+      }
+    }
+    
+  }
 }
 
 function Market() {
- 
-  const {data: marketData, isLoading, error} = useFetch("http://localhost:5000/market/main");
+  const [isLoggedIn, setIsLoggedIn] = useState({loggedIn: false, user: null})
+  const [isOwner, setIsOwner] = useState(false)
+  const params = useParams();
+  const [userLoad, setUserLoad] = useState(true);
+  const [userStatus, setUserStatus] = useState(false)
+  const navigate = useNavigate()
+  const {data: marketData, isLoading: mkload, error} = useFetch("http://localhost:5000/market/main");
+  var urlName = '';
+    	useEffect(() => {
+        // Check if the current user is logged in, and if this is their profile page
+		const token = localStorage.getItem('token')
+		if (token) {
+            fetch('http://localhost:5000/loggedIn/', {
+                headers: {
+                    'x-access-token': token,
+                },
+            })
+            .then(response => response.json())
+            .then(response => {
+                if (response.status === 200){
+                    urlName = response.user.username;
+                    console.log('this is url ++' + urlName);
+                    console.log(response.user.username)
+                    console.log(params.username)
+                    setIsLoggedIn({loggedIn: true, user: response.user})
+                    setIsOwner(response.user.username === params.username)
+                    setUserLoad(false);
+                } else {
+                    setIsLoggedIn({loggedIn: false, user: null})
+                }
+            })
+            .catch(e1 => {
+                console.log(e1)
+                setIsLoggedIn({loggedIn: false, user: null})
+            })
 
-  if (isLoading) {
-    return(<div></div>)
+		} else{
+            setIsLoggedIn({loggedIn: false, user: null})
+            // navigate('/logIn', { state: "You must be logged in to view other users' profiles!" })
+            setUserLoad(false);
+        }
+        setUserStatus(true)
+        
+    }, []);
+
+    if (mkload) {
+      return(<div></div>)
+    }
+    if (userLoad) {
+      return(<div></div>)
+    }
+
+  
+  if (isLoggedIn.loggedIn) {
+    var User = isLoggedIn.user;
+    var coinData = User.followingCryptos;
   }
+
+
 
   return <div id="market_page">
       <NavBar/>
-      <div id='follow-section'>
-        <h3>Followed Currencies</h3>
-        <Table striped bordered hover id='follow-table'>
-          <thead>
-            <th>Coin</th>
-            <th>Price</th>
-          </thead>
-        </Table>
-      </div>
-      <div id="datatable">
+      <Container className='d-flex align-items-center justify-content-center pt-1'>
       <SearchBar butFun={searchFun} param={marketData} inVal={document.getElementById("my-input")} inFun={filterFun}
       text={"Enter Symbol"} haveBut={true}/>
+      {/* {isLoggedIn.loggedIn && <Currency isOwner={isOwner} userCurrency={User.followingCryptos} style={{width: 300}} />} */}
+      </Container>
+      <div id="datatable">
+      
 
         <Table striped bordered hover id="market-table">
           <thead>
@@ -107,20 +173,25 @@ function Market() {
           </thead>
           <tbody>
             {Array.from({length: marketData.length}).map((_, index1) => (
-              <tr>
+              <tr id={'table_row' + index1}>
                 <td><a href={"market/" + marketData[index1].symbol}>{marketData[index1].symbol}</a></td>
                   <td>{marketData[index1].quote.USD.price}</td>
                   <td>{marketData[index1].quote.USD.percent_change_24h}</td>
                   <td>{marketData[index1].quote.USD.percent_change_7d}</td>
                   <td id="but-col"><button id={"table-but" + index1} class="btn btn-outline-secondary" 
-                  type="buton" onClick={()=>butFun(index1, marketData)} value='follow'>follow</button></td>
+                  type="buton" onClick={()=>butFun(index1, marketData[index1].symbol)} value='follow'>follow</button></td>
+                  {() => {console.log(document.getElementById('table-but' + index1))}}
+                  {/* {matchCoin(coinData, marketData[index1].symbol, butFunNoSend, index1)} */}
+                  {/* {butFunNoSend(index1)} */}
               </tr>
             ))}
           </tbody>
         </Table>
+        {allPaint(marketData, coinData)}
       </div>
       
   </div>;
+  
 }
 
 export default Market;
