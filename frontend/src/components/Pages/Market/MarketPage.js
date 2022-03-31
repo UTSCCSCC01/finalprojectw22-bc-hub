@@ -9,6 +9,8 @@ import {useState, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {useNavigate} from "react-router-dom"
 import { Container } from 'react-bootstrap';
+import { Button } from 'bootstrap';
+import { Link } from 'react-router-dom';
 
 const followArr = [];
 
@@ -171,6 +173,10 @@ function Market() {
       <SearchBar butFun={searchFun} param={marketData} inVal={document.getElementById("my-input")} inFun={filterFun}
       text={"Enter Symbol"} haveBut={true}/>
       {/* {isLoggedIn.loggedIn && <Currency isOwner={isOwner} userCurrency={User.followingCryptos} style={{width: 300}} />} */}
+      <Link to='/'>
+        <button className='button-49 m-2'>Market</button>
+      </Link>
+      
       </Container>
       <div id="datatable">
       
@@ -189,7 +195,7 @@ function Market() {
             {Array.from({length: marketData.length}).map((_, index1) => (
               <tr id={'table_row' + index1} style={{backgroundColor: 'white'}}>
                 <td ><center><a className="link-color" href={"market/" + marketData[index1].symbol}>{marketData[index1].symbol}</a></center></td>
-                  <td><center><a className="table-text">{marketData[index1].quote.USD.price}</a></center></td>
+                  <td><center><a className="table-text">{marketData[index1].quote.USD.price.toString().substr(0, 17)}</a></center></td>
                   <td><center><a className="table-text">{marketData[index1].quote.USD.percent_change_24h}</a></center></td>
                   <td><center><a className="table-text">{marketData[index1].quote.USD.percent_change_7d}</a></center></td>
                   <td id="but-col"><button id={"table-but" + index1} className="button-31" 

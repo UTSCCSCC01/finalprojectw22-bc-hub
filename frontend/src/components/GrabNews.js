@@ -2,6 +2,7 @@ import React from 'react';
 import {useState, useEffect } from 'react';
 import axios from 'axios';
 import Newsfeed from './Newsfeed';
+import { Container } from 'react-bootstrap';
 
 function GrabNews() {
 
@@ -28,10 +29,14 @@ const changePage = (p) => {
   }
 
   return (
+    <div style={{minHeight:1920}}>
       <Newsfeed
       news={news}
       callback={changePage}
       />
+
+    </div>
+      
   )
 }
 
