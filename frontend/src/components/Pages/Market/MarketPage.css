@@ -8,8 +8,9 @@
 .main-crypto-page{
   background-image: url("crypto-background.jpg");
   color: white;
-  height: 2000px;
-  width: 2000px;
+  background-size: cover;
+  height: 1080px;
+  background-repeat:no-repeat;
 }
 
 .link-color{
