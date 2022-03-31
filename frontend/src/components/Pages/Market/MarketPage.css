@@ -1,8 +1,11 @@
 .main-market-page{
   background-image: url("background1.jpg");
-  color: white;
+  color: black;
   height: auto;
   width: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .main-crypto-page{
@@ -14,14 +17,14 @@
 }
 
 .link-color{
-  color:rgb(255, 255, 255);
+  color:black;
   font-size: large;
   text-decoration: underline;
 }
 
 .table-text{
-  color: white;
-  font-size: large;
+  color: black;
+  font-size: 40;
 }
 
 .table-hover > tbody > tr:hover {
@@ -49,7 +52,7 @@
 
 /* CSS */
 .button-31 {
-  background-color: rgb(129, 3, 77);
+  background-color: rgb(12, 12, 12);
   border-radius: 4px;
   border-style: none;
   box-sizing: border-box;
@@ -83,6 +86,7 @@
 #market-table {
   table-layout: fixed;
   color: white;
+  font-size: x-large;
 }
 
 #follow-table {
