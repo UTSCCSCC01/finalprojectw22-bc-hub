@@ -160,7 +160,9 @@ function Market() {
     coinData = User.followingCryptos;
   }
 
-  return <div className="main-market-page" id="market_page">
+
+
+  return <div id="market_page">
       <NavBar/>
       <Container className='d-flex align-items-center justify-content-center pt-1'>
       <SearchBar butFun={searchFun} param={marketData} inVal={document.getElementById("my-input")} inFun={filterFun}
@@ -170,25 +172,26 @@ function Market() {
       <div id="datatable">
       
 
-        <Table striped bordered hover id="market-table">
+        <Table striped bordered hover id="market-table" align={'center'}>
           <thead>
             <tr>
-              <th><h3><center>Coin</center></h3></th>
-              <th><h3><center>Price (USD)</center></h3></th>
-              <th><h3><center>24h</center></h3></th>
-              <th><h3><center>7d</center></h3></th>
-              <th><h3><center>Follow</center></h3></th>
+              <th>Coin</th>
+              <th>Price (USD)</th>
+              <th>24h</th>
+              <th>7d</th>
             </tr>
           </thead>
           <tbody>
-            {Array.from({length: marketData.data.length}).map((_, index1) => (
-              <tr>
-                <td><center><a class="link-color" href={"market/" + marketData.data[index1].symbol}>{marketData.data[index1].symbol}</a></center></td>
-                  <td><center><a class="table-text">{marketData.data[index1].quote.USD.price}</a></center></td>
-                  <td><center><a class="table-text">{marketData.data[index1].quote.USD.percent_change_24h}</a></center></td>
-                  <td><center><a class="table-text">{marketData.data[index1].quote.USD.percent_change_7d}</a></center></td>
-                  <td id="but-col"><button id={"table-but" + index1} class="market-follow-button" 
-                  type="buton" onClick={()=>butFun(index1, marketData.data)} value='follow'>follow</button></td>
+            {Array.from({length: marketData.length}).map((_, index1) => (
+              <tr id={'table_row' + index1}>
+                <td><a href={"market/" + marketData[index1].symbol}>{marketData[index1].symbol}</a></td>
+                  <td>{marketData[index1].quote.USD.price}</td>
+                  <td>{marketData[index1].quote.USD.percent_change_24h}</td>
+                  <td>{marketData[index1].quote.USD.percent_change_7d}</td>
+                  <td id="but-col"><button id={"table-but" + index1} class="btn btn-outline-secondary" 
+                  type="buton" onClick={()=>butFun(index1, marketData[index1].symbol)} value='follow'>follow</button></td>
+                  {allPaint(marketData, coinData)}
+                  
               </tr>
             ))}
           </tbody>
