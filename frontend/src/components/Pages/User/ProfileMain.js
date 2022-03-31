@@ -12,6 +12,7 @@ const Profilemain = ({userName, userNickName, userId, postNum, followerNum, foll
     const [followingModal, setFollowingModal] = useState(false);
 
     const attemptChangeAvatar = () => {
+        // console.log('blah bah blah',isOwner)
         if (isOwner){
             setFollowersModal(false)
             setFollowingModal(false)
@@ -26,7 +27,7 @@ const Profilemain = ({userName, userNickName, userId, postNum, followerNum, foll
         {followingModal && <FollowList closeModal={setFollowingModal} type={'Following'} userId={userId} />}
             <Container className='d-flex align-items-center justify-content-center pt-5 ' align={"center"}>
                 <a className=''>
-                    <img className='square mx-5 rounded-cricle btn hov shadow' src={profilePic} alt = '' width={200} height={200} onClick={attemptChangeAvatar} />
+                    <img className='square mx-5 rounded-cricle btn hov' src={profilePic} alt = 'Not Found' width={200} height={200} onClick={attemptChangeAvatar} />
                 </a>
                 
 

@@ -41,3 +41,12 @@
 }
 
 .hovE:hover {background-color:rgba(255, 255, 255, 0.2);}
+
+.Edubutton {     
+    margin: 0px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+     
+}
