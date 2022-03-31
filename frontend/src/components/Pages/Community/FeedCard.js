@@ -52,10 +52,13 @@ const FeedCard = (props) => {
     const navigate = useNavigate()
     const id = props.post._id
 
+
     // fetch(props.post.image, { method: 'HEAD' })
     // .then(response => {
     //     setIsValidImage(response.status !== 404)
     // })
+
+
     // .catch(err => {});
     function checkImage(url) {
         var image = new Image();
@@ -86,7 +89,7 @@ const FeedCard = (props) => {
             window.location.reload();
         })
         .catch(err => {
-            console.log(err)
+            // console.log(err)
             alert(err);
         });
     }

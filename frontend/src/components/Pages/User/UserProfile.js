@@ -18,6 +18,7 @@ const Userprofile = () => {
     const [isOwner, setIsOwner] = useState(false)
     const params = useParams();
     const {data: User, isLoading, errorUser}  = useFetch('http://localhost:5000/users/username/' + params.username);
+    console.log('http://localhost:5000/users/username/' + params.username);
     const [userStatus, setUserStatus] = useState(false)
     const navigate = useNavigate()
 
@@ -106,7 +107,7 @@ const Userprofile = () => {
                     postNum={User.Posts.length} followerNum={User.followers.length} 
                     followingNum={User.followingUsers.length}
                     emailAddr={User.email} isOwner={isOwner} isLoggedIn={isLoggedIn}/>
-                    <Currency isOwner={isOwner} />
+                    <Currency isOwner={isOwner} userCurrency={User.followingCryptos}/>
                     <Learnprogress Progresses={User.educationProgress} isOwner={isOwner}/>
                     <UserPost userID={User._id} username={User.username} isOwner={isOwner}/>
                 </Col>

@@ -28,7 +28,7 @@ function sendProg(setfunc, bool_val, index) {
 }
 
 const Learnprogress = (Progresses) => {
-    console.log('Owner???' + Progresses.isOwner);
+    // console.log('Owner???' + Progresses.isOwner);
     var Owner = Progresses.isOwner;
     // sendProData(prog);
     // sendProData(po_progress_i);

@@ -12,6 +12,7 @@ import market from "./routes/market.js";
 import auth from "./routes/auth.js";
 
 import users from "./routes/users.js"
+import cryptopage from "./routes/cryptopage.js"
 
 // Model Imports
 import {Person, personSchema} from "./models/person.js"
@@ -39,7 +40,15 @@ app.use("/newsfeed", newsfeed);
 app.use("/community", communityRoutes);
 app.use("/market", market);
 app.use("/", auth);
-app.use("/users", users)
+app.get('/', async (req, res) => {
+    Person.find()
+    .then(people => res.json(people))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
+app.use("/users", users);
+app.use("/market", cryptopage);
 app.use("*", (req, res) => res.status(404).json({error: "not found"}))
 
 // MongoDB Connection
