@@ -1,6 +1,7 @@
 import NavBar from '../../NavBar/NavBar';
 import CryptoChart from './cryptoChart';
 import useFetch  from '../../../hooks/useFetch';
+import './MarketPage.css'
 import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 
 function butFun() {
@@ -32,7 +33,7 @@ function CryptoCoin() {
     priceData.push(graphData[i][1]);
   }
 
-  return <div id="crypto_page">
+  return <div class="main-crypto-page" id="crypto_page">
       <NavBar/>
       <ToggleButtonGroup type='radio' name='options' defaultValue={1}>
 

@@ -4,6 +4,7 @@ import Pagination from 'react-bootstrap/Pagination'
 import NavBar from './NavBar/NavBar';
 import NewsSearchBar from './Pages/News/NewsSearchBar';
 import { useState, useEffect } from 'react';
+import './Pages/News/News.css'
 
 function Newsfeed(props) {
   const [inputText, setInputText] = useState("");
@@ -81,6 +82,7 @@ function Newsfeed(props) {
   return (
     <>
 
+      <div className="main-news-page">
       <div className="mb-2"><NavBar></NavBar></div>
       <NewsSearchBar
       callback={changeText}
@@ -96,6 +98,7 @@ function Newsfeed(props) {
         <Pagination.Item key={15} onClick={() => getNewPage(5)}>{5}</Pagination.Item>
       </Pagination>
       }
+      </div>
     </>
   );
 }
