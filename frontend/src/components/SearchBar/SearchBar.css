@@ -6,3 +6,23 @@ input[type="text"]{
   margin-top: 10px;
 }
 
+.market-search-button{
+  display:inline-block;
+  padding:0.35em 1.2em;
+  border:0.12em solid #8506fc;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-size: 20px;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:#8506fc;
+  background-color:#e8c8fd;
+  text-align:center;
+  transition: all 0.2s;
+  border-top-left-radius:25px;
+  border-top-right-radius:25px;
+  border-bottom-right-radius:25px;
+  border-bottom-left-radius:25px;
+}
