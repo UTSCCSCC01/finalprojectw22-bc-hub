@@ -12,7 +12,7 @@ const CryptoChart = (props) => {
                     datasets: [{
                         label: props.coin,
                         data: props.prices,
-                        borderColor: 'rgb(75, 192, 192)'
+                        borderColor: 'rgb(255, 255, 255)'
                     }]
                 }}
                 height={600}
@@ -20,11 +20,18 @@ const CryptoChart = (props) => {
                 options={{
                     maintainAspectRatio: false,
                     scales: {
-                        xAxis: {
+                        x: {
                             ticks: {
-                                maxTicksLimit: 8                                
+                                maxTicksLimit: 8, 
+                                color: 'rgb(255, 255, 255)'                             
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: 'rgb(255, 255, 255)'                             
                             }
                         }
+
                     }
                 }}
             />
