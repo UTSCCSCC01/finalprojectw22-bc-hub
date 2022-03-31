@@ -66,7 +66,7 @@ const Feed = (props) => {
             <h3 id='no-results'></h3>
             <div className='mt-4'>
                 {props.posts.map((post) => (
-                    <div id={post._id}><CommunityPost post={post} isLoggedIn={isLoggedIn} /></div>
+                    <div id={post._id}><CommunityPost post={post} key={post._id} isLoggedIn={isLoggedIn} /></div>
                 ))}
             </div>
         </div>

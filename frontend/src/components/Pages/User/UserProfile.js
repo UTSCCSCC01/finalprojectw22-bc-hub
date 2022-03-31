@@ -41,15 +41,18 @@ const Userprofile = () => {
                     setIsOwner(response.user.username === params.username)
                 } else {
                     setIsLoggedIn({loggedIn: false, user: null})
+                    setIsOwner(false)
                 }
             })
             .catch(e1 => {
                 console.log(e1)
                 setIsLoggedIn({loggedIn: false, user: null})
+                setIsOwner(false)
             })
 
 		} else{
             setIsLoggedIn({loggedIn: false, user: null})
+            setIsOwner(false)
             navigate('/logIn', { state: "You must be logged in to view other users' profiles!" })
         }
         setUserStatus(true)
