@@ -104,7 +104,7 @@ const Userprofile = () => {
                 <ProfileSideBar isOwner={isOwner}/>
                 <Col className='col-9 ' style={{marginLeft: 300}}>
                     <Profilemain userName={User.username} userNickName={User.name} userId={User._id} profilePic ={User.profilePicture} 
-                    postNum={User.Posts.length} followerNum={User.followers.length} 
+                    followerNum={User.followers.length} 
                     followingNum={User.followingUsers.length}
                     emailAddr={User.email} isOwner={isOwner} isLoggedIn={isLoggedIn}/>
                     <Currency isOwner={isOwner} userCurrency={User.followingCryptos}/>
