@@ -68,3 +68,23 @@ The following is the breakdown for each task in Sprint 4:
   - Nathan, update market page api on backend.
 - BH-109
   - Nathan, update market page api on frontend.
+- BH-115
+  - Sahil, add authentication to various social media features
+- BH-118
+  - Sahil, send post requests for unfollow
+- BH-119
+  - Sahil, send post requests for unfollow
+- BH-39
+  - Kesavar, add login page
+- BH-84
+  - Kesavar, add resgistration page
+- BH-85
+  - Ryan, update user model
+-BH-88
+  - Ryan, connet auth to frontend
+-BH-97
+  - Ryan, add form validation to login and register
+- BH-87
+  - Ryan, add functions to check if a user is logged in, owner of a post, owner of a comment
+- BH-106
+  - Keith, Share button
