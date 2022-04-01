@@ -22,7 +22,10 @@ The following endpoints are used to get data.
 This endpoint will get all posts, sorted by non-increasing like count
 
 `localhost:5000/community/personal-feed`  
-This endpoint will get community posts, sorted in reverse chronological order
+This endpoint will get community posts, sorted in reverse chronological order from people that you follow
+
+`localhost:5000/community/user-posts/:id`  
+This endpoint will get all social media posts created by the user with the given id
 
 `localhost:5000/community/:id`  
 This endpoint will get the Community post associated with the id
@@ -47,6 +50,24 @@ are 300, 3600, 21600, 86400 which correspond to 24 hours, 12 days, 2.5 months, a
 `localhost:5000/users/:id`  
 This endpoint will get the user info of the user with the given id
 
+`localhost:5000/users/followers/:type/:id`  
+If type is 'followers', this endpoint get all followers of the user with the given id. If type is 'following', this endpoint get all users that the user with the given id is following. 
+
+`localhost:5000/users/:username`  
+This endpoint will get the user info of the user with the given username
+
+`localhost:5000/logout`
+This will logout a user, destroying their authentication token in the process.
+
+`localhost:5000/loggedIn`
+Endpoint returns true and the user info if logged in, otherwise false and null
+
+`localhost:5000/commentOwner/:id`
+Checks if the user owns the comment with the given id. Precondition: User must be logged in
+
+`localhost:5000/postOwner/:id`
+Checks if the user owns the post with the given id. Precondition: User must be logged in
+
 ### POST
 `localhost:5000/community`  
 This endpoint is used for creating a new social media post. The endpoint takes the provided title, description, and image and creates a new
@@ -63,6 +84,27 @@ This endpoint will register a like or dislike to the social media post with the 
 
 `localhost:5000/community/:pid/comments/:cid/like-dislike/`
 This endpoint will register a like or dislike to the comment with id equal to cid. This comment belongs to the social media post with id equal to pid
+
+`localhost:5000/users/:id/follow-unfollow`  
+This endpoint will follow or unfollow the user with the given id.
+
+`localhost:5000/signup`
+This endpoint will register a new user. username, password, email and name are the fields required
+
+`localhost:5000/login`
+This endpoint will login a user. A JWT token is returned in the response. username and password are required fields
+
+`localhost:5000/updateProfilePic`
+This endpoint will update a user's profile pic. Must be logged in and must send a new profile picture image address as newPic
+
+`localhost:5000/followCurrency`
+This endpoint will add a currency 'newCrypto' to a logged in user's following list.
+
+`localhost:5000/unfollowCurrency`
+This endpoint will remove a currency 'newCrypto' to a logged in user's following list.
+
+`localhost:5000/updateEducationProgress`
+This endpoint will update a logged in user's education history given index and boolean newProgress
 
 ### DELETE
 `localhost:5000/community/:id`
