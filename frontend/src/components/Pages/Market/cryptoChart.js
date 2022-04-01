@@ -5,14 +5,14 @@ import Chart from 'chart.js/auto';
 const CryptoChart = (props) => {
    
     return (
-        <div className="cryptoChart">
+        <div className="shadow-lg " style={{backgroundColor:'RGB(255, 255, 255)', marginTop: 110}}>
             <Line 
                 data={{
                     labels: props.dates,
                     datasets: [{
                         label: props.coin,
                         data: props.prices,
-                        borderColor: 'rgb(255, 255, 255)'
+                        borderColor: 'RGB(99, 86, 219)'
                     }]
                 }}
                 height={600}
@@ -23,12 +23,12 @@ const CryptoChart = (props) => {
                         x: {
                             ticks: {
                                 maxTicksLimit: 8, 
-                                color: 'rgb(255, 255, 255)'                             
+                                color: 'black'                             
                             }
                         },
                         y: {
                             ticks: {
-                                color: 'rgb(255, 255, 255)'                             
+                                color: 'black'                             
                             }
                         }
 

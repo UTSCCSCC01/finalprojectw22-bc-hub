@@ -134,6 +134,8 @@ function Market() {
                     setUserLoad(false);
                 } else {
                     setIsLoggedIn({loggedIn: false, user: null})
+                    console.log('else block');
+                    setUserLoad(false);
                 }
             })
             .catch(e1 => {
@@ -152,10 +154,10 @@ function Market() {
     }, []);
 
     if (mkload) {
-      return(<div></div>)
+      return(<div>Loading Market...</div>)
     }
     if (userLoad) {
-      return(<div></div>)
+      return(<div>Loading UserInfo...</div>)
     }
 
   var coinData = [];
@@ -167,7 +169,7 @@ function Market() {
 
 
 
-  return <div className="main-market-page" id="market_page" style={{minHeight:1920}}>
+  return <div className="main-market-page" id="market_page" style={{minHeight:1000}}>
       <NavBar/>
       <Container className='d-flex align-items-center justify-content-center pt-1' >
       <SearchBar butFun={searchFun} param={marketData} inVal={document.getElementById("my-input")} inFun={filterFun}
