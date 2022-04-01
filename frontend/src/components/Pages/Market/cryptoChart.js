@@ -8,14 +8,14 @@ const CryptoChart = (props) => {
     const [dates, setDates] = useState(props.dates);
     const [prices, setPrices] = useState(props.prices);
     return (
-        <div className="cryptoChart">
+        <div className="shadow-lg " style={{backgroundColor:'RGB(255, 255, 255)', marginTop: 110}}>
             <Line 
                 data={{
                     labels: dates,
                     datasets: [{
                         label: props.coin,
-                        data: prices,
-                        borderColor: 'rgb(75, 192, 192)'
+                        data: props.prices,
+                        borderColor: 'RGB(99, 86, 219)'
                     }]
                 }}
                 height={600}
@@ -23,11 +23,18 @@ const CryptoChart = (props) => {
                 options={{
                     maintainAspectRatio: false,
                     scales: {
-                        xAxis: {
+                        x: {
                             ticks: {
-                                maxTicksLimit: 8                                
+                                maxTicksLimit: 8, 
+                                color: 'black'                             
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: 'black'                             
                             }
                         }
+
                     }
                 }}
             />

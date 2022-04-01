@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form } from 'react-bootstrap'
+import { Container, Form } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 
 function NewsSearchBar(props) {
@@ -16,11 +16,13 @@ function NewsSearchBar(props) {
     
     return (
     <>
-        <div className='justify-content-center d-flex mb-2 container'>
-            <Form onSubmit={submitButtonClick}>
-                <Form.Label>Search</Form.Label>
-                <Form.Control onKeyUp={(e) => {setInputText(e.target.value)}} id="my-input" type="text" placeholder="Search" />
-            </Form>
+        <div style={{width: 500}}>
+            <Container className='justify-content-center mb-2 ' >
+                <Form onSubmit={submitButtonClick} >
+                    <Form.Control onKeyUp={(e) => {setInputText(e.target.value)}} id="my-input" type="text" placeholder="Search" />
+                </Form>
+            </Container>
+            
         </div>
     </>
     )

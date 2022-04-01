@@ -9,6 +9,8 @@ import {useState, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {useNavigate} from "react-router-dom"
 import { Container } from 'react-bootstrap';
+import { Button } from 'bootstrap';
+import { Link } from 'react-router-dom';
 
 const followArr = [];
 
@@ -59,23 +61,24 @@ function butFun(rowNum, marketDataSymbol){
   if (but.value == 'follow'){
     but.value = 'unfollow';
     but.innerText = 'unfollow';
-    tbrow.style.backgroundColor='RGB(247, 143, 195)';
+    tbrow.style.backgroundColor='pink';
 
     
 
-    sendCurData(cryInfo);
+  sendCurData(cryInfo);
+
+    
 
     console.log(marketDataSymbol);
   } else {
     but.value ='follow';
     but.innerText = 'follow';
     tbrow.style.backgroundColor='white';
-    sendunFolData(cryInfo);
+
+  sendunFolData(cryInfo);
+
     console.log(marketDataSymbol);
-    // const rowIndex = followArr.length - 1 - followArr.indexOf(marketData[rowNum])
-    // console.log(followArr.indexOf(marketData[rowNum]));
-    // followTab.deleteRow(rowIndex);
-    // followArr.splice(followArr.indexOf(marketData[rowNum]), 1);
+
   }
 }
 
@@ -91,7 +94,7 @@ function allPaint(marketData, coinLst) {
         } else {
           but.value ='unfollow';
           but.innerText = 'unfollow';
-          tbrow.style.backgroundColor='RGB(247, 143, 195)';
+          tbrow.style.backgroundColor='pink';
         }
         // console.log("btn is   " + but);
         
@@ -107,7 +110,7 @@ function Market() {
   const params = useParams();
   const [userLoad, setUserLoad] = useState(true);
   const [userStatus, setUserStatus] = useState(false)
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const {data: marketData, isLoading: mkload, error} = useFetch("http://localhost:5000/market/main");
   var urlName = '';
     	useEffect(() => {
@@ -131,6 +134,8 @@ function Market() {
                     setUserLoad(false);
                 } else {
                     setIsLoggedIn({loggedIn: false, user: null})
+                    console.log('else block');
+                    setUserLoad(false);
                 }
             })
             .catch(e1 => {
@@ -142,53 +147,60 @@ function Market() {
             setIsLoggedIn({loggedIn: false, user: null})
             // navigate('/logIn', { state: "You must be logged in to view other users' profiles!" })
             setUserLoad(false);
+            
         }
         setUserStatus(true)
         
     }, []);
 
     if (mkload) {
-      return(<div></div>)
+      return(<div>Loading Market...</div>)
     }
     if (userLoad) {
-      return(<div></div>)
+      return(<div>Loading UserInfo...</div>)
     }
 
-  var coinData = []
+  var coinData = [];
+  var User = null;
   if (isLoggedIn.loggedIn) {
-    var User = isLoggedIn.user;
+    User = isLoggedIn.user;
     coinData = User.followingCryptos;
   }
 
 
 
-  return <div id="market_page">
+  return <div className="main-market-page" id="market_page" style={{minHeight:1000}}>
       <NavBar/>
-      <Container className='d-flex align-items-center justify-content-center pt-1'>
+      <Container className='d-flex align-items-center justify-content-center pt-1' >
       <SearchBar butFun={searchFun} param={marketData} inVal={document.getElementById("my-input")} inFun={filterFun}
       text={"Enter Symbol"} haveBut={true}/>
       {/* {isLoggedIn.loggedIn && <Currency isOwner={isOwner} userCurrency={User.followingCryptos} style={{width: 300}} />} */}
+      <Link to='/'>
+        <button className='button-49 m-2'>Market</button>
+      </Link>
+      
       </Container>
       <div id="datatable">
       
-
-        <Table striped bordered hover id="market-table">
-          <thead>
+      <Container className='d-flex align-items-center justify-content-center pt-1 shadow-lg'>
+        <Table striped bordered hover id="market-table" align={'center'} style={{opacity: 1}} className='table-lg'>
+          <thead style={{backgroundColor: 'black'}}>
             <tr>
-              <th>Coin</th>
-              <th>Price (USD)</th>
-              <th>24h</th>
-              <th>7d</th>
+            <th><h3><center>Coin</center></h3></th>
+              <th><h3><center>Price (USD)</center></h3></th>
+              <th><h3><center>24h</center></h3></th>
+              <th><h3><center>7d</center></h3></th>
+              <th><h3><center>Follow</center></h3></th>
             </tr>
           </thead>
           <tbody>
             {Array.from({length: marketData.length}).map((_, index1) => (
-              <tr id={'table_row' + index1}>
-                <td><a href={"market/" + marketData[index1].symbol}>{marketData[index1].symbol}</a></td>
-                  <td>{marketData[index1].quote.USD.price}</td>
-                  <td>{marketData[index1].quote.USD.percent_change_24h}</td>
-                  <td>{marketData[index1].quote.USD.percent_change_7d}</td>
-                  <td id="but-col"><button id={"table-but" + index1} class="btn btn-outline-secondary" 
+              <tr id={'table_row' + index1} style={{backgroundColor: 'white'}}>
+                <td ><center><a className="link-color" href={"market/" + marketData[index1].symbol}>{marketData[index1].symbol}</a></center></td>
+                  <td><center><a className="table-text">{marketData[index1].quote.USD.price.toString().substr(0, 17)}</a></center></td>
+                  <td><center><a className="table-text">{marketData[index1].quote.USD.percent_change_24h}</a></center></td>
+                  <td><center><a className="table-text">{marketData[index1].quote.USD.percent_change_7d}</a></center></td>
+                  <td id="but-col"><button id={"table-but" + index1} className="button-31" 
                   type="buton" onClick={()=>butFun(index1, marketData[index1].symbol)} value='follow'>follow</button></td>
                   {allPaint(marketData, coinData)}
                   
@@ -196,7 +208,7 @@ function Market() {
             ))}
           </tbody>
         </Table>
-        
+        </Container>
       </div>
       {/* {allPaint(marketData, coinData)} */}
   </div>;

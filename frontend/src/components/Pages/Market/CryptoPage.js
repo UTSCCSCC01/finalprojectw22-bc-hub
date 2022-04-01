@@ -1,23 +1,12 @@
 import NavBar from '../../NavBar/NavBar';
 import CryptoChart from './cryptoChart';
 import useFetch  from '../../../hooks/useFetch';
-import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-
-function butFun(gData) {
-  let {dateData, priceData} = formatData(gData);
-  
-
-}
-
-function formatData(gData){
-  let dateData = [];
-  let priceData = [];
-  for (var i = gData.length-1; i >= 0; i--){
-    dateData.push(gData[i][0]);
-    priceData.push(gData[i][1]);
-  }
-  console.log(dateData)
-  return {dateData, priceData};
+import './MarketPage.css'
+import { Container, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
+import { Button } from 'bootstrap';
+import { Link } from 'react-router-dom';
+function butFun() {
+  console.log("HELLO");
 }
 
 
@@ -40,25 +29,34 @@ function CryptoCoin() {
   const {dateData, priceData} = formatData(graphData)
 
 
-  return <div id="crypto_page">
+  return <div class="main-crypto-page" id="crypto_page" style={{minHeight: 1000}}>
       <NavBar/>
-      <ToggleButtonGroup type='radio' name='options' defaultValue={1}>
+      <Container className=' align-items-center justify-content-center' align={"center"}>
+      <CryptoChart dates={dateData} prices={priceData} coin={coin} />
+      <Link to='/market'>
+        <button className='button-31 m-2' style={{width: 200}}>Back</button>
+      </Link>
+      <ToggleButtonGroup type='radio' name='options' defaultValue={1} className='m-5' variant='outline-dark'>
 
-        <ToggleButton id='tbg-radio-1' value={1} onClick={() => butFun(graphData)}>
+        <ToggleButton id='tbg-radio-1' value={1} onClick={butFun} variant="dark">
           24h
         </ToggleButton>
-        <ToggleButton id='tbg-radio-2' value={2} onClick={() => butFun(graphData1)}>
+        <ToggleButton id='tbg-radio-2' value={2} onClick={butFun} variant="dark">
           12d
         </ToggleButton>
-        <ToggleButton id='tbg-radio-3' value={3} onClick={() => butFun(graphData2)}>
+        <ToggleButton id='tbg-radio-3' value={3} onClick={butFun} variant="dark">
           2.5m
         </ToggleButton>
-        <ToggleButton id='tbg-radio-3' value={3} onClick={() => butFun(graphData3)}>
+        <ToggleButton id='tbg-radio-4' value={4} onClick={butFun} variant="dark">
           9m
         </ToggleButton>
 
       </ToggleButtonGroup>
-      <CryptoChart dates={dateData} prices={priceData} coin={coin}/>
+      
+      
+        
+      </Container>
+      
       
       
 
