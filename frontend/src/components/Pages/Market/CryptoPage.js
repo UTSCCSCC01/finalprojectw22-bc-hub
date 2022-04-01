@@ -22,8 +22,6 @@ function formatData(gData){
 
 function CryptoCoin() {
 
-  
-
   const url = window.location.href;
   const coin = url.substring(url.lastIndexOf('/')).substring(1);
   
@@ -103,14 +101,9 @@ function CryptoCoin() {
         </ToggleButton>
 
       </ToggleButtonGroup>
-      
-      
         
       </Container>
       
-      
-      
-
   </div>;
 }
 
