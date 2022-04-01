@@ -6,7 +6,7 @@ import { Button } from 'bootstrap';
 import { Link } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 function formatData(gData){
@@ -34,17 +34,30 @@ function CryptoCoin() {
   const [priceData, setpriceData] = useState([]);
 
   // Pages that dont work: XRP, LUNA, BUSD, USDC, NEAR, TRX, LEO, BTCB, VET, HBAR, EGLD, SAND, XMR, FTM, THETA, RUNE, KLAY
-
-  if (isLoading || isLoading1 || isLoading2 || isLoading3) {
-    return(<div></div>)
-  }
-  let [dates, prices] = formatData(graphData);
-
   const butFun = (gData) => {
     let [temp_dates, temp_prices] = formatData(gData);
     setdateData(temp_dates);
     setpriceData(temp_prices);
   }
+
+  useEffect(() => {
+    if (isLoading || isLoading1 || isLoading2 || isLoading3) {
+      return(<div>?? </div>)
+    }
+      let [dates, prices] = formatData(graphData);
+      setdateData(dates);
+      setpriceData(prices);
+    
+  }, [graphData]);
+
+  
+  
+
+  if (isLoading || isLoading1 || isLoading2 || isLoading3) {
+    return(<div></div>)
+  }
+
+  let [dates, prices] = formatData(graphData);
 
 
   return <div class="main-crypto-page" id="crypto_page" style={{minHeight: 1000}}>
