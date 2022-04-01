@@ -8,9 +8,12 @@ const router = express.Router();
 
 router.use(body_parser.urlencoded({extended: true}));
 
-const crypto_arr = [];
+const supportedCrypto = ['BTC', 'ETH', 'USDT', 'ADA', 'SOL', 'AVAX', 'DOT', 'DOGE', 'UST', 'SHIB', 'MATIC', 'WBTC', 'CRO', 'DAI',
+                         'LTC', 'ATOM', 'LINK', 'UNI', 'BCH', 'ETC', 'ALGO', 'XLM', 'MANA', 'ICP', 'AXS', 'APE', 'XTZ', 'EOS', 'ZEC',
+                         'AAVE', 'GRT', 'MKR', 'GALA', 'STX', 'QNT', 'CHZ', 'LRC', 'ENJ', 'DASH', 'BAT', 'OKB', 'CRV', 'MINA', 'AMP', 
+                         'IOTX', 'COMP', 'YFI'];
 
-router.get("/main/:symbol?", function(req, res) {
+router.get("/main", function(req, res) {
 
   const api_key = '9a842280-701b-4651-890d-b0aeee1f199b';
   const url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=" + api_key;
@@ -25,16 +28,13 @@ router.get("/main/:symbol?", function(req, res) {
     });
     response.on("end", function(data) {
       const crypto = JSON.parse(coinData);
-      if (!req.params.symbol){
-        res.send(crypto);
-      } 
-      else {
-        for (var i = 0; i < crypto.data.length; i++){
-          if (req.params.symbol == crypto.data[i].symbol){
-            res.send(crypto.data[i])
-          }
+      const supportedData = [];
+      for (var i = 0; i < crypto.data.length; i++){
+        if (supportedCrypto.includes(crypto.data[i].symbol)){
+          supportedData.push(crypto.data[i])
         }
       }
+      res.send(supportedData);
 
     });
   });

@@ -23,6 +23,7 @@ import CommunityDetailedView from './components/Pages/Community/CommunityDetaile
 import LogIn from './components/Pages/LogIn/LogIn'
 import Register from './components/Pages/Register/Register'
 import Userprofile from './components/Pages/User/UserProfile';
+import Logout from './components/Logout';
 
 
 // Main 
@@ -42,7 +43,9 @@ render(
         <Route path="/community/:id" element={<CommunityDetailedView />} />
         <Route path="/logIn" element={<LogIn />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Userprofile />} />
+        {/* <Route path="/profile" element={<Userprofile />} /> */}
+        <Route path="/profile/:username" element={<Userprofile />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </BrowserRouter>

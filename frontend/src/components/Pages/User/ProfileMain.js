@@ -1,34 +1,82 @@
 import React from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
-const Profilemain = ({userName, userNickName, userId, postNum, followerNum, followingNum, emailAddr}) => {
+import ProfileLink from './ProfileLink';
+import { useState } from 'react';
+import FollowButton from './FollowButton';
+import FollowList from './FollowList';
+import useFetch from "../../../hooks/useFetch"
+
+
+const Profilemain = ({userName, userNickName, userId, followerNum, followingNum, emailAddr, profilePic, isOwner, isLoggedIn}) => {
+    const [openModal, setOpenModal] = useState(false);
+    const [followersModal, setFollowersModal] = useState(false);
+    const [followingModal, setFollowingModal] = useState(false);
+    const {data: userPosts, isLoading, error}  = useFetch('http://localhost:5000/community/user-posts/' + userId);
+
+
+
+    const attemptChangeAvatar = () => {
+        // console.log('blah bah blah',isOwner)
+        if (isOwner){
+            setFollowersModal(false)
+            setFollowingModal(false)
+            setOpenModal(true)
+        }
+    }
+
     return (
         <div id='ProfileMain'> 
+        {openModal && <ProfileLink closeModal={setOpenModal} />}
+        {followersModal && <FollowList closeModal={setFollowersModal} type={'Followers'} userId={userId} />}
+        {followingModal && <FollowList closeModal={setFollowingModal} type={'Following'} userId={userId} />}
             <Container className='d-flex align-items-center justify-content-center pt-5 ' align={"center"}>
-                <img className='square mx-5' src='https://media.altchar.com/prod/images/620_350/gm-96146c1a-36df-4399-b6d1-84d4a30512cb-genshin-impact-shogun-raiden-baal.jpg' alt = ''
-                />
+                <a className=''>
+                    <img className='square mx-5 rounded-cricle btn hov shadow' src={profilePic} alt = 'Not Found' width={200} height={200} onClick={attemptChangeAvatar} />
+                </a>
+                
+
                 <Col className='col-2' >
-                    <h4>{postNum}</h4>
-                    <h3 style={{fontWeight: 'normal'}}>Posts</h3>
+                    {!isLoading && userPosts &&
+                    <>
+                        <h4>{userPosts.length}</h4>
+                        <h3 style={{fontWeight: 'normal'}}>Posts</h3>
+                    </>
+                    }
                 </Col>
 
-                <Col className='col-2'>
+                <Col className='col-2' onClick={() => {
+                                                        setOpenModal(false)
+                                                        setFollowingModal(false)
+                                                        setFollowersModal(true)
+                                                        }}>
                     <h4>{followerNum}</h4>
                     <h3 style={{fontWeight: 'normal'}}>Followers</h3>
                 </Col>
                 
-                <Col className='col-2'>
+                <Col className='col-2' onClick={() => {
+                                                        setOpenModal(false)
+                                                        setFollowersModal(false)
+                                                        setFollowingModal(true)
+                                                        }}>
                     <h4>{followingNum}</h4>
                     <h3 style={{fontWeight: 'normal'}}>Following</h3>
                 </Col>
 
             </Container>
             <div style={{ marginTop: 50}}>
-                <h2>{userName}</h2>
+                <div className="d-flex justify-content-between">
+                    <h2>{userName}</h2>
+                    {isLoggedIn.loggedIn && isLoggedIn.user._id !== userId && <FollowButton user={isLoggedIn.user} id={userId}/>}
+                </div>
                 <h5 style={{fontStyle: 'italic', color:'grey'}}>{userNickName}</h5>
-                <h5>ID: {userId}</h5>
-                <h5>email: {emailAddr}</h5>
+                {isLoggedIn.loggedIn && isLoggedIn.user._id === userId && 
+                    <>
+                        <h5>Email Address: {emailAddr}</h5>
+                    </>
+                }   
             </div>
+
             <hr style={{zIndex: -2}}/>
 
             

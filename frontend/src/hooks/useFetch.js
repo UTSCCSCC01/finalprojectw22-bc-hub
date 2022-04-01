@@ -7,8 +7,11 @@ const useFetch = (endpoint) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        console.log('useEffect() ran');
-        fetch(endpoint)
+        fetch(endpoint, {
+            headers: {
+                'x-access-token': localStorage.getItem('token'),
+            }
+        })
         .then(res => {
             if (!res.ok){
                 throw Error('Failed to fetch data from ' + endpoint)
@@ -16,7 +19,6 @@ const useFetch = (endpoint) => {
             return res.json();
         })
         .then((data) => {
-            console.log(data);
             setData(data);
             setIsLoading(false);
             setError(null)

@@ -1,5 +1,5 @@
 .bg-bgcolor{
-    background-color: rgb(30, 32, 32);
+    background-color: rgb(21, 22, 22);
 }
 
 .NavFont {
@@ -13,3 +13,10 @@
     
 }
 
+.Navsquare {
+    object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 5px;
+  }

@@ -4,6 +4,9 @@ import Pagination from 'react-bootstrap/Pagination'
 import NavBar from './NavBar/NavBar';
 import NewsSearchBar from './Pages/News/NewsSearchBar';
 import { useState, useEffect } from 'react';
+import './Pages/News/News.css'
+import { Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Newsfeed(props) {
   const [inputText, setInputText] = useState("");
@@ -81,14 +84,22 @@ function Newsfeed(props) {
   return (
     <>
 
+      <div className="main-news-page" style={{minHeight:1000}}>
       <div className="mb-2"><NavBar></NavBar></div>
+      <Container className='d-flex align-items-center justify-content-center p-3'>
       <NewsSearchBar
       callback={changeText}
       />
+      
+      <Link to='/' style={{marginLeft: 900}}>
+        <button className='button-49' >News</button>
+      </Link>
+      </Container>
+      
       {displayNews()}
 
       {!isLoading && 
-      <Pagination className='mt-2 align-items-center justify-content-center'>
+      <Pagination className='mt-2 align-items-center justify-content-center p-5'>
         <Pagination.Item key={11} onClick={() => getNewPage(1)}>{1}</Pagination.Item>
         <Pagination.Item key={12} onClick={() => getNewPage(2)}>{2}</Pagination.Item>
         <Pagination.Item key={13} onClick={() => getNewPage(3)}>{3}</Pagination.Item>
@@ -96,6 +107,7 @@ function Newsfeed(props) {
         <Pagination.Item key={15} onClick={() => getNewPage(5)}>{5}</Pagination.Item>
       </Pagination>
       }
+      </div>
     </>
   );
 }

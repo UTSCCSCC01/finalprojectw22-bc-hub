@@ -4,8 +4,13 @@
 
 .Main{
     background-color: #8506fc;
-    height: 557px;
-    width: auto;
+    height: 1080px;
+    width: 1920px;
+}
+
+#login_page {
+    width: 100%;
+    background-color: #8506fc;
 }
 
 .button1{
