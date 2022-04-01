@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.use(body_parser.urlencoded({extended: true}));
 
-const supportedCrypto = ['BTC', 'ETH', 'USDT', 'XRP', 'ADA', 'SOL', 'AVAX', 'DOT', 'DOGE', 'UST', 'SHIB', 'MATIC', 'WBTC', 'CRO', 'DAI',
+const supportedCrypto = ['BTC', 'ETH', 'USDT', 'ADA', 'SOL', 'AVAX', 'DOT', 'DOGE', 'UST', 'SHIB', 'MATIC', 'WBTC', 'CRO', 'DAI',
                          'LTC', 'ATOM', 'LINK', 'UNI', 'BCH', 'ETC', 'ALGO', 'XLM', 'MANA', 'ICP', 'AXS', 'APE', 'XTZ', 'EOS', 'ZEC',
                          'AAVE', 'GRT', 'MKR', 'GALA', 'STX', 'QNT', 'CHZ', 'LRC', 'ENJ', 'DASH', 'BAT', 'OKB', 'CRV', 'MINA', 'AMP', 
                          'IOTX', 'COMP', 'YFI'];
