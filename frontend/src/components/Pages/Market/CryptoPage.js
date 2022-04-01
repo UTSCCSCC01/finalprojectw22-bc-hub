@@ -3,8 +3,21 @@ import CryptoChart from './cryptoChart';
 import useFetch  from '../../../hooks/useFetch';
 import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 
-function butFun() {
-  console.log("HELLO");
+function butFun(gData) {
+  let {dateData, priceData} = formatData(gData);
+  
+
+}
+
+function formatData(gData){
+  let dateData = [];
+  let priceData = [];
+  for (var i = gData.length-1; i >= 0; i--){
+    dateData.push(gData[i][0]);
+    priceData.push(gData[i][1]);
+  }
+  console.log(dateData)
+  return {dateData, priceData};
 }
 
 
@@ -24,28 +37,23 @@ function CryptoCoin() {
     return(<div></div>)
   }
   
-  const priceData = [];
-  const dateData = [];
+  const {dateData, priceData} = formatData(graphData)
 
-  for (var i = graphData.length-1; i >= 0; i--){
-    dateData.push(graphData[i][0]);
-    priceData.push(graphData[i][1]);
-  }
 
   return <div id="crypto_page">
       <NavBar/>
       <ToggleButtonGroup type='radio' name='options' defaultValue={1}>
 
-        <ToggleButton id='tbg-radio-1' value={1} onClick={butFun}>
+        <ToggleButton id='tbg-radio-1' value={1} onClick={() => butFun(graphData)}>
           24h
         </ToggleButton>
-        <ToggleButton id='tbg-radio-2' value={2} onClick={butFun}>
+        <ToggleButton id='tbg-radio-2' value={2} onClick={() => butFun(graphData1)}>
           12d
         </ToggleButton>
-        <ToggleButton id='tbg-radio-3' value={3} onClick={butFun}>
+        <ToggleButton id='tbg-radio-3' value={3} onClick={() => butFun(graphData2)}>
           2.5m
         </ToggleButton>
-        <ToggleButton id='tbg-radio-3' value={3} onClick={butFun}>
+        <ToggleButton id='tbg-radio-3' value={3} onClick={() => butFun(graphData3)}>
           9m
         </ToggleButton>
 

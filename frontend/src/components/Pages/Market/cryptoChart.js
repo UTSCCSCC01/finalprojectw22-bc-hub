@@ -1,17 +1,20 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
+import { useState } from 'react';
 
 const CryptoChart = (props) => {
    
+    const [dates, setDates] = useState(props.dates);
+    const [prices, setPrices] = useState(props.prices);
     return (
         <div className="cryptoChart">
             <Line 
                 data={{
-                    labels: props.dates,
+                    labels: dates,
                     datasets: [{
                         label: props.coin,
-                        data: props.prices,
+                        data: prices,
                         borderColor: 'rgb(75, 192, 192)'
                     }]
                 }}
