@@ -5,11 +5,16 @@ import ProfileLink from './ProfileLink';
 import { useState } from 'react';
 import FollowButton from './FollowButton';
 import FollowList from './FollowList';
+import useFetch from "../../../hooks/useFetch"
 
-const Profilemain = ({userName, userNickName, userId, postNum, followerNum, followingNum, emailAddr, profilePic, isOwner, isLoggedIn}) => {
+
+const Profilemain = ({userName, userNickName, userId, followerNum, followingNum, emailAddr, profilePic, isOwner, isLoggedIn}) => {
     const [openModal, setOpenModal] = useState(false);
     const [followersModal, setFollowersModal] = useState(false);
     const [followingModal, setFollowingModal] = useState(false);
+    const {data: userPosts, isLoading, error}  = useFetch('http://localhost:5000/community/user-posts/' + userId);
+
+
 
     const attemptChangeAvatar = () => {
         // console.log('blah bah blah',isOwner)
@@ -32,8 +37,12 @@ const Profilemain = ({userName, userNickName, userId, postNum, followerNum, foll
                 
 
                 <Col className='col-2' >
-                    <h4>{postNum}</h4>
-                    <h3 style={{fontWeight: 'normal'}}>Posts</h3>
+                    {!isLoading && userPosts &&
+                    <>
+                        <h4>{userPosts.length}</h4>
+                        <h3 style={{fontWeight: 'normal'}}>Posts</h3>
+                    </>
+                    }
                 </Col>
 
                 <Col className='col-2' onClick={() => {
