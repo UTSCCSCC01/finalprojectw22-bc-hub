@@ -84,7 +84,7 @@ function Newsfeed(props) {
   return (
     <>
 
-      <div className="main-news-page" style={{minHeight:1920}}>
+      <div className="main-news-page" style={{minHeight:1000}}>
       <div className="mb-2"><NavBar></NavBar></div>
       <Container className='d-flex align-items-center justify-content-center p-3'>
       <NewsSearchBar

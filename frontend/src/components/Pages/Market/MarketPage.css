@@ -9,11 +9,12 @@
 }
 
 .main-crypto-page{
-  background-image: url("crypto-background.jpg");
+  background-image: url("background2.jpg");
   color: white;
-  background-size: cover;
-  height: 1080px;
-  background-repeat:no-repeat;
+  height: auto;
+  width: auto;
+  background-repeat: repeat;
+
 }
 
 .link-color{

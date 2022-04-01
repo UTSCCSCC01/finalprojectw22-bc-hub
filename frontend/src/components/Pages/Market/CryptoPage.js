@@ -2,8 +2,9 @@ import NavBar from '../../NavBar/NavBar';
 import CryptoChart from './cryptoChart';
 import useFetch  from '../../../hooks/useFetch';
 import './MarketPage.css'
-import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-
+import { Container, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
+import { Button } from 'bootstrap';
+import { Link } from 'react-router-dom';
 function butFun() {
   console.log("HELLO");
 }
@@ -33,25 +34,34 @@ function CryptoCoin() {
     priceData.push(graphData[i][1]);
   }
 
-  return <div class="main-crypto-page" id="crypto_page">
+  return <div class="main-crypto-page" id="crypto_page" style={{minHeight: 1000}}>
       <NavBar/>
-      <ToggleButtonGroup type='radio' name='options' defaultValue={1}>
+      <Container className=' align-items-center justify-content-center' align={"center"}>
+      <CryptoChart dates={dateData} prices={priceData} coin={coin} />
+      <Link to='/market'>
+        <button className='button-31 m-2' style={{width: 200}}>Back</button>
+      </Link>
+      <ToggleButtonGroup type='radio' name='options' defaultValue={1} className='m-5' variant='outline-dark'>
 
-        <ToggleButton id='tbg-radio-1' value={1} onClick={butFun}>
+        <ToggleButton id='tbg-radio-1' value={1} onClick={butFun} variant="dark">
           24h
         </ToggleButton>
-        <ToggleButton id='tbg-radio-2' value={2} onClick={butFun}>
+        <ToggleButton id='tbg-radio-2' value={2} onClick={butFun} variant="dark">
           12d
         </ToggleButton>
-        <ToggleButton id='tbg-radio-3' value={3} onClick={butFun}>
+        <ToggleButton id='tbg-radio-3' value={3} onClick={butFun} variant="dark">
           2.5m
         </ToggleButton>
-        <ToggleButton id='tbg-radio-3' value={3} onClick={butFun}>
+        <ToggleButton id='tbg-radio-4' value={4} onClick={butFun} variant="dark">
           9m
         </ToggleButton>
 
       </ToggleButtonGroup>
-      <CryptoChart dates={dateData} prices={priceData} coin={coin}/>
+      
+      
+        
+      </Container>
+      
       
       
 
