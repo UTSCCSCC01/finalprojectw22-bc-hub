@@ -78,9 +78,19 @@ function Register() {
     }
 
     return (
-        <>
+        <div style={{backgroundColor: '#8506fc'}}>
         <NavBar/>
-        
+        {show && <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+             <Alert.Heading>Errors</Alert.Heading>
+             
+
+             {errors.map((error) => {
+            
+              return(<p>{error}</p>)
+            
+          })}
+           </Alert>}
+           
             <div id='register_page'>
                 
                 <form class="registermain" onSubmit={formSubmitHandler}>
@@ -96,17 +106,8 @@ function Register() {
                     <input class="registerbutton" type="submit" value="Sign Up"></input>
                 </form>
             </div>
-            {show && <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-             <Alert.Heading>Errors</Alert.Heading>
-             
-
-             {errors.map((error) => {
             
-              return(<p>{error}</p>)
-            
-          })}
-           </Alert>}
-        </>
+        </div>
         );
 }
 
