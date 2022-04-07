@@ -8,6 +8,13 @@
   background-position: center;
 }
 
+#select-header {
+  background-color: black;
+  color: white;
+  width: 50%;
+  text-align: center;
+}
+
 .main-crypto-page{
   background-image: url("background2.jpg");
   color: white;
