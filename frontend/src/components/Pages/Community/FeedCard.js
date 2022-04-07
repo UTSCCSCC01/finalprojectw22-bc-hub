@@ -179,7 +179,7 @@ const FeedCard = (props) => {
                             {owner && owner.profilePicture && !isLoading ?
                                 <Link to={`/profile/${owner.username}`} style={{color: 'inherit', textDecoration: 'inherit'}}>
                                     <img
-                                        className="me-2" 
+                                        className="me-2 Navsquare" 
                                         src={owner.profilePicture} 
                                         alt={owner.username + " profile picture"} 
                                         style={{height: '48px', width: '48px'}}
