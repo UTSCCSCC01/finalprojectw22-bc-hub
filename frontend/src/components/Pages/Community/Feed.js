@@ -45,8 +45,11 @@ const Feed = (props) => {
     return (  
         
         <div className="mt-2 d-flex flex-column align-items-center justify-content-center" style={{"flex-grow": "2", "overflow": "auto"}}>
-            <SearchBar butFun = {() => null} inFun={filterFunction} param={props.posts} inVal={null} text={"Search post"} haveBut={false}/>
+            
             <h1 className="text-center" id="feed-title">{feedType}</h1>
+            <div>
+                <SearchBar butFun = {() => null} inFun={filterFunction} param={props.posts} inVal={null} text={"Search post"} haveBut={false} />
+            </div>
             {feedType === 'Personal Feed' && !props.posts.length && 
                 <h3>
                     Your Personal Feed is empty. Follow more users to populate your feed
