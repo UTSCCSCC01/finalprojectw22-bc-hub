@@ -7,6 +7,7 @@ const useFetch = (endpoint) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        console.log("useFetch ran")
         fetch(endpoint, {
             headers: {
                 'x-access-token': localStorage.getItem('token'),

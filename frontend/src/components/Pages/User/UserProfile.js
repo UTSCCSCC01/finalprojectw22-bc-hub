@@ -11,6 +11,7 @@ import useFetch from '../../../hooks/useFetch';
 import {useState, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {useNavigate} from "react-router-dom"
+import NotFoundPage from '../NotFoundPage';
 
 
 const Userprofile = () => {
@@ -58,63 +59,26 @@ const Userprofile = () => {
         setUserStatus(true)
     }, []);
 
-    // if (isLoading || !isLoaded) {
-    //     return(<div><h1>Loading Profile Page...</h1></div>);
-    // } 
- 
-    // var userID = User._id;
-    // var userName = User.username;
-    // var userEmail = User.email;
-    // var userNickName = User.name;
-    // var userPic = User.profilePicture;
-    // var userFollowers = User.followers;
-    // var userFollowings = User.followingUsers;
-    // var userFollowCryptos = User.followingCryptos;
-    // var userFollowNFTs = User.followingNFTs;
-    // var userPosts = User.Posts;
-    // var userComments = User.comments;
-    // var userLearnProgress = User.educationProgress;
- 
-    
-
-    // console.log('Testing purpose');
-    // console.log(User);
-    // console.log(userID);
-    // console.log(userName);
-    // console.log(userEmail);
-    // console.log(userNickName);
-    // console.log(userPic);
-    // console.log(userFollowers);
-    // console.log(userFollowings);
-    // console.log(userFollowCryptos);
-    // console.log(userFollowNFTs);
-    // console.log(userPosts);
-    // console.log(userComments);
-    // console.log(userLearnProgress);
-    
-    
-
-
-    // console.log('Testing end');
     return (
         <div >
-            <NavBar/>
-            {(!isLoading && userStatus) ?
+            {isLoading && <div><NavBar/><h1>Loading Profile Page...</h1></div>}
+            {User && userStatus &&
                 <>
+                <NavBar/>
                 <ProfileSideBar isOwner={isOwner}/>
                 <Col className='col-9 ' style={{marginLeft: 300}}>
                     <Profilemain userName={User.username} userNickName={User.name} userId={User._id} profilePic ={User.profilePicture} 
                     followerNum={User.followers.length} 
                     followingNum={User.followingUsers.length}
                     emailAddr={User.email} isOwner={isOwner} isLoggedIn={isLoggedIn}/>
-                    <Currency isOwner={isOwner} userCurrency={User.followingCryptos}/>
-                    <Learnprogress Progresses={User.educationProgress} isOwner={isOwner}/>
-                    <UserPost userID={User._id} username={User.username} isOwner={isOwner}/>
+                    <Currency isOwner={isOwner} userCurrency={User.followingCryptos} isLoggedIn={isLoggedIn} userName={User.username}/>
+                    <Learnprogress Progresses={User.educationProgress} isOwner={isOwner} isLoggedIn={isLoggedIn} username={User.username}/>
+                    <UserPost userID={User._id} username={User.username} isOwner={isOwner} isLoggedIn={isLoggedIn}/>
                 </Col>
                 </>
-                :
-                <div><h1>Loading Profile Page...</h1></div>
+                
             }
+            {(!User || errorUser) && !isLoading && <NotFoundPage></NotFoundPage>}
         </div>
         
     );

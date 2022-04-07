@@ -11,7 +11,7 @@ const NotFoundPage = () => {
                 </svg>
                 <h3 className="mt-2">404</h3>
                 <h2>Page Not Found</h2>
-                <p>Sorry, the page you were looking for does not exist or an other error occured.</p>
+                <p>Sorry, the page you were looking for does not exist or another error occured.</p>
                 <p>Please use the navigation bar to choose another page.</p>
             </div>
         </div>
