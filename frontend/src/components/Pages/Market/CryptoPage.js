@@ -2,12 +2,10 @@ import NavBar from '../../NavBar/NavBar';
 import useFetch  from '../../../hooks/useFetch';
 import './MarketPage.css'
 import { Container, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-import { Button } from 'bootstrap';
 import { Link } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
-import Chart from 'chart.js/auto';
 import { useState, useEffect } from 'react';
-
+import Chart from 'chart.js/auto';
 
 function formatData(gData){
   let dates = []
@@ -35,6 +33,8 @@ function CryptoCoin() {
 
   // Pages that dont work: XRP, LUNA, BUSD, USDC, NEAR, TRX, LEO, BTCB, VET, HBAR, EGLD, SAND, XMR, FTM, THETA, RUNE, KLAY
   const butFun = (gData) => {
+    const sel_head = document.getElementById("select-header");
+    sel_head.style.display = "none";
     let [temp_dates, temp_prices] = formatData(gData);
     setdateData(temp_dates);
     setpriceData(temp_prices);
@@ -64,7 +64,7 @@ function CryptoCoin() {
       <NavBar/>
       <Container className=' align-items-center justify-content-center' align={"center"}>
       <div className="shadow-lg " style={{backgroundColor:'RGB(255, 255, 255)', marginTop: 110}}>
-            <Line 
+            <Line id='line-graph'
                 data={{
                     labels: dateData,
                     datasets: [{
@@ -82,12 +82,22 @@ function CryptoCoin() {
                             ticks: {
                                 maxTicksLimit: 8, 
                                 color: 'black'                             
+                            },
+                            title: {
+                              display: true,
+                              text: "Dates"
                             }
+                            
                         },
                         y: {
                             ticks: {
                                 color: 'black'                             
+                            },
+                            title: {
+                              display: true,
+                              text: "USD"
                             }
+                            
                         }
 
                     }
@@ -114,8 +124,9 @@ function CryptoCoin() {
         </ToggleButton>
 
       </ToggleButtonGroup>
-        
+      <h3 id='select-header'>Please selecct a time to display</h3>
       </Container>
+      
       
   </div>;
 }
