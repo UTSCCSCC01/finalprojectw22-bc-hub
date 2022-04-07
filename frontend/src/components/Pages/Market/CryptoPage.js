@@ -106,7 +106,7 @@ function CryptoCoin() {
         </div>
 
       <Link to='/market'>
-        <button className='button-31 m-2' style={{width: 200}}>Back</button>
+        <button className='button-31 m-2' style={{width: 200}}>Back to Market</button>
       </Link>
       <ToggleButtonGroup type='radio' name='options' defaultValue={1} className='m-5' variant='outline-dark'>
 
@@ -124,7 +124,7 @@ function CryptoCoin() {
         </ToggleButton>
 
       </ToggleButtonGroup>
-      <h3 id='select-header'>Please selecct a time to display</h3>
+      <h3 id='select-header'>Please select a time to display</h3>
       </Container>
       
       
