@@ -11,6 +11,8 @@ The community_post schema represents a post that a user can make. The schema for
 
 The communityComment schema represents a comment that a user can make. The schema for a community comment is found in `backend/models/communityComment.js`. The attributes of this scheme are: description, date, dateString, likes, dislikes, totalLikes, totalDislikes, and comments. dateString is a String representing the date the comment was made, while date is a datetime object representing the same. Likes and dislikes are a list of users who have liked or disliked the comment respectively. totalLikes and totalDislikes are numbers indicating how many people have liked or disliked a comment respectively. Comments is a list of other comments that have been made about the comment.
 
+The deadToken Schema represents a json web token that has been discarded but has not expired yet. The schema for a dead token can be found in `backend/models/deadToken.js`. The only attribute for this scheme is token, which is a string that stores the json web token. 
+
 ## Express Backend
 
 There are multiple endpoints that can be used to get or post information.
