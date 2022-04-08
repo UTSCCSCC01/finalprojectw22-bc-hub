@@ -96,36 +96,9 @@ function Register() {
     }
 
     return (
-        <div style={{backgroundColor: '#22A7F0' , height:1000}} >
-        {/* <NavBar/>
-        {show && <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-             <Alert.Heading>Errors</Alert.Heading>
-             
-
-             {errors.map((error) => {
-            
-              return(<p>{error}</p>)
-            
-          })}
-           </Alert>}
-           
-            <div id='register_page'>
-                
-                <form class="registermain" onSubmit={formSubmitHandler}>
-                    <h2 class="registerborder"></h2>
-                    <h1 class="registertext1">Register</h1>
-
-                    <input class="registertextbox1" type="text" id="firstname" name="firstname" placeholder='First Name' onChange={e => setFirstName(e.target.value)}></input>
-                    <input class="registertextbox2" type="text" id="lastname" name="lastname" placeholder='Last Name' onChange={e => setLastName(e.target.value)}></input>
-                    <input class="registertextbox3" type="text" id="username" name="username" placeholder='User Name' onChange={e => setUsername(e.target.value)}></input>
-                    <input class="registertextbox6" type="email" id="email" name="email" placeholder='Email' onChange={e => setEmail(e.target.value)}></input>
-                    <input class="registertextbox4" type="password" id="password" name="password" placeholder='Password' onChange={e => setPassword(e.target.value)}></input>
-                    <input class="registertextbox5" type="password" id="password" name="password" placeholder='Re-enter Password' onChange={e => setPassword2(e.target.value)}></input>
-                    <input class="registerbutton" type="submit" value="Sign Up"></input>
-                </form>
-            </div>
-             */}
-             <NavBar/>
+        <>
+        <div style={{backgroundColor: '#22A7F0' , height:'100vh'}} >
+        <NavBar/>
              {show && <Alert variant="danger" onClose={() => setShow(false)} dismissible>
              <Alert.Heading>Errors</Alert.Heading>
              
@@ -139,7 +112,7 @@ function Register() {
              <Container className='d-flex align-items-center justify-content-center pt-5' >
 
              
-             <form style={{width:500, backgroundColor: 'white',  marginBottom: 150}} className='p-5 rounded shadow' onSubmit={formSubmitHandler}>
+             <form style={{width:500, backgroundColor: 'white'}} className='p-5 rounded shadow' onSubmit={formSubmitHandler}>
                 <h1 className="pageTitle p-2 text-center text-primary">Register</h1>
                 <p className="text-center">It's free and only takes a minute!</p>
                 {/* <div className="form-group"  style={{marginBottom: 15}}>
@@ -185,6 +158,7 @@ function Register() {
             </form>
             </Container>
         </div>
+        </>
         );
 }
 

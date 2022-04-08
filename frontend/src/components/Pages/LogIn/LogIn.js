@@ -123,7 +123,8 @@ function LogIn() {
             //         </Alert>} 
             //     </div>   
             // </>
-            <div style={{backgroundColor: '#22A7F0', height: 1000}} >
+            <>
+            <div style={{backgroundColor: '#22A7F0', height: '100vh'}} >
                 <NavBar/>
                 {show && <Alert variant="danger" onClose={() => setShow(false)} dismissible>
                     <Alert.Heading>Errors</Alert.Heading>
@@ -133,7 +134,7 @@ function LogIn() {
                     </Alert>
                 }  
                 <div className="d-flex flex-column align-items-center mt-5">
-                <div className="card shadow mt-3 w-25" style={{marginBottom: '290px'}}>
+                <div className="card shadow mt-3 w-25">
                     <h1 className="pageTitle p-2 mt-3 text-center text-primary">Log In</h1>
                     <p className="text-center">Sign in to your account</p>
                     <form className="px-2" onSubmit={formSubmitHandler}>
@@ -163,6 +164,7 @@ function LogIn() {
                 </div>
             </div>
             </div>
+            </>
             );
 }
 
