@@ -2,9 +2,27 @@ import React from 'react';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Image from 'react-bootstrap/Image'
+// import Image from 'react-bootstrap/Image'
+import {useEffect, useState } from 'react';
 
 function News({title, preview, publisher, date, img, link}) {
+  const [isValidImage, setIsValidImage] = useState(false)
+
+  // .catch(err => {});
+  function checkImage(url) {
+    var i = new Image();
+    i.onload = function() {
+      if (this.width > 0) {
+        setIsValidImage(true)
+      }
+    }
+    i.onerror = function() {
+      console.log("image doesn't exist");
+    }
+    i.src = url;  
+  }
+  checkImage(img)
+
   return (
     <div style={{minHeight:10}} >
       <Container style={{backgroundColor: 'white'}} >
@@ -18,9 +36,12 @@ function News({title, preview, publisher, date, img, link}) {
             </Col>
             <Col xs={2} className='d-flex align-items-center justify-content-center p-2'>
               <a target="_blank" rel="noopener noreferrer" href={link}>
-                <Image className="h-100 w-100 shadow" rounded='true' src={img} alt='Not Found' ></Image>
+              { isValidImage &&
+                <img className="h-100 w-100 shadow" rounded='true' src={img} alt='Not Found' ></img>
+              }
               </a>
             </Col>
+            
         </Row>
       </Container>
     </div>

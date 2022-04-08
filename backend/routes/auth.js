@@ -92,6 +92,7 @@ router.get("/logout", async (req, res) => {
 //check if user is logged in
 router.get("/loggedIn", async (req, res) =>{
     const body = await isLoggedIn(req)
+    console.log(body)
     res.send(body)
 });
 
