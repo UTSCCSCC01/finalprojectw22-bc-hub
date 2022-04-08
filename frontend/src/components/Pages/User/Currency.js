@@ -59,11 +59,12 @@ const Currency = (props) => {
               <tr>
                 <td><Link to={'/market/' + dataArr[i][0]}>{dataArr[i][0]}</Link></td>
                 <td>{dataArr[i][1]}</td>
-                <td>
-                <Button variant='outline-dark' className='mx-2' onClick={() => {deleteCurrRow(dataArr[i][0], coinData)}}>unfollow</Button>
-                </td>
-                
-                
+                {
+                  props.isLoggedIn.loggedIn && props.userName && props.userName === props.isLoggedIn.user.username &&
+                  <td>
+                    <Button variant='outline-dark' className='mx-2' onClick={() => {deleteCurrRow(dataArr[i][0], coinData)}}>unfollow</Button>
+                  </td>
+                }
               </tr>
             ))}
           </tbody>

@@ -45,7 +45,7 @@ const FollowList = ({closeModal, userId, type}) => {
                         {users.map((u) => (
                             <>
                                 <hr/>
-                                <div className="d-flex flex-row justify-content-between align-items-center"> 
+                                <div className="d-flex flex-row justify-content-between align-items-center hov"> 
                                     {u && u.profilePicture ?
                                         <Link to={`/profile/${u.username}`} onClick={() => {closeModal(false)}} style={{color: 'inherit', textDecoration: 'inherit'}}>
                                             <img
