@@ -46,7 +46,7 @@ function EducationPage() {
                 <img src={r1c1} alt='' width="200px" height={"150px"} className='learnimg' /> 
               </a>
               <br/>
-              <h5 className='labelText'>What is Ctypto Currency</h5>
+              <h5 className='labelText'>What is Crypto Currency</h5>
           </Col> 
           
           
