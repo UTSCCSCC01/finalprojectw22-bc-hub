@@ -41,6 +41,10 @@ function CryptoCoin() {
   }
 
   useEffect(() => {
+    if(!isLoading){
+      butFun(graphData);
+    }
+
     if (isLoading || isLoading1 || isLoading2 || isLoading3) {
       return(<div>?? </div>)
     }
@@ -48,7 +52,7 @@ function CryptoCoin() {
       setdateData(dates);
       setpriceData(prices);
     
-  }, [graphData]);
+  }, [graphData, isLoading]);
 
   
   
