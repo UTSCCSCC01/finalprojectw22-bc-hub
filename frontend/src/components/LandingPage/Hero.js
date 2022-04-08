@@ -76,7 +76,7 @@ export default function Hero() {
               </Button>
               </a>
 
-              <a href="/community">
+              <a href="/community/trending-feed">
               <Button
                 size={'lg'}
                 rounded={'full'}
