@@ -57,7 +57,12 @@ router.get("/:symbol?/:time", function(req, res) {
 
             for (var i = 0; i < btc.length; i++){
                 const temp_date = new Date(btc[i][0]*1000)
-                chart_data.push([temp_date, btc[i][1]]);
+                let format_date = temp_date.toISOString().substring(0,10);
+                if (params["granularity"] == "300"){
+                    format_date = temp_date.toISOString().substring(11, 16);
+                }
+                //onsole.log(format_date);
+                chart_data.push([format_date, btc[i][1]]);
             }
             res.send(chart_data);
         });

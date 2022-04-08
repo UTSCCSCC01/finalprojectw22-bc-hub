@@ -31,9 +31,13 @@ const Profilemain = ({userName, userNickName, userId, followerNum, followingNum,
         {followersModal && <FollowList closeModal={setFollowersModal} type={'Followers'} userId={userId} />}
         {followingModal && <FollowList closeModal={setFollowingModal} type={'Following'} userId={userId} />}
             <Container className='d-flex align-items-center justify-content-center pt-5 ' align={"center"}>
-                <a className=''>
-                    <img className='square mx-5 rounded-cricle btn hov shadow' src={profilePic} alt = 'Not Found' width={200} height={200} onClick={attemptChangeAvatar} />
-                </a>
+                {isLoggedIn.loggedIn && isLoggedIn.user._id === userId ?
+                    <a className=''> 
+                        <img className='square mx-5 rounded-cricle btn hov shadow' src={profilePic} alt = 'Not Found' width={200} height={200} onClick={attemptChangeAvatar} />
+                    </a>
+                    :
+                    <img className='square mx-5 rounded-cricle btn shadow pe-none' src={profilePic} alt = 'Not Found' width={200} height={200} />
+                }
                 
 
                 <Col className='col-2' >
@@ -45,7 +49,7 @@ const Profilemain = ({userName, userNickName, userId, followerNum, followingNum,
                     }
                 </Col>
 
-                <Col className='col-2' onClick={() => {
+                <Col className='col-2 follow-list' onClick={() => {
                                                         setOpenModal(false)
                                                         setFollowingModal(false)
                                                         setFollowersModal(true)
@@ -54,7 +58,7 @@ const Profilemain = ({userName, userNickName, userId, followerNum, followingNum,
                     <h3 style={{fontWeight: 'normal'}}>Followers</h3>
                 </Col>
                 
-                <Col className='col-2' onClick={() => {
+                <Col className='col-2 follow-list' onClick={() => {
                                                         setOpenModal(false)
                                                         setFollowersModal(false)
                                                         setFollowingModal(true)

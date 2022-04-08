@@ -2,12 +2,10 @@ import NavBar from '../../NavBar/NavBar';
 import useFetch  from '../../../hooks/useFetch';
 import './MarketPage.css'
 import { Container, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-import { Button } from 'bootstrap';
 import { Link } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
+import { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
-import { useState } from 'react';
-
 
 function formatData(gData){
   let dates = []
@@ -34,24 +32,43 @@ function CryptoCoin() {
   const [priceData, setpriceData] = useState([]);
 
   // Pages that dont work: XRP, LUNA, BUSD, USDC, NEAR, TRX, LEO, BTCB, VET, HBAR, EGLD, SAND, XMR, FTM, THETA, RUNE, KLAY
-
-  if (isLoading || isLoading1 || isLoading2 || isLoading3) {
-    return(<div></div>)
-  }
-  let [dates, prices] = formatData(graphData);
-
   const butFun = (gData) => {
+    const sel_head = document.getElementById("select-header");
+    sel_head.style.display = "none";
     let [temp_dates, temp_prices] = formatData(gData);
     setdateData(temp_dates);
     setpriceData(temp_prices);
   }
 
+  useEffect(() => {
+    if(!isLoading){
+      butFun(graphData);
+    }
+
+    if (isLoading || isLoading1 || isLoading2 || isLoading3) {
+      return(<div>?? </div>)
+    }
+      let [dates, prices] = formatData(graphData);
+      setdateData(dates);
+      setpriceData(prices);
+    
+  }, [graphData, isLoading]);
+
+  
+  
+
+  if (isLoading || isLoading1 || isLoading2 || isLoading3) {
+    return(<div></div>)
+  }
+
+  let [dates, prices] = formatData(graphData);
+
 
   return <div class="main-crypto-page" id="crypto_page" style={{minHeight: 1000}}>
       <NavBar/>
       <Container className=' align-items-center justify-content-center' align={"center"}>
-      <div className="shadow-lg " style={{backgroundColor:'RGB(255, 255, 255)', marginTop: 110}}>
-            <Line 
+      <div className="shadow-lg " style={{backgroundColor:'RGB(255, 255, 255)', marginTop: 50}}>
+            <Line id='line-graph'
                 data={{
                     labels: dateData,
                     datasets: [{
@@ -69,12 +86,22 @@ function CryptoCoin() {
                             ticks: {
                                 maxTicksLimit: 8, 
                                 color: 'black'                             
+                            },
+                            title: {
+                              display: true,
+                              text: "Dates"
                             }
+                            
                         },
                         y: {
                             ticks: {
                                 color: 'black'                             
+                            },
+                            title: {
+                              display: true,
+                              text: "USD"
                             }
+                            
                         }
 
                     }
@@ -83,7 +110,7 @@ function CryptoCoin() {
         </div>
 
       <Link to='/market'>
-        <button className='button-31 m-2' style={{width: 200}}>Back</button>
+        <button className='button-31 m-2' style={{width: 200}}>Back to Market</button>
       </Link>
       <ToggleButtonGroup type='radio' name='options' defaultValue={1} className='m-5' variant='outline-dark'>
 
@@ -101,8 +128,9 @@ function CryptoCoin() {
         </ToggleButton>
 
       </ToggleButtonGroup>
-        
+      <h3 id='select-header'>Please select a time to display</h3>
       </Container>
+      
       
   </div>;
 }
