@@ -63,7 +63,7 @@ function CryptoCoin() {
   return <div class="main-crypto-page" id="crypto_page" style={{minHeight: 1000}}>
       <NavBar/>
       <Container className=' align-items-center justify-content-center' align={"center"}>
-      <div className="shadow-lg " style={{backgroundColor:'RGB(255, 255, 255)', marginTop: 110}}>
+      <div className="shadow-lg " style={{backgroundColor:'RGB(255, 255, 255)', marginTop: 50}}>
             <Line id='line-graph'
                 data={{
                     labels: dateData,

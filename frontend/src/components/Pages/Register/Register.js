@@ -96,7 +96,7 @@ function Register() {
     }
 
     return (
-        <div className='register' style={{backgroundColor: '#22A7F0'}}>
+        <div style={{backgroundColor: '#22A7F0' , height:1000}} >
         {/* <NavBar/>
         {show && <Alert variant="danger" onClose={() => setShow(false)} dismissible>
              <Alert.Heading>Errors</Alert.Heading>
